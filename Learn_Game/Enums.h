@@ -1,0 +1,15 @@
+#pragma once
+
+enum Direction
+{
+	UP, DOWN, LEFT, RIGHT
+};
+
+enum AnimationType
+{
+	SINGLE_FRAME,
+	ANIMATION_SINGLE_SITE,
+	SINGLE_FRAME_MULTIPLE_SITE,
+	ROTATE_MULTIPLE_FRAME
+
+};

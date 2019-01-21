@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Button">
+      <UniqueIdentifier>{d10caf46-e128-4231-a133-6e63475621c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameState">
+      <UniqueIdentifier>{0a91072e-ecd9-4f0c-8a83-e4cb966561e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\system">
+      <UniqueIdentifier>{52fbdf6d-1e21-4da2-a552-811093ed083d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Button">
+      <UniqueIdentifier>{32ec9568-d03d-436b-b861-39b5e3e300c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameState">
+      <UniqueIdentifier>{f8ea4375-1af6-4fd3-96c7-9639d9b894a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Room">
+      <UniqueIdentifier>{f88c1465-099f-4162-b118-5fce80377af2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\system">
+      <UniqueIdentifier>{25a0892c-1afe-4cd9-851d-acd92b686cf8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Arkanoid">
+      <UniqueIdentifier>{e00ffec3-cb9c-4941-8e68-086a9a3abbc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Arkanoid">
+      <UniqueIdentifier>{a0d3c758-191b-4cad-91fe-0943d0292686}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Arkanoid\DrawStyle">
+      <UniqueIdentifier>{764f18b5-d94a-48fd-9870-46a10a863928}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Arkanoid\Level">
+      <UniqueIdentifier>{70347293-b67f-4c45-a033-b547733e92f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Arkanoid\Draw">
+      <UniqueIdentifier>{e2447fae-22c5-43fd-859c-ac912b8b3538}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Arkanoid\Buffs">
+      <UniqueIdentifier>{1d6982aa-99cb-4079-8a4d-0e3feb5ea0c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Arkanoid\Buffs">
+      <UniqueIdentifier>{d8aa630b-cf5e-418a-ad39-07fb8da0a902}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Arkanoid\Buffs\Buff">
+      <UniqueIdentifier>{471b4260-a16d-499f-b5bd-ebf9d820d983}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\TicTaCtOC">
+      <UniqueIdentifier>{c1d7e5f5-9778-4fe8-8932-146d3e9ed28d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TicTacToc">
+      <UniqueIdentifier>{2f09ada4-b502-418a-a500-27753c8b0210}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Arkanoid\Buffs\Buffs">
+      <UniqueIdentifier>{12c9cb27-ce21-4973-97eb-68d57eacad68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Arkanoid\Level">
+      <UniqueIdentifier>{3b9848fc-4585-408b-a5af-73d2688e13b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Mario">
+      <UniqueIdentifier>{b8b8228a-b4c4-4c28-8e0c-2d2b4affde24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Mario">
+      <UniqueIdentifier>{8cd4a2e5-aecb-4617-bbbe-2b1bf6bb5aee}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicButton.cpp">
+      <Filter>Source Files\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionChecker.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuState.cpp">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseState.cpp">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="GameListState.cpp">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="TicTacTocGameState.cpp">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="Arkanoid_Ball.cpp">
+      <Filter>Source Files\Arkanoid</Filter>
+    </ClCompile>
+    <ClCompile Include="Arkanoid_Block.cpp">
+      <Filter>Source Files\Arkanoid</Filter>
+    </ClCompile>
+    <ClCompile Include="Arkanoid_GameBoard.cpp">
+      <Filter>Source Files\Arkanoid</Filter>
+    </ClCompile>
+    <ClCompile Include="Arkanoid_Paddle.cpp">
+      <Filter>Source Files\Arkanoid</Filter>
+    </ClCompile>
+    <ClCompile Include="ArkanoidPlayingGameState.cpp">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Arkanoid_PointSystem.cpp">
+      <Filter>Source Files\Arkanoid</Filter>
+    </ClCompile>
+    <ClCompile Include="Arkanoid_BuffFactory.cpp">
+      <Filter>Source Files\Arkanoid\Buffs</Filter>
+    </ClCompile>
+    <ClCompile Include="Arkanoid_BuffSystem.cpp">
+      <Filter>Source Files\Arkanoid\Buffs</Filter>
+    </ClCompile>
+    <ClCompile Include="Arkanoid_BasicBrawStyle.cpp">
+      <Filter>Source Files\Arkanoid\Draw</Filter>
+    </ClCompile>
+    <ClCompile Include="Arkanoid_IDrawStyle.cpp">
+      <Filter>Source Files\Arkanoid\Draw</Filter>
+    </ClCompile>
+    <ClCompile Include="Arkanoid_BuffDrop.cpp">
+      <Filter>Source Files\Arkanoid\Buffs</Filter>
+    </ClCompile>
+    <ClCompile Include="Arkanoid_IBuff.cpp">
+      <Filter>Source Files\Arkanoid\Buffs</Filter>
+    </ClCompile>
+    <ClCompile Include="TicTacToc_Cell.cpp">
+      <Filter>Source Files\TicTacToc</Filter>
+    </ClCompile>
+    <ClCompile Include="Arkanoid_AddPointBuff.cpp">
+      <Filter>Source Files\Arkanoid\Buffs\Buffs</Filter>
+    </ClCompile>
+    <ClCompile Include="Arkanoid_BigPaddleBuff.cpp">
+      <Filter>Source Files\Arkanoid\Buffs\Buffs</Filter>
+    </ClCompile>
+    <ClCompile Include="Arkanoid_SlowDownBallBuff.cpp">
+      <Filter>Source Files\Arkanoid\Buffs\Buffs</Filter>
+    </ClCompile>
+    <ClCompile Include="Arkanoid_SmallPaddleBuff.cpp">
+      <Filter>Source Files\Arkanoid\Buffs\Buffs</Filter>
+    </ClCompile>
+    <ClCompile Include="Arkanoid_SpeedUpBallBuff.cpp">
+      <Filter>Source Files\Arkanoid\Buffs\Buffs</Filter>
+    </ClCompile>
+    <ClCompile Include="Arkanoid_PointMultiplerBuff.cpp">
+      <Filter>Source Files\Arkanoid\Buffs\Buffs</Filter>
+    </ClCompile>
+    <ClCompile Include="Arkanoid_Level.cpp">
+      <Filter>Source Files\Arkanoid\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="MarioGameState.cpp">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="Mario_GameObiect.cpp">
+      <Filter>Source Files\Mario</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="Mario_Player.cpp">
+      <Filter>Source Files\Mario</Filter>
+    </ClCompile>
+    <ClCompile Include="System_Animation.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationFrame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="settings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicButton.h">
+      <Filter>Header Files\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>Header Files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseState.h">
+      <Filter>Header Files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuState.h">
+      <Filter>Header Files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionChecker.h">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="Enums.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameListState.h">
+      <Filter>Header Files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="TicTacTocGameState.h">
+      <Filter>Header Files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="Arkanoid_Ball.h">
+      <Filter>Header Files\Arkanoid</Filter>
+    </ClInclude>
+    <ClInclude Include="Arkanoid_GameBoard.h">
+      <Filter>Header Files\Arkanoid</Filter>
+    </ClInclude>
+    <ClInclude Include="Arkanoid_Paddle.h">
+      <Filter>Header Files\Arkanoid</Filter>
+    </ClInclude>
+    <ClInclude Include="Arkanoid_Block.h">
+      <Filter>Header Files\Arkanoid</Filter>
+    </ClInclude>
+    <ClInclude Include="ArkanoidPlayingGameState.h">
+      <Filter>Header Files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="Arkanoid_PointSystem.h">
+      <Filter>Header Files\Arkanoid</Filter>
+    </ClInclude>
+    <ClInclude Include="Arkanoid_BasicBrawStyle.h">
+      <Filter>Header Files\Arkanoid\DrawStyle</Filter>
+    </ClInclude>
+    <ClInclude Include="Arkanoid_BuffFactory.h">
+      <Filter>Header Files\Arkanoid\Buffs</Filter>
+    </ClInclude>
+    <ClInclude Include="Arkanoid_BuffSystem.h">
+      <Filter>Header Files\Arkanoid\Buffs</Filter>
+    </ClInclude>
+    <ClInclude Include="Arkanoid_IDrawStyle.h">
+      <Filter>Header Files\Arkanoid\DrawStyle</Filter>
+    </ClInclude>
+    <ClInclude Include="Arkanoid_Level.h">
+      <Filter>Header Files\Arkanoid\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Arkanoid_BigPaddleBuff.h">
+      <Filter>Header Files\Arkanoid\Buffs\Buff</Filter>
+    </ClInclude>
+    <ClInclude Include="Arkanoid_SlowDownBallBuff.h">
+      <Filter>Header Files\Arkanoid\Buffs\Buff</Filter>
+    </ClInclude>
+    <ClInclude Include="Arkanoid_SmallPaddleBuff.h">
+      <Filter>Header Files\Arkanoid\Buffs\Buff</Filter>
+    </ClInclude>
+    <ClInclude Include="Arkanoid_SpeedUpBallBuff.h">
+      <Filter>Header Files\Arkanoid\Buffs\Buff</Filter>
+    </ClInclude>
+    <ClInclude Include="Arkanoid_BuffDrop.h">
+      <Filter>Header Files\Arkanoid\Buffs</Filter>
+    </ClInclude>
+    <ClInclude Include="Arkanoid_IBuff.h">
+      <Filter>Header Files\Arkanoid\Buffs</Filter>
+    </ClInclude>
+    <ClInclude Include="Arkanoid_PointMultiplerBuff.h">
+      <Filter>Header Files\Arkanoid\Buffs\Buff</Filter>
+    </ClInclude>
+    <ClInclude Include="Arkanoid_AddPointBuff.h">
+      <Filter>Header Files\Arkanoid\Buffs\Buff</Filter>
+    </ClInclude>
+    <ClInclude Include="TicTacToc_Cell.h">
+      <Filter>Header Files\TicTaCtOC</Filter>
+    </ClInclude>
+    <ClInclude Include="Mario_GameObiect.h">
+      <Filter>Header Files\Mario</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="Mario_Player.h">
+      <Filter>Header Files\Mario</Filter>
+    </ClInclude>
+    <ClInclude Include="System_Animation.h">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="MarioGameState.h">
+      <Filter>Header Files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationFrame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
