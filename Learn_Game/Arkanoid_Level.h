@@ -3,6 +3,7 @@
 #include <vector>
 #include <memory>
 #include <utility>
+#include "Mario_Level.h"
 namespace Arkanoid
 {
 	class Level

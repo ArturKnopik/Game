@@ -2,18 +2,24 @@
 
 
 
-Animation::AnimationFrame::AnimationFrame(std::shared_ptr<sf::Texture> texture, float timeToNextFrame)
+AnimationComponents::AnimationFrame::AnimationFrame(std::shared_ptr<sf::Texture> texture, sf::IntRect intRect, float timeToNextFrame = 30000)
 	:timeToNextFrame(timeToNextFrame)
 {
+	sprite.setTextureRect(intRect);
 	sprite.setTexture(*texture);
 }
 
 
-Animation::AnimationFrame::~AnimationFrame()
+AnimationComponents::AnimationFrame::~AnimationFrame()
 {
 }
 
-void Animation::AnimationFrame::setPosition(sf::Vector2f newPosaition)
+void AnimationComponents::AnimationFrame::setPosition(sf::Vector2f newPosaition)
 {
 	sprite.setPosition(newPosaition);
+}
+
+sf::Sprite & AnimationComponents::AnimationFrame::getSprite()
+{
+	return sprite;
 }

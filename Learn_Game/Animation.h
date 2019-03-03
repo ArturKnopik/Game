@@ -1,29 +1,42 @@
 #pragma once
 #include <vector>
 #include "AnimationFrame.h"
-namespace Animation
+namespace System
 {
-	enum AnimationType
-	{
-		MULTIPLE_FRAME=0,
-		ROTATE_MULTIPLE_FRAME=1
-	};
-
 	class Animation
 	{
-		float animationCurrntTime;
+	private:
+		std::vector<sf::IntRect> frame;
+		std::shared_ptr<sf::Texture> texture;
 		int currentFrame;
-		std::vector<std::vector<AnimationFrame>> frames;
-		AnimationType type;
-		void updateMultipleFrame(const float dt);
-		void updateRotateMultipleFrame(const float dt);
-
+		float timeMaxFrameTime;
+		float timeCurrentFrameTime;
+		sf::Sprite sprite;
 	public:
-		Animation(AnimationType obietType);
-		~Animation();
-		void update(const float dt);
-		void setIdelStatus(int frame);
-	};
+		Animation(const float frameTime);
 
+		void addFrame(sf::IntRect rect);
+		void setSpriteSheetTexture(std::shared_ptr < sf::Texture>);
+		std::shared_ptr <sf::Texture> getSpriteSheet();
+		std::size_t getSize();
+		sf::IntRect & getFrame(std::size_t n);
+		sf::Sprite & getSprite();
+		void setFrame(int frame, bool restartTimer = false);
+		void update(const float dt);
+		void setSpritePosition(sf::Vector2f position);
+
+	
+	};
+	class NoAnimation
+	{
+	private:
+		std::shared_ptr<sf::Texture> texture;
+		sf::Sprite sprite;
+	public:
+		void setTexture(std::shared_ptr < sf::Texture> texture);
+		std::shared_ptr <sf::Texture> getTexture();
+		sf::Sprite & getSprite();
+		void setSpritePosition(sf::Vector2f position);
+	};
 }
 

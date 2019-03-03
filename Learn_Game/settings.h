@@ -7,7 +7,7 @@ const int HEIGHT = 720;
 
 //game settings
 
-const int FPS = 0; // 0 - unlimited
+const int FPS = 120; // 0 - unlimited
 
 // some informations
 //TODO: dt info: 1000000 = 1s (dt)

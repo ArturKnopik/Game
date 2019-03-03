@@ -19,6 +19,16 @@ Arkanoid::Level::Level()
 	}	
 }
 
+Mario::Level::Level(std::string name)
+	:name(name)
+{
+}
+
+void Mario::Level::getLevelName()
+{
+	name;
+}
+
 std::shared_ptr<Arkanoid::Level> Arkanoid::Level::getNextLevel()
 {
 	return std::shared_ptr<Arkanoid::Level>(new Arkanoid::Level());

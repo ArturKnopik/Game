@@ -10,10 +10,10 @@ namespace System
 	{
 		struct SpriteAnimation
 		{
-			enum AnimationType { NOANIMATEDSINGLEFRAME = 1,
-								 ANIMATEDSINGLEFRAME = 2, 
-								 NOANIMATEDMULTIPLEFRAME = 3, 
-								 ANIMATEDMULTIPLEFRAME = 4 };
+			enum AnimationType { NO_ANIMATED_SINGLE_FRAME = 1,
+								 ANIMATED_SINGLE_FRAME = 2, 
+								 NO_ANIMATED_MULTIPLE_FRAME = 3, 
+								 ANIMATED_MULTIPLE_FRAME = 4 };
 			enum SpriteFrame {  LD = 1,
 								CD = 2,
 								RD = 3,

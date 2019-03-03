@@ -171,26 +171,35 @@
     <ClCompile Include="MarioGameState.cpp">
       <Filter>Source Files\GameState</Filter>
     </ClCompile>
-    <ClCompile Include="Mario_GameObiect.cpp">
-      <Filter>Source Files\Mario</Filter>
-    </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Source Files\system</Filter>
     </ClCompile>
     <ClCompile Include="Timer.cpp">
       <Filter>Source Files\system</Filter>
     </ClCompile>
-    <ClCompile Include="Mario_Player.cpp">
-      <Filter>Source Files\Mario</Filter>
-    </ClCompile>
-    <ClCompile Include="System_Animation.cpp">
-      <Filter>Source Files\system</Filter>
+    <ClCompile Include="AnimationFrame.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AnimationFrame.cpp">
+    <ClCompile Include="Mario_Level.cpp">
+      <Filter>Source Files\Mario</Filter>
+    </ClCompile>
+    <ClCompile Include="Mario_LevelController.cpp">
+      <Filter>Source Files\Mario</Filter>
+    </ClCompile>
+    <ClCompile Include="Mario_MarioGameObiect.cpp">
+      <Filter>Source Files\Mario</Filter>
+    </ClCompile>
+    <ClCompile Include="Mario_GameObiect.cpp">
+      <Filter>Source Files\Mario</Filter>
+    </ClCompile>
+    <ClCompile Include="Brick.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mario_GumbaGameObiect.cpp">
+      <Filter>Source Files\Mario</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -287,29 +296,50 @@
     <ClInclude Include="TicTacToc_Cell.h">
       <Filter>Header Files\TicTaCtOC</Filter>
     </ClInclude>
-    <ClInclude Include="Mario_GameObiect.h">
-      <Filter>Header Files\Mario</Filter>
-    </ClInclude>
     <ClInclude Include="ResourceManager.h">
       <Filter>Header Files\system</Filter>
     </ClInclude>
     <ClInclude Include="Timer.h">
       <Filter>Header Files\system</Filter>
     </ClInclude>
-    <ClInclude Include="Mario_Player.h">
-      <Filter>Header Files\Mario</Filter>
-    </ClInclude>
-    <ClInclude Include="System_Animation.h">
-      <Filter>Header Files\system</Filter>
-    </ClInclude>
     <ClInclude Include="MarioGameState.h">
       <Filter>Header Files\GameState</Filter>
-    </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AnimationFrame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mario_Level.h">
+      <Filter>Header Files\Mario</Filter>
+    </ClInclude>
+    <ClInclude Include="Mario_LevelController.h">
+      <Filter>Header Files\Mario</Filter>
+    </ClInclude>
+    <ClInclude Include="Mario_MarioGameObiect.h">
+      <Filter>Header Files\Mario</Filter>
+    </ClInclude>
+    <ClInclude Include="Mario_GameObiect.h">
+      <Filter>Header Files\Mario</Filter>
+    </ClInclude>
+    <ClInclude Include="Brick.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mario_GumbaGameObiect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Learn_Game.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

@@ -23,7 +23,7 @@
     <ProjectGuid>{2E147CB9-2A11-4A8E-B0C5-94C9A8D64A01}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>LearnGame</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -78,9 +78,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)$build</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)$build</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -128,7 +130,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\SFML-2.4.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\local\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -136,8 +138,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\SFML-2.4.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-main.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\local\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-audio.lib;sfml-audio-s.lib;sfml-graphics.lib;sfml-main.lib;sfml-system.lib;sfml-window.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -150,7 +152,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\SFML-2.4.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\local\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -158,8 +160,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\SFML-2.4.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-main.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\local\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-audio.lib;sfml-audio-s.lib;sfml-graphics.lib;sfml-main.lib;sfml-system.lib;sfml-window.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -179,12 +181,15 @@
     <ClCompile Include="BasicButton.cpp" />
     <ClCompile Include="Arkanoid_Block.cpp" />
     <ClCompile Include="Arkanoid_BuffDrop.cpp" />
+    <ClCompile Include="Brick.cpp" />
     <ClCompile Include="Button.cpp" />
-    <ClCompile Include="Mario_GameObiect.cpp" />
+    <ClCompile Include="Mario_GumbaGameObiect.cpp" />
+    <ClCompile Include="Mario_LevelController.cpp" />
     <ClCompile Include="MarioGameState.cpp" />
-    <ClCompile Include="Mario_Player.cpp" />
+    <ClCompile Include="Mario_GameObiect.cpp" />
+    <ClCompile Include="Mario_Level.cpp" />
+    <ClCompile Include="Mario_MarioGameObiect.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
-    <ClCompile Include="System_Animation.cpp" />
     <ClCompile Include="TicTacToc_Cell.cpp" />
     <ClCompile Include="CollisionChecker.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -219,12 +224,16 @@
     <ClInclude Include="BasicButton.h" />
     <ClInclude Include="Arkanoid_Block.h" />
     <ClInclude Include="Arkanoid_BuffDrop.h" />
+    <ClInclude Include="Brick.h" />
     <ClInclude Include="Button.h" />
-    <ClInclude Include="Mario_GameObiect.h" />
+    <ClInclude Include="Mario_GumbaGameObiect.h" />
+    <ClInclude Include="Mario_LevelController.h" />
     <ClInclude Include="MarioGameState.h" />
-    <ClInclude Include="Mario_Player.h" />
+    <ClInclude Include="Mario_Level.h" />
+    <ClInclude Include="Mario_MarioGameObiect.h" />
+    <ClInclude Include="Mario_GameObiect.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="ResourceManager.h" />
-    <ClInclude Include="System_Animation.h" />
     <ClInclude Include="TicTacToc_Cell.h" />
     <ClInclude Include="CollisionChecker.h" />
     <ClInclude Include="Enums.h" />
@@ -243,7 +252,21 @@
     <ClInclude Include="TicTacTocGameState.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Learn_Game.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\TinyXml.SilverHorn.2.6.2\build\TinyXml.SilverHorn.targets" Condition="Exists('..\packages\TinyXml.SilverHorn.2.6.2\build\TinyXml.SilverHorn.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\TinyXml.SilverHorn.2.6.2\build\TinyXml.SilverHorn.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\TinyXml.SilverHorn.2.6.2\build\TinyXml.SilverHorn.targets'))" />
+  </Target>
 </Project>

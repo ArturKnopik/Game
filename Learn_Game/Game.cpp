@@ -9,8 +9,8 @@ Game::Game()
 {
 	sf::ContextSettings settings;
 	settings.antialiasingLevel = 8;
-	window = std::make_shared<sf::RenderWindow>();
-	window->create(sf::VideoMode(WIDTH, HEIGHT), "Mario Clone", sf::Style::None, settings);
+	window = std::make_shared<sf::RenderWindow>();				//sf::Style::None
+	window->create(sf::VideoMode(WIDTH, HEIGHT), "Mario Clone", sf::Style::Default, settings);
 	window->setFramerateLimit(FPS);
 
 }

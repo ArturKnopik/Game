@@ -33,6 +33,7 @@ void System::ResourceManager::addResource(std::shared_ptr<sf::Texture> texture, 
 		}
 	}
 	textureList.push_back(std::move(std::pair<std::shared_ptr<sf::Texture>, std::string>(texture, name)));
+	std::cout << "Added '" << name << "' to list" << std::endl;
 	
 }
 

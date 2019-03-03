@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="System::Animation" Collapsed="true">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAgJAAAAEggBACAACAABAAAgAAAAAgAQAEABA=</HashCode>
+      <FileName>Animation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System::NoAnimation" Collapsed="true">
+    <Position X="20" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAABACAAAAABAAAgAgAAAAAAAAAAA=</HashCode>
+      <FileName>Animation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System::ResourceManager" Collapsed="true">
+    <Position X="18.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAgAAABAAEBAAAAAAAAQAIIAgAAAIAAA=</HashCode>
+      <FileName>ResourceManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System::Timer" Collapsed="true">
+    <Position X="20" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAABiAAAAAAAAAAAgAAAAAAAAAAAEACA=</HashCode>
+      <FileName>Timer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AnimationComponents::AnimationFrame" Collapsed="true">
+    <Position X="16.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAEAAAAAAAAAABAAAAACABAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>AnimationFrame.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mario::MarioGameObiect" Collapsed="true">
+    <Position X="0.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAACAAAAAIAAAAAACAEAAA=</HashCode>
+      <FileName>Mario_MarioGameObiect.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mario::GameObiect" Collapsed="true">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AwAAIAAAAICAEAgAAIIAIAACAAAAAAAAAAAAACAEAgA=</HashCode>
+      <FileName>Mario_GameObiect.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mario::AnimatedObiect" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQIAABBAAIAFAAAACIAAAAgAAAECEBAAAAAICAEAAA=</HashCode>
+      <FileName>Mario_AnimatedObiect.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game" Collapsed="true">
+    <Position X="14.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAIEAAgiAAAAMAAAAAAAAAAA=</HashCode>
+      <FileName>Game.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BasicButton" Collapsed="true">
+    <Position X="6.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAIAAAABAAIAIhAwAAAgCgAIAAAgaAAEAAA=</HashCode>
+      <FileName>BasicButton.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Button" Collapsed="true">
+    <Position X="6.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAIIAIhAAAAAAAgAAAAAACAEEAAA=</HashCode>
+      <FileName>Button.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MarioGameState" Collapsed="true">
+    <Position X="5.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAIAAEAAAAAAABABAAAAAAQEAAA=</HashCode>
+      <FileName>MarioGameState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameListState" Collapsed="true">
+    <Position X="7.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAlAAAAAIBAAAAAAAAABAAAAAAAAAEAAA=</HashCode>
+      <FileName>GameListState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameState" Collapsed="true">
+    <Position X="6.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAgAABIIAAAAAAAEIAA=</HashCode>
+      <FileName>GameState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MenuState" Collapsed="true">
+    <Position X="10" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIBoAAAAAAAAAAAAgIAQAAAAAAAABIAAAAAAAAEAAA=</HashCode>
+      <FileName>MenuState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PauseState" Collapsed="true">
+    <Position X="12.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAIAEAAAAAAAABAAAAAAAAAEAAA=</HashCode>
+      <FileName>PauseState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TetrisGameState" Collapsed="true">
+    <Position X="1" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAEAAAAAIQCAAYABQEAIIEAEhAAAAAAAgAEAEA=</HashCode>
+      <FileName>ArkanoidPlayingGameState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TicTacToc::TicTacTocGameState" Collapsed="true">
+    <Position X="3.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAJEAABAQAAAAQIAwAAgAIABAhIAgAAAAgAEAAA=</HashCode>
+      <FileName>TicTacTocGameState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TicTacToc::Cell" Collapsed="true">
+    <Position X="20" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIoAAAAIBAAAAAAIBAIAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>TicTacToc_Cell.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Arkanoid::Ball" Collapsed="true">
+    <Position X="18.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIEAADgEQAAEAAAAAKQAKABAAARgJCsIAAABEAKA=</HashCode>
+      <FileName>Arkanoid_Ball.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Arkanoid::PointSystem" Collapsed="true">
+    <Position X="16.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACBABCEAAAAkAAAAAAAAgSAAAAAAQAAEAAAAAQAACE=</HashCode>
+      <FileName>Arkanoid_PointSystem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Arkanoid::Block" Collapsed="true">
+    <Position X="20" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAkEIAAAAIAAAAgAAICAIAACAAAAECAAAAAAQAAEAAE=</HashCode>
+      <FileName>Arkanoid_Block.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Arkanoid::GameBoard" Collapsed="true">
+    <Position X="16.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAIAABAAAIIAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Arkanoid_GameBoard.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Arkanoid::Paddle" Collapsed="true">
+    <Position X="14.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAIAAAAKAAAAgAAIIAIAACAgAAEJACAAAASEAMAAA=</HashCode>
+      <FileName>Arkanoid_Paddle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Arkanoid::BasicBrawStyle" Collapsed="true">
+    <Position X="3.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIIQAJCgAAiEAAACACKACAAAAAQAgAAEAAwAAoAEhgA=</HashCode>
+      <FileName>Arkanoid_BasicBrawStyle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Arkanoid::IDrawStyle" Collapsed="true">
+    <Position X="3.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAKAAAAAAAaAAAEAAAQEAAAAAAAAAIAEAgA=</HashCode>
+      <FileName>Arkanoid_IDrawStyle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Arkanoid::Level" Collapsed="true">
+    <Position X="18.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAQAAIAAAAAAAAAAAAAAAAAAABAAAAAAAABEA=</HashCode>
+      <FileName>Arkanoid_Level.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Arkanoid::Buffs::BuffFactory" Collapsed="true">
+    <Position X="16.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAgAAAAAAAAAAAAAAAAAAAAAAgAAAAAAABAAA=</HashCode>
+      <FileName>Arkanoid_BuffFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Arkanoid::Buffs::IBuff" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAYAAAAAJAAAAAQiIAAAAAAAEQAAAQBAAAAkAAA=</HashCode>
+      <FileName>Arkanoid_IBuff.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Arkanoid::Buffs::BuffDropBall" Collapsed="true">
+    <Position X="14.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAoACAAAAAggAAAAAAIACSAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Arkanoid_BuffDrop.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Arkanoid::Buffs::BuffSystem" Collapsed="true">
+    <Position X="18.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAEAEABAAAAEAAAAAAAQAQAAQAAAgAAACAAAAAAAA=</HashCode>
+      <FileName>Arkanoid_BuffSystem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Arkanoid::Buffs::AddPointBuff" Collapsed="true">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAICAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Arkanoid_AddPointBuff.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Arkanoid::Buffs::BigPaddleBuff" Collapsed="true">
+    <Position X="12.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAgAAEAAAAAEAAA=</HashCode>
+      <FileName>Arkanoid_BigPaddleBuff.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Arkanoid::Buffs::PointMultiplerBuff" Collapsed="true">
+    <Position X="1" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Arkanoid_PointMultiplerBuff.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Arkanoid::Buffs::SlowDownBallBuff" Collapsed="true">
+    <Position X="3.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAEAAAEAAA=</HashCode>
+      <FileName>Arkanoid_SlowDownBallBuff.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Arkanoid::Buffs::SmallPaddleBuff" Collapsed="true">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAAAAAgAAIAAAAAEAAA=</HashCode>
+      <FileName>Arkanoid_SmallPaddleBuff.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Arkanoid::Buffs::SpeedUpBallBuff" Collapsed="true">
+    <Position X="7.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAQAAAAAAAAAAAAAAAAAIAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Arkanoid_SpeedUpBallBuff.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="System::ResourceType" Collapsed="true">
+    <Position X="20" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>ResourceManager.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="System::CollisionType" Collapsed="true">
+    <Position X="14.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAgAAAAAAAAAAAAICAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>CollisionChecker.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Mario::AnimationFrameSet" Collapsed="true">
+    <Position X="14.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAEAAAACAIACAAAMACAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mario_AnimatedObiect.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Direction" Collapsed="true">
+    <Position X="16.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAICAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Enums.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="AnimationType" Collapsed="true">
+    <Position X="16.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAEAAAAAAACAAAIAAAAAAAAA=</HashCode>
+      <FileName>Enums.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Arkanoid::Direction" Collapsed="true">
+    <Position X="18.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Arkanoid_Paddle.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Arkanoid::Buffs::BuffType" Collapsed="true">
+    <Position X="20" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Arkanoid_IBuff.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Arkanoid::Buffs::Buff" Collapsed="true">
+    <Position X="18.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAgAAAAAAAAAAAAAAAAAEAABAAAAAAAAgE=</HashCode>
+      <FileName>Arkanoid_IBuff.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Arkanoid::Buffs::WhatToBuff" Collapsed="true">
+    <Position X="14.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAgIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Arkanoid_BuffDrop.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

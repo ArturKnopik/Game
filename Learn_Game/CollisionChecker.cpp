@@ -2,16 +2,15 @@
 
 #include <iostream>
 #include <math.h>
-
-namespace CollsionChecker
+namespace System
 {
-	template <class X, class Y>
-	bool checkAABB(std::shared_ptr<X> leftEntity, std::shared_ptr<Y> rightDynamic)
+	bool System::checkAABB(std::shared_ptr<Mario::GameObiect> left, std::shared_ptr<Mario::GameObiect> right)
 	{
-		if (leftEntity->getPosition().x < rightDynamic->getPosition().x + rightDynamic->getSize().x &&
-			leftEntity->getPosition().x + leftEntity->getSize().x > rightDynamic->getPosition().x &&
-			leftEntity->getPosition().y < rightDynamic->getPosition().y + rightDynamic->getSize().y &&
-			leftEntity->getSize().y + leftEntity->getPosition().y > rightDynamic->getPosition().y)
+
+		if (left->getPosition().x <= right->getPosition().x + right->getSize().x &&
+			left->getPosition().x + left->getSize().x >= right->getPosition().x &&
+			left->getPosition().y <= right->getPosition().y + right->getSize().y &&
+			left->getSize().y + left->getPosition().y >= right->getPosition().y)
 		{
 			return true;
 		}
@@ -21,19 +20,31 @@ namespace CollsionChecker
 		}
 	}
 
-}
 
-bool System::checkAABB(sf::Vector2f positionLeft, sf::Vector2f sizeLeft, sf::Vector2f positionRight, sf::Vector2f sizeRight)
-{
-	if (positionLeft.x < positionRight.x + sizeRight.x &&
-		positionLeft.x + sizeLeft.x > positionRight.x &&
-		positionLeft.y < positionRight.y + sizeRight.y &&
-		sizeLeft.y + positionLeft.y > positionRight.y)
+	System::CollisionType System::getCollsionSite(sf::Vector2f positionLeft, sf::Vector2f sizeLeft, sf::Vector2f positionRight, sf::Vector2f sizeRight)
 	{
-		return true;
+
+		float dx = (positionLeft.x + (sizeLeft.x / 2)) - (positionRight.x + (sizeRight.x / 2));
+		float dy = (positionLeft.y + (sizeLeft.y / 2)) - (positionRight.y + (sizeRight.y / 2));
+		float width = (sizeLeft.x + sizeLeft.x) / 2;
+		float height = (sizeLeft.y + sizeLeft.y) / 2;
+		float crossWidth = width * dy;
+		float crossHeight = height * dx;
+		System::CollisionType collision = System::CollisionType::NO_COLLISION;
+		if (abs(dx) <= width && abs(dy) <= height) {
+
+			if (crossWidth > crossHeight) {
+				collision = (crossWidth > (-crossHeight)) ? System::CollisionType::BOTTOM : System::CollisionType::LEFT;
+			}
+			else {
+				collision = (crossWidth > -(crossHeight)) ? System::CollisionType::RIGHT : System::CollisionType::TOP;
+			}
+		}
+		return(collision);
 	}
-	else
+
+	sf::Vector2f System::calcCenter(sf::Vector2f position, sf::Vector2f size)
 	{
-		return false;
+		return sf::Vector2f(position.x + (size.x / 2), position.y + (size.y / 2));
 	}
 }
