@@ -28,7 +28,6 @@ private:
 
 public:
 
-
 	sf::Vector2f positions;
 	BasicButton(std::string text, float x, float y, float width, float height, int textSize, std::shared_ptr<sf::Texture> texture);
 	BasicButton(std::string text, sf::Vector2f position, sf::Vector2f size, int textSize, std::shared_ptr<sf::Texture> texture);

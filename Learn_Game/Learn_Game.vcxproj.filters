@@ -76,11 +76,44 @@
     <Filter Include="Source Files\Mario">
       <UniqueIdentifier>{8cd4a2e5-aecb-4617-bbbe-2b1bf6bb5aee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\TibiaClone">
+      <UniqueIdentifier>{9a25fc78-6a11-47fc-8de7-228cfe6ebc18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\TibiaClone">
+      <UniqueIdentifier>{5644d830-2126-4469-ba47-e701d1d8c50c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\TibiaClone\Animation">
+      <UniqueIdentifier>{de506364-601c-4baa-96d0-2f77adb7f359}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\TibiaClone\GameEntity">
+      <UniqueIdentifier>{225a2440-257b-4ae5-b5c9-2edcee8d70e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\TibiaClone\Map">
+      <UniqueIdentifier>{119bee6e-5b0f-4685-a293-659a75110287}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\TibiaClone\Utility">
+      <UniqueIdentifier>{cabc366b-c153-4ff5-9925-fe536a1ea27a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\TibiaClone\Other">
+      <UniqueIdentifier>{4fc4c6f1-8c6b-413a-838a-8f47205b838b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TibiaClone\Animation">
+      <UniqueIdentifier>{eacb5c78-4582-4e6c-bd5f-aca67ec3f19a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TibiaClone\GameEntity">
+      <UniqueIdentifier>{514fcc3e-881d-4ccc-950a-345b4f489511}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TibiaClone\Map">
+      <UniqueIdentifier>{5f2db6a8-663d-42a5-875a-9c039952d830}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TibiaClone\Other">
+      <UniqueIdentifier>{3ea3420c-ba6f-4b36-933e-9332e676cf7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TibiaClone\Utility">
+      <UniqueIdentifier>{27e5a810-80d1-40cb-a3e7-e2feb7d25218}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="BasicButton.cpp">
       <Filter>Source Files\Button</Filter>
     </ClCompile>
@@ -195,11 +228,68 @@
     <ClCompile Include="Mario_GameObiect.cpp">
       <Filter>Source Files\Mario</Filter>
     </ClCompile>
+    <ClCompile Include="Mario_GumbaGameObiect.cpp">
+      <Filter>Source Files\Mario</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files\Mario</Filter>
+    </ClCompile>
     <ClCompile Include="Brick.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Mario_GumbaGameObiect.cpp">
-      <Filter>Source Files\Mario</Filter>
+    <ClCompile Include="..\..\Tibia_Clone\Project1\Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TibiaTGCGame.cpp">
+      <Filter>Source Files\TibiaClone</Filter>
+    </ClCompile>
+    <ClCompile Include="TibiaCloneGameState.cpp">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="TibiaAnimation.cpp">
+      <Filter>Source Files\TibiaClone\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="TibiaAnimationController.cpp">
+      <Filter>Source Files\TibiaClone\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="TibiaFrame.cpp">
+      <Filter>Source Files\TibiaClone\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="TibiaGlobalAnimationTimer.cpp">
+      <Filter>Source Files\TibiaClone\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="TibiaCameraController.cpp">
+      <Filter>Source Files\TibiaClone\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="TibiaCreature.cpp">
+      <Filter>Source Files\TibiaClone\GameEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="TibiaGameObiect.cpp">
+      <Filter>Source Files\TibiaClone\GameEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="TibiaPlayer.cpp">
+      <Filter>Source Files\TibiaClone\GameEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="TibiaRat.cpp">
+      <Filter>Source Files\TibiaClone\GameEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="TibiaMapCell.cpp">
+      <Filter>Source Files\TibiaClone\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="TibiaResoureManager.cpp">
+      <Filter>Source Files\TibiaClone\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="TibiaResourceHandler.cpp">
+      <Filter>Source Files\TibiaClone\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="TibiaUtilityTools.cpp">
+      <Filter>Source Files\TibiaClone\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="TibiaWorld.cpp">
+      <Filter>Source Files\TibiaClone\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tibia_Clone\Project1\GameState.cpp">
+      <Filter>Source Files\GameState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -331,6 +421,57 @@
     </ClInclude>
     <ClInclude Include="Mario_GumbaGameObiect.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaTGCGame.h">
+      <Filter>Header Files\TibiaClone</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaCloneGameState.h">
+      <Filter>Header Files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaAnimation.h">
+      <Filter>Header Files\TibiaClone\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaAnimationController.h">
+      <Filter>Header Files\TibiaClone\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaFrame.h">
+      <Filter>Header Files\TibiaClone\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaCameraController.h">
+      <Filter>Header Files\TibiaClone\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaEnums.h">
+      <Filter>Header Files\TibiaClone\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaCreature.h">
+      <Filter>Header Files\TibiaClone\GameEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaGameObiect.h">
+      <Filter>Header Files\TibiaClone\GameEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaRat.h">
+      <Filter>Header Files\TibiaClone\GameEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaPlayer.h">
+      <Filter>Header Files\TibiaClone\GameEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaGlobalAnimationTimer.h">
+      <Filter>Header Files\TibiaClone\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaMapCell.h">
+      <Filter>Header Files\TibiaClone\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaResourceHandler.h">
+      <Filter>Header Files\TibiaClone\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaUtilityTools.h">
+      <Filter>Header Files\TibiaClone\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaWorld.h">
+      <Filter>Header Files\TibiaClone\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaResoureManager.h">
+      <Filter>Header Files\TibiaClone\Other</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

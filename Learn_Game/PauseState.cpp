@@ -23,7 +23,6 @@ void PauseState::draw()
 	rect.setSize(sf::Vector2f(100, 100));
 	rect.setFillColor(sf::Color::Blue);
 	game->window->draw(rect);
-
 }
 
 void PauseState::update(const float dt)
