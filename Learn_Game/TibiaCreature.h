@@ -1,7 +1,7 @@
 #pragma once
 #include "TibiaEnums.h"
 #include "TibiaGameObiect.h"
-
+#include "settings.h"
 namespace TGC
 {
 
@@ -9,7 +9,7 @@ namespace TGC
 	{
 		std::string name = "Sample name";
 		unsigned int hp = 100;
-		unsigned walkingTime = 1.0;
+		double walkingTime = 1.0;
 	};
 	namespace Camera
 	{
@@ -23,7 +23,8 @@ namespace TGC
 	class Creature : public GameObiect
 	{
 	protected:
-
+		unsigned int maxHP = 300;
+		unsigned int currentHP = 50;
 		bool walkAnimation = false;
 		double walkingTime = 1.0;
 		double currentWalikingTime = walkingTime;
@@ -43,6 +44,8 @@ namespace TGC
 		void setName(std::string name);
 		void setWalkingTime(double time);
 		void setAnimation(TGC::ENUMS::Direction animationDir, TGC::Animation animation);
+		std::shared_ptr<Creature> targetCreature;
+		void drawHealthBar(sf::RenderWindow& renderWindow);
 	public:
 		Creature();
 		Creature* getCreature();
@@ -57,7 +60,12 @@ namespace TGC
 		virtual void draw(sf::RenderWindow& renderWindow) override;
 		void setSpriteMoving(bool spriteMoving);
 		void restartWalkingTime(bool canWalk);
-
+		void setTarget(std::shared_ptr<Creature> creature);
+		const std::shared_ptr<TGC::Creature> getTarget() const;
+		void setHealth(unsigned int health);
+		unsigned int getHealth();
+		void setMaxHeatlh(unsigned int health);
+		unsigned int getMaxHealth();
 		//TODO: Remove this function when create normal obiect
 		virtual void renderDebug(sf::RenderWindow& renderWindow) override
 		{
@@ -69,7 +77,8 @@ namespace TGC
 			rect.setSize(sf::Vector2f(28, 28));
 			renderWindow.draw(rect);
 		}
-		//friend class Global::TGCGame;
+		
+
 		friend class Camera::CameraController;
 	};
 }

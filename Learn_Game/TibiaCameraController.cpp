@@ -2,7 +2,6 @@
 #include <iostream>
 #include "TibiaTGCGame.h"
 #include "TibiaCreature.h"
-#include "settings.h"
 TGC::Camera::CameraController::CameraController()
 	:windowPRT(nullptr)
 {
@@ -11,9 +10,9 @@ TGC::Camera::CameraController::CameraController()
 TGC::Camera::CameraController::CameraController(std::shared_ptr<TGC::Creature> target, sf::RenderWindow & window)
 	:windowPRT(&window)
 {
-	viewObj.setSize(WIDTH, HEIGHT);
+	viewObj.setSize(Setting::Const::windowsSizeX, Setting::Const::windowsSizeY);
 	std::cout << "view size: " << viewObj.getSize().x << " : " << viewObj.getSize().y << std::endl;
-	viewObj.zoom(0.5);
+	viewObj.zoom(Setting::Const::zoom);
 	//windowPRT->setView(viewe);
 	//viewe.setViewport(sf::Vector2f(target->getPosition()), windowPRT->);
 //	viewe.setCenter(sf::Vector2f(target->getPosition().x, target->getPosition().y));

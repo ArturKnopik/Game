@@ -10,8 +10,10 @@ namespace TGC
 	public:
 		Player();
 		const sf::Vector2<size_t> getSpritePosition() const;
-		void input();
-
+		void drawCurrentCellMarkRectangle(sf::RenderWindow& renderWindow);
+		void drawCurrentTargetMarkRectangle(sf::RenderWindow& renderWindow);
+		void input(sf::RenderWindow& renderWindow);
+		void doThingWithTargetCell();
 
 		virtual void renderDebug(sf::RenderWindow& renderWindow) override
 		{
@@ -37,6 +39,8 @@ namespace TGC
 			rect.setSize(sf::Vector2f(28, 28));
 			renderWindow.draw(rect);
 			Creature::draw(renderWindow);
+			drawCurrentCellMarkRectangle(renderWindow);
+			drawCurrentTargetMarkRectangle(renderWindow);
 		}
 	};
 

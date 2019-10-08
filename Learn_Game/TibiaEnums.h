@@ -17,6 +17,19 @@ namespace TGC
 			ITEM,
 			GROUND
 		};
+		/*
+		enum Color
+		{
+			RED,
+			GREEN,
+			BLUE,
+			YELLOW,
+			PINK,
+			WHITE,
+			GREY,
+			BLACK
+		};
+		*/
 	}
 }
 

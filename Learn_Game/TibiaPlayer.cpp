@@ -3,6 +3,7 @@
 #include "TibiaFrame.h"
 #include "TibiaResoureManager.h"
 #include "SFML/Window/Keyboard.hpp"
+#include "SFML/Window/Mouse.hpp"
 
 TGC::Player::Player()
 {
@@ -43,10 +44,11 @@ const sf::Vector2<size_t> TGC::Player::getSpritePosition() const
 	return positionSprite;
 }
 
-void TGC::Player::input()
+void TGC::Player::input(sf::RenderWindow& renderWindow)
 {
 	if (canWalk())
 	{
+		// mouse click events
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 		{
 			sendMoveRequest(TGC::ENUMS::Direction::UP);
@@ -70,5 +72,104 @@ void TGC::Player::input()
 			sendMoveRequest(TGC::ENUMS::Direction::RIGHT);
 			return;
 		}
+
+		// mouse click events
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			drawCurrentCellMarkRectangle(renderWindow);
+		}
+		
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
+		{
+			doThingWithTargetCell();
+		}
 	}
 }
+
+void TGC::Player::doThingWithTargetCell()
+{
+
+	sf::Vector2f worldPos = TGC::Global::TGCGame::getSingleton().getWindow().mapPixelToCoords(
+									sf::Vector2i(sf::Mouse::getPosition(TGC::Global::TGCGame::getSingleton().getWindow()).x,
+									             sf::Mouse::getPosition(TGC::Global::TGCGame::getSingleton().getWindow()).y));
+	if (worldPos.x < 0 || worldPos.y < 0)
+	{
+		return;
+	}
+	sf::Vector2i worldPosInt = sf::Vector2i((worldPos.x / Setting::Const::cellSizeX), (worldPos.y / Setting::Const::cellSizeY));
+
+	
+	auto targetCell = TGC::Global::TGCGame::getSingleton().getXYCoordinateCell(worldPosInt.x, worldPosInt.y);
+
+	if (targetCell->getCreature())
+	{
+		if (targetCreature==targetCell->getCreature())
+		{
+			targetCreature = nullptr;
+		}
+		else
+		{
+			targetCreature = targetCell->getCreature();
+		}
+		return;
+	}
+
+	/*
+	//TODO: implemet use item in cell;
+	*/
+
+
+
+}
+
+void TGC::Player::drawCurrentCellMarkRectangle(sf::RenderWindow& renderWindow)
+{
+	
+	sf::Vector2f worldPos = renderWindow.mapPixelToCoords(sf::Vector2i(sf::Mouse::getPosition(renderWindow).x, sf::Mouse::getPosition(renderWindow).y));
+	if (worldPos.x<0 || worldPos.y < 0)
+	{
+		return;
+	}
+	sf::Vector2i worldPosInt = sf::Vector2i((worldPos.x/ Setting::Const::cellSizeX), (worldPos.y/ Setting::Const::cellSizeY));
+	
+	
+	sf::RectangleShape rect;
+	
+	rect.setPosition(worldPosInt.x * Setting::Const::cellSizeX, worldPosInt.y * Setting::Const::cellSizeY);
+	rect.setSize(sf::Vector2f(Setting::Const::cellSizeX, Setting::Const::cellSizeY));
+	int rectOutlineThickness = 1;
+	rect.setOutlineThickness(rectOutlineThickness);
+	rect.setFillColor(sf::Color(0, 0, 0, 0));
+	rect.setOutlineColor(sf::Color(100,30,60,130));
+	renderWindow.draw(rect);
+
+}
+
+void TGC::Player::drawCurrentTargetMarkRectangle(sf::RenderWindow& renderWindow)
+{
+	//TODO: Improve drawing target rect
+	if (!targetCreature)
+	{
+		return;
+	}
+
+	sf::Vector2f creaturePos =static_cast<sf::Vector2f>( targetCreature->getPosition());
+	if (creaturePos.x < 0 || creaturePos.y < 0)
+	{
+		return;
+	}
+	sf::Vector2i worldPosInt = sf::Vector2i(creaturePos.x , creaturePos.y );
+
+
+	sf::RectangleShape rect;
+
+	rect.setPosition(worldPosInt.x * Setting::Const::cellSizeX, worldPosInt.y * Setting::Const::cellSizeY);
+	rect.setSize(sf::Vector2f(Setting::Const::cellSizeX, Setting::Const::cellSizeY));
+	int rectOutlineThickness = 1;
+	rect.setOutlineThickness(rectOutlineThickness);
+	rect.setFillColor(sf::Color(0, 0, 0, 0));
+	rect.setOutlineColor(sf::Color::Red);
+	renderWindow.draw(rect);
+
+}
+

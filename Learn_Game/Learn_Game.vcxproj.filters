@@ -231,13 +231,7 @@
     <ClCompile Include="Mario_GumbaGameObiect.cpp">
       <Filter>Source Files\Mario</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files\Mario</Filter>
-    </ClCompile>
     <ClCompile Include="Brick.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Tibia_Clone\Project1\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TibiaTGCGame.cpp">
@@ -288,8 +282,8 @@
     <ClCompile Include="TibiaWorld.cpp">
       <Filter>Source Files\TibiaClone\Map</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Tibia_Clone\Project1\GameState.cpp">
-      <Filter>Source Files\GameState</Filter>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

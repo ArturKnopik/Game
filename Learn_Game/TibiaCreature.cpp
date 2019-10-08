@@ -1,6 +1,6 @@
 #include "TibiaCreature.h"
 #include "TibiaTGCGame.h"
-#include "settings.h"
+#include "SFML/Window/Mouse.hpp"
 //	Global::TGCGame::getSingleton().addMoveRequest(reinterpret_cast<Creature*>(this->getCreature()) , dir)
 
 bool TGC::Creature::canWalk()
@@ -14,8 +14,7 @@ bool TGC::Creature::canWalk()
 
 void TGC::Creature::update(const float dt)
 {
-	double tempDt = dt / 1000000;
-	std::cout << "update: " << dt<< ", tempdt: "<<tempDt << std::endl;
+	double tempDt = dt / 1000000; // used to 
 	if (currentWalikingTime < walkingTime)
 	{
 		if (animationControler)
@@ -23,9 +22,6 @@ void TGC::Creature::update(const float dt)
 			calculateSpriteOfsetPercentDone();
 			applySpriteOfset();
 			animationControler->update(tempDt);
-			//calculateSpriteOfsetPercentDone();
-		//	animationControler->update(dt);
-		//	applySpriteOfset();
 		}
 		currentWalikingTime += tempDt;
 	}
@@ -38,8 +34,6 @@ void TGC::Creature::update(const float dt)
 			positionSprite.y = position.y * 32;
 		}
 	}
-	
-	//std::cout << "player pos: " << position.x << "," << position.y << std::endl;
 }
 
 bool TGC::Creature::canPlayWalikngAnimation()
@@ -121,6 +115,26 @@ void TGC::Creature::setAnimation(ENUMS::Direction animationDir, Animation animat
 	}
 }
 
+void TGC::Creature::drawHealthBar(sf::RenderWindow& renderWindow)
+{
+	sf::RectangleShape backgrounRect;
+	backgrounRect.setSize(sf::Vector2f(Setting::Const::cellSizeX, 5));
+	backgrounRect.setPosition(positionSprite.x, positionSprite.y-5);
+	backgrounRect.setFillColor(sf::Color::Black);
+	sf::RectangleShape healthRect;
+	healthRect.setPosition(positionSprite.x+1, positionSprite.y-5);
+	healthRect.setFillColor(sf::Color::Green);
+
+
+	double healthRectWidth = (Setting::Const::cellSizeX-2);
+	healthRectWidth *= (1.0 * currentHP / maxHP);
+	healthRect.setSize(sf::Vector2f(healthRectWidth, 3));
+	renderWindow.draw(backgrounRect);
+	renderWindow.draw(healthRect);
+
+
+}
+
 
 void TGC::Creature::setWalkingAnimation(bool walkAnim, ENUMS::Direction direction)
 {
@@ -171,10 +185,7 @@ void TGC::Creature::draw(sf::RenderWindow& renderWindow)
 		sprite.setTextureRect(animationControler->getAnimation()->getFrame(animationControler->getCurrentFrame()));
 		renderWindow.draw(sprite);
 	}
-	else
-	{
-		//std::cout << "creature: " << getName() << " cant draw" << std::endl;
-	}
+	drawHealthBar(renderWindow);
 }
 
 void TGC::Creature::setSpriteMoving(bool spriteMoving)
@@ -194,6 +205,45 @@ void TGC::Creature::restartWalkingTime(bool canWalk)
 	}
 }
 
+
+void TGC::Creature::setTarget(std::shared_ptr<Creature> creature)
+{
+	targetCreature = creature;
+}
+
+const std::shared_ptr<TGC::Creature>  TGC::Creature::getTarget() const
+{
+	if (targetCreature)
+	{
+		return targetCreature;
+	}
+	else
+	{
+		return nullptr;
+	}
+}
+
+void TGC::Creature::setHealth(unsigned int health)
+{
+	currentHP = health;
+}
+
+unsigned int TGC::Creature::getHealth()
+{
+	return currentHP;
+}
+
+void TGC::Creature::setMaxHeatlh(unsigned int health)
+{
+	maxHP = health;
+}
+
+unsigned int TGC::Creature::getMaxHealth()
+{
+	return maxHP;
+}
+
+
 TGC::ENUMS::Direction * TGC::Creature::getDirection()
 {
 	return &direction;
@@ -201,12 +251,11 @@ TGC::ENUMS::Direction * TGC::Creature::getDirection()
 
 TGC::Creature::Creature()
 { 
-	spriteOfset.x = walkingTime / FPS;
-	spriteOfset.y = walkingTime / FPS;
+	spriteOfset.x = walkingTime / Setting::Const::FPS;
+	spriteOfset.y = walkingTime / Setting::Const::FPS;
 	animationControler->setAnimation(animationDown);
-	// *32 mean tile size
-	positionSprite.x = getPosition().x * 32;
-	positionSprite.y = getPosition().y * 32;
+	positionSprite.x = getPosition().x * Setting::Const::cellSizeX;
+	positionSprite.y = getPosition().y * Setting::Const::cellSizeY;
 	sprite.setPosition(positionSprite.x, positionSprite.y);
 }
 

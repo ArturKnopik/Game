@@ -10,8 +10,8 @@ Game::Game()
 	sf::ContextSettings settings;
 	settings.antialiasingLevel = 8;
 	window = std::make_shared<sf::RenderWindow>();				//sf::Style::None
-	window->create(sf::VideoMode(WIDTH, HEIGHT), "Mario Clone", sf::Style::Default, settings);
-	window->setFramerateLimit(FPS);
+	window->create(sf::VideoMode(Setting::Const::windowsSizeX, Setting::Const::windowsSizeY), "Mario Clone", sf::Style::Default, settings);
+	window->setFramerateLimit(Setting::Const::FPS);
 
 }
 
@@ -51,7 +51,7 @@ void Game::gameLoop()
 	while (window->isOpen())
 	{
 		sf::Time elapsed = clock.restart();
-		float  dt = elapsed.asMicroseconds();
+		double dt = elapsed.asMicroseconds();
 		currentState()->input();
 		currentState()->update(dt);
 		window->clear();

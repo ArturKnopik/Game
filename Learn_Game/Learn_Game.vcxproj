@@ -166,8 +166,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Tibia_Clone\Project1\Game.cpp" />
-    <ClCompile Include="..\..\Tibia_Clone\Project1\GameState.cpp" />
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AnimationFrame.cpp" />
     <ClCompile Include="Arkanoid_AddPointBuff.cpp" />

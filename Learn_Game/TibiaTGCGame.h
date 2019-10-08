@@ -28,6 +28,7 @@ namespace TGC
 		public:
 			static TGCGame& getSingleton();
 			void setWindow(sf::RenderWindow& window);
+			sf::RenderWindow& getWindow();
 			~TGCGame() = default;
 			void updateWorld(const float dt, std::shared_ptr<GameObiect> player);
 			void draw(sf::RenderWindow& window);
@@ -38,7 +39,7 @@ namespace TGC
 			bool isEndAnimationTimeReached();
 			template <typename T>
 			static T generateRandomNumber(T min, T max);
-
+			std::shared_ptr<TGC::MapCell> getXYCoordinateCell(size_t x, size_t y);
 		};
 
 

@@ -21,10 +21,13 @@ TGC::Global::TGCGame::TGCGame()
 			world.addGround(i, j, obiect);
 		}
 	}
-	
+	auto rat = std::make_shared<Rat>();
+
 	world.addCreature(0, 0, player);
-	world.addCreature(5, 5, new Rat());
+	world.addCreature(5, 5, rat);
 	std::cout << "end build map" << std::endl;
+	rat->setTarget(player);
+	player->setHealth(player->getMaxHealth());
 }
 
 TGC::Global::TGCGame & TGC::Global::TGCGame::getSingleton()
@@ -36,6 +39,11 @@ TGC::Global::TGCGame & TGC::Global::TGCGame::getSingleton()
 void TGC::Global::TGCGame::setWindow(sf::RenderWindow& window)
 {
 	this->window = &window;
+}
+
+sf::RenderWindow& TGC::Global::TGCGame::getWindow()
+{
+	return *window;
 }
 
 void TGC::Global::TGCGame::updateWorld(const float dt, std::shared_ptr<GameObiect> player)
@@ -203,11 +211,16 @@ void TGC::Global::TGCGame::resolveMoveRequest()
 
 void TGC::Global::TGCGame::input(sf::Event& event)
 {
-	player->input();
+	player->input(*window);
 }
 
 bool TGC::Global::TGCGame::isEndAnimationTimeReached()
 {
 	return globalAnimationTimer.isEndAnimationTimeReached();
+}
+
+std::shared_ptr<TGC::MapCell> TGC::Global::TGCGame::getXYCoordinateCell(size_t x, size_t y)
+{
+	return world.getXYCoordinateCell(x, y);
 }
 
