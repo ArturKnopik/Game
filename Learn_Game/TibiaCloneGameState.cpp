@@ -9,7 +9,7 @@ void TGC::TibiaCloneGameState::draw()
 	tcgGame->draw(*game->window);
 }
 
-void TGC::TibiaCloneGameState::update(const float dt)
+void TGC::TibiaCloneGameState::update(const double dt)
 {
 	TGC::Global::TGCGame::getSingleton().updateWorld(dt, TGC::Global::TGCGame::getSingleton().getPlayer());
 }

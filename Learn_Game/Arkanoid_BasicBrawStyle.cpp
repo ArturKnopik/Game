@@ -5,8 +5,8 @@
 #include <SFML/Graphics/Color.hpp>
 void Arkanoid::BasicBrawStyle::drawBlock(std::shared_ptr<sf::RenderWindow> window, const std::vector<std::shared_ptr<Arkanoid::Block>>& blockList)
 {
-	float R = 0, G = 255;
-	float colorJump = 255.0f / (blockList.size() + 1.0);
+	double R = 0, G = 255;
+	double colorJump = 255.0f / (blockList.size() + 1.0);
 	for (auto it = blockList.begin(); it != blockList.end(); it++)
 	{
 		block.setPosition(sf::Vector2f((*it)->getPosition().x+1, (*it)->getPosition().y+1));
@@ -62,7 +62,7 @@ void Arkanoid::BasicBrawStyle::drawBuffs(std::shared_ptr<sf::RenderWindow> windo
 
 		sf::RectangleShape buffRect(sf::Vector2f(950, 200));
 		buffRect.setSize(sf::Vector2f(320, 50));
-		float yOffSet=250;  //start y to draw bufflist
+		double yOffSet=250;  //start y to draw bufflist
 		int currentBuffDrawed = 0;
 		int maxBuffToDraw = 4;
 		
@@ -229,7 +229,7 @@ void Arkanoid::BasicBrawStyle::draw(std::shared_ptr<sf::RenderWindow> window, co
 	}
 }
 
-void Arkanoid::BasicBrawStyle::update(const float dt)
+void Arkanoid::BasicBrawStyle::update(const double dt)
 {
 	if (lifeColorValue < 50 && lifeColorValue > -50)
 	{

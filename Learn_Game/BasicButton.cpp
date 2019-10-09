@@ -1,6 +1,6 @@
 
 #include "BasicButton.h"
-BasicButton::BasicButton(std::string text, float x, float y, float width, float height, int textSize, std::shared_ptr<sf::Texture> texture)
+BasicButton::BasicButton(std::string text, double x, double y, double width, double height, int textSize, std::shared_ptr<sf::Texture> texture)
 	:Button(x,y,width,height),text(text), textSize(textSize), texture(texture)
 {
 	dType = drawType::TEXTURED_RECT;
@@ -22,7 +22,7 @@ BasicButton::BasicButton(std::string text, sf::Vector2f position, sf::Vector2f s
 	textCoordinates.x = position.x + ((size.x - buttonText.getLocalBounds().width) / 2);
 	textCoordinates.y = position.y + ((size.y - buttonText.getLocalBounds().height) / 2) - buttonText.getLocalBounds().height / 3;
 }
-BasicButton::BasicButton(std::string text, float x, float y, float width, float height, int textSize, sf::Color innerColor, sf::Color outerColor)
+BasicButton::BasicButton(std::string text, double x, double y, double width, double height, int textSize, sf::Color innerColor, sf::Color outerColor)
 	:Button(x, y, width, height), text(text), textSize(textSize), innerColor(innerColor), outerColor(outerColor)
 {
 	dType = drawType::COLORED_RECT;
@@ -45,7 +45,7 @@ BasicButton::BasicButton(std::string text, sf::Vector2f position, sf::Vector2f s
 	textCoordinates.y = position.y + ((size.y - buttonText.getLocalBounds().height) / 2) - buttonText.getLocalBounds().height / 3;
 }
 /*
-BasicButton::BasicButton(std::string text, float x, float y, float width, float height, int textSize, sf::Texture *)
+BasicButton::BasicButton(std::string text, double x, double y, double width, double height, int textSize, sf::Texture *)
 {
 	positions.x = x;  x
 	positions.y = y;  x
@@ -60,7 +60,7 @@ BasicButton::BasicButton(std::string text, float x, float y, float width, float 
 	buttonText.setCharacterSize(textSize);
 }
 
-BasicButton::BasicButton(std::string text, float x, float y, float width, float height, int textSize, sf::Color outerColor, sf::Color innerColor)
+BasicButton::BasicButton(std::string text, double x, double y, double width, double height, int textSize, sf::Color outerColor, sf::Color innerColor)
 {
 	positions.x = x;
 	positions.y = y;
@@ -78,7 +78,7 @@ BasicButton::BasicButton(std::string text, float x, float y, float width, float 
 	textY = positions.y + ((positions.height - buttonText.getLocalBounds().height) / 2) - buttonText.getLocalBounds().height / 3;
 }
 
-BasicButton::BasicButton(std::string text, float x, float y, float width, float height, int textSize, std::shared_ptr<sf::Texture> texture)
+BasicButton::BasicButton(std::string text, double x, double y, double width, double height, int textSize, std::shared_ptr<sf::Texture> texture)
 {
 }
 */
@@ -120,7 +120,7 @@ void BasicButton::draw(std::shared_ptr<sf::RenderWindow> window)
 		rect.setSize(sf::Vector2f(size.x + 4, size.y + 4));
 		rect.setFillColor(innerColor);
 
-		//float tempX=((positions.width-buttonText.getGlobalBounds().width)/2)
+		//double tempX=((positions.width-buttonText.getGlobalBounds().width)/2)
 		buttonText.setPosition(sf::Vector2f(textCoordinates.x, textCoordinates.y));
 		buttonText.setFillColor(innerColor);
 		// std::cout << "fix: " << ((position.x - buttonText.getGlobalBounds().height) / 2) << std::endl;
@@ -148,7 +148,7 @@ bool BasicButton::isActived()
 	return isButtonActive;
 }
 
-void BasicButton::update(const float dt)
+void BasicButton::update(const double dt)
 {
 }
 

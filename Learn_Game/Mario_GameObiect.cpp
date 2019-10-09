@@ -87,7 +87,7 @@ void Mario::GameObiect::draw(std::shared_ptr<sf::RenderWindow> window)
 	
 }
 /*
-void Mario::GameObiect::update(const float dt)
+void Mario::GameObiect::update(const double dt)
 {
 	if (currentAnimation)
 	{

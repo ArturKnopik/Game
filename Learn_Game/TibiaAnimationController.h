@@ -15,7 +15,7 @@ namespace TGC
 	public:
 		AnimationController();
 		AnimationController(const AnimationController&) = default;
-		void update(const float dt);
+		void update(const double dt);
 		void setAnimation(TGC::Animation& animation);
 		void play();
 		void pause();

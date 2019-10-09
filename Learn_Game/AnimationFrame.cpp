@@ -2,7 +2,7 @@
 
 
 
-AnimationComponents::AnimationFrame::AnimationFrame(std::shared_ptr<sf::Texture> texture, sf::IntRect intRect, float timeToNextFrame = 30000)
+AnimationComponents::AnimationFrame::AnimationFrame(std::shared_ptr<sf::Texture> texture, sf::IntRect intRect, double timeToNextFrame = 30000)
 	:timeToNextFrame(timeToNextFrame)
 {
 	sprite.setTextureRect(intRect);

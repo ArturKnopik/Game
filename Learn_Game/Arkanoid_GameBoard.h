@@ -8,7 +8,7 @@ namespace Arkanoid
 		sf::Vector2f size;
 	public:
 		GameBoard();
-		GameBoard(float x, float y, float w, float h);
+		GameBoard(double x, double y, double w, double h);
 		GameBoard(sf::Vector2f position, sf::Vector2f size);
 		virtual ~GameBoard();
 		const sf::Vector2f getPosition();

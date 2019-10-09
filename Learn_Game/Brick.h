@@ -7,7 +7,7 @@ class Brick
 public:
 	Brick()=delete;
 	Brick(sf::Vector2f position, sf::Vector2f size);
-	void update(const float dt);
+	void update(const double dt);
 	virtual ~Brick();
 	void onCollision(std::shared_ptr<Mario::GameObiect> other) override;
 };

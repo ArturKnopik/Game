@@ -12,8 +12,8 @@ namespace Arkanoid
 			Arkanoid::Ball * ballPTR;
 		public:
 			SpeedUpBallBuff() = delete;
-			SpeedUpBallBuff(float duration, Arkanoid::Ball & ball);
-			virtual void update(const float dt);
+			SpeedUpBallBuff(double duration, Arkanoid::Ball & ball);
+			virtual void update(const double dt);
 			~SpeedUpBallBuff();
 		};
 	}

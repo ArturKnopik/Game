@@ -20,8 +20,8 @@ namespace Arkanoid
 			std::vector<std::shared_ptr<Arkanoid::Buffs::BuffDropBall>> buffToCollect;
 		public:
 			BuffSystem();
-			void updateBuffs(const float dt);
-			void updateDrop(const float dt, Arkanoid::GameBoard gameBoard);
+			void updateBuffs(const double dt);
+			void updateDrop(const double dt, Arkanoid::GameBoard gameBoard);
 			void addBuff(std::shared_ptr<Arkanoid::Buffs::IBuff> buff);
 			void addBuffToCollect(sf::Vector2f position);
 			void removeAllBuffs();

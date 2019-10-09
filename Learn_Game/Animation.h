@@ -8,12 +8,12 @@ namespace System
 	private:
 		std::vector<sf::IntRect> frame;
 		std::shared_ptr<sf::Texture> texture;
-		int currentFrame;
-		float timeMaxFrameTime;
-		float timeCurrentFrameTime;
+		size_t currentFrame;
+		double timeMaxFrameTime;
+		double timeCurrentFrameTime;
 		sf::Sprite sprite;
 	public:
-		Animation(const float frameTime);
+		Animation(const double frameTime);
 
 		void addFrame(sf::IntRect rect);
 		void setSpriteSheetTexture(std::shared_ptr < sf::Texture>);
@@ -22,7 +22,7 @@ namespace System
 		sf::IntRect & getFrame(std::size_t n);
 		sf::Sprite & getSprite();
 		void setFrame(int frame, bool restartTimer = false);
-		void update(const float dt);
+		void update(const double dt);
 		void setSpritePosition(sf::Vector2f position);
 
 	

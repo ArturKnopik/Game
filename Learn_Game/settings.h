@@ -11,6 +11,9 @@ namespace Setting
 		const int cellSizeX = 32;
 		const int cellSizeY = 32;
 		const double zoom = 0.5;
+		const double timeToAttack = 1.5;
+		const double timeToUseThings = 1.5;
+		const double timeToWalk = 1.0;
 	}
 }
 

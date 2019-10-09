@@ -8,7 +8,7 @@ Arkanoid::Buffs::BuffDropBall::BuffDropBall(sf::Vector2f position, Arkanoid::Buf
 	ball.setRadius(15);
 }
 
-void Arkanoid::Buffs::BuffDropBall::update(const float dt)
+void Arkanoid::Buffs::BuffDropBall::update(const double dt)
 {
 
 	position.y = position.y + 0.0003*dt;

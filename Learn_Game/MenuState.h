@@ -20,7 +20,7 @@ public:
 	MenuState() = delete;
 	MenuState(std::shared_ptr<Game> game);
 	void draw();
-	void update(const float dt);
+	void update(const double dt);
 	void input();
 	virtual ~MenuState()=default;
 };

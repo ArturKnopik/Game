@@ -48,7 +48,7 @@ void TGC::Player::input(sf::RenderWindow& renderWindow)
 {
 	if (canWalk())
 	{
-		// mouse click events
+		// kayboard event
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 		{
 			sendMoveRequest(TGC::ENUMS::Direction::UP);
@@ -81,7 +81,12 @@ void TGC::Player::input(sf::RenderWindow& renderWindow)
 		
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
 		{
-			doThingWithTargetCell();
+			if (canUseThing())
+			{
+				restartUseTimer();
+				doThingWithTargetCell();
+			}
+			
 		}
 	}
 }
@@ -100,9 +105,16 @@ void TGC::Player::doThingWithTargetCell()
 
 	
 	auto targetCell = TGC::Global::TGCGame::getSingleton().getXYCoordinateCell(worldPosInt.x, worldPosInt.y);
-
+	if (!targetCell)
+	{
+		return;
+	}
 	if (targetCell->getCreature())
 	{
+		if (getPosition().x == worldPosInt.x && getPosition().y == worldPosInt.y)
+		{
+			return;
+		}
 		if (targetCreature==targetCell->getCreature())
 		{
 			targetCreature = nullptr;
@@ -122,6 +134,38 @@ void TGC::Player::doThingWithTargetCell()
 
 }
 
+void TGC::Player::updateUseThingTimer(const double dt)
+{
+	if (useThingTimer.first < useThingTimer.second)
+	{
+		useThingTimer.first += dt;
+	}
+}
+
+void TGC::Player::restartUseTimer()
+{
+	useThingTimer.first = 0;
+}
+
+bool TGC::Player::canUseThing()
+{
+	if (useThingTimer.first > useThingTimer.second)
+	{
+		return true;
+	}
+	return false;
+}
+
+void TGC::Player::update(const double dt)
+{
+	Creature::update(dt);
+	if (!targetCreature)
+	{
+		targetCreature = nullptr;
+	}
+	updateUseThingTimer(dt);
+}
+
 void TGC::Player::drawCurrentCellMarkRectangle(sf::RenderWindow& renderWindow)
 {
 	
@@ -137,7 +181,7 @@ void TGC::Player::drawCurrentCellMarkRectangle(sf::RenderWindow& renderWindow)
 	
 	rect.setPosition(worldPosInt.x * Setting::Const::cellSizeX, worldPosInt.y * Setting::Const::cellSizeY);
 	rect.setSize(sf::Vector2f(Setting::Const::cellSizeX, Setting::Const::cellSizeY));
-	int rectOutlineThickness = 1;
+	int rectOutlineThickness = 2;
 	rect.setOutlineThickness(rectOutlineThickness);
 	rect.setFillColor(sf::Color(0, 0, 0, 0));
 	rect.setOutlineColor(sf::Color(100,30,60,130));

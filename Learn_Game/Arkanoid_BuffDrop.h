@@ -22,7 +22,7 @@ namespace Arkanoid
 		public:
 			BuffDropBall() = delete;
 			BuffDropBall(sf::Vector2f position, Arkanoid::Buffs::WhatToBuff buffType);
-			void update(const float dt);
+			void update(const double dt);
 			sf::Vector2f getPosition();
 			void setPosition(sf::Vector2f position);
 			~BuffDropBall() = default;

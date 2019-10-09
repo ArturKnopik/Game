@@ -51,7 +51,7 @@ void MarioGameState::draw()
 	//brick->draw(game->window);	
 }
 
-void MarioGameState::update(const float dt)
+void MarioGameState::update(const double dt)
 {
 	//player->update(dt);
 	std::vector<std::shared_ptr<Mario::GameObiect>>::iterator obiectThatCheckIt;

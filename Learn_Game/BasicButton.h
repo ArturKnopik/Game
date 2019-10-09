@@ -29,9 +29,9 @@ private:
 public:
 
 	sf::Vector2f positions;
-	BasicButton(std::string text, float x, float y, float width, float height, int textSize, std::shared_ptr<sf::Texture> texture);
+	BasicButton(std::string text, double x, double y, double width, double height, int textSize, std::shared_ptr<sf::Texture> texture);
 	BasicButton(std::string text, sf::Vector2f position, sf::Vector2f size, int textSize, std::shared_ptr<sf::Texture> texture);
-	BasicButton(std::string text, float x, float y, float width, float height, int textSize, sf::Color innerColor, sf::Color outerColor);
+	BasicButton(std::string text, double x, double y, double width, double height, int textSize, sf::Color innerColor, sf::Color outerColor);
 	BasicButton(std::string text, sf::Vector2f position, sf::Vector2f size, int textSize, sf::Color innerColor, sf::Color outerColor);
 
 	~BasicButton();
@@ -40,6 +40,6 @@ public:
 	void Actived();
 	void draw(std::shared_ptr<sf::RenderWindow> window);
 	bool isActived();
-	void update(const float dt);
+	void update(const double dt);
 
 };

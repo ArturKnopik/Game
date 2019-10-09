@@ -9,8 +9,8 @@ namespace Arkanoid
 			Arkanoid::Ball * ballPTR;
 		public:
 			SlowDownBallBuff() = delete;
-			SlowDownBallBuff(float duration, Arkanoid::Ball & ball);
-			virtual void update(const float dt);
+			SlowDownBallBuff(double duration, Arkanoid::Ball & ball);
+			virtual void update(const double dt);
 			~SlowDownBallBuff();
 		};
 	}

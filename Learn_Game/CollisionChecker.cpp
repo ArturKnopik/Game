@@ -24,12 +24,12 @@ namespace System
 	System::CollisionType System::getCollsionSite(sf::Vector2f positionLeft, sf::Vector2f sizeLeft, sf::Vector2f positionRight, sf::Vector2f sizeRight)
 	{
 
-		float dx = (positionLeft.x + (sizeLeft.x / 2)) - (positionRight.x + (sizeRight.x / 2));
-		float dy = (positionLeft.y + (sizeLeft.y / 2)) - (positionRight.y + (sizeRight.y / 2));
-		float width = (sizeLeft.x + sizeLeft.x) / 2;
-		float height = (sizeLeft.y + sizeLeft.y) / 2;
-		float crossWidth = width * dy;
-		float crossHeight = height * dx;
+		double dx = (positionLeft.x + (sizeLeft.x / 2)) - (positionRight.x + (sizeRight.x / 2));
+		double dy = (positionLeft.y + (sizeLeft.y / 2)) - (positionRight.y + (sizeRight.y / 2));
+		double width = (sizeLeft.x + sizeLeft.x) / 2;
+		double height = (sizeLeft.y + sizeLeft.y) / 2;
+		double crossWidth = width * dy;
+		double crossHeight = height * dx;
 		System::CollisionType collision = System::CollisionType::NO_COLLISION;
 		if (abs(dx) <= width && abs(dy) <= height) {
 

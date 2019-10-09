@@ -1,7 +1,7 @@
 #include "Arkanoid_BigPaddleBuff.h"
 #include "Arkanoid_BuffFactory.h"
 
-Arkanoid::Buffs::BigPaddleBuff::BigPaddleBuff(float duration, Arkanoid::Paddle & paddle)
+Arkanoid::Buffs::BigPaddleBuff::BigPaddleBuff(double duration, Arkanoid::Paddle & paddle)
 	:Arkanoid::Buffs::IBuff(duration), paddlePTR(&paddle)
 {
 	goodEvilBuff = Arkanoid::Buffs::BuffType::GOOD_BUFF;
@@ -10,7 +10,7 @@ Arkanoid::Buffs::BigPaddleBuff::BigPaddleBuff(float duration, Arkanoid::Paddle &
 	paddlePTR->setPosition(sf::Vector2f(paddlePTR->getPosition().x - paddlePTR->getSize().x / 4, paddlePTR->getPosition().y));
 }
 
-void Arkanoid::Buffs::BigPaddleBuff::update(const float dt)
+void Arkanoid::Buffs::BigPaddleBuff::update(const double dt)
 {
 	removeLife(dt);
 }

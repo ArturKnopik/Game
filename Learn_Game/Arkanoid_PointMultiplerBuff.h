@@ -10,8 +10,8 @@ namespace Arkanoid
 			Arkanoid::PointSystem * pointSystem;
 		public:
 			PointMultiplerBuff() = delete;
-			PointMultiplerBuff(float duration, Arkanoid::PointSystem & pointSystem, int pointsMultipler);
-			virtual void update(const float dt);
+			PointMultiplerBuff(double duration, Arkanoid::PointSystem & pointSystem, int pointsMultipler);
+			virtual void update(const double dt);
 			~PointMultiplerBuff();
 		};
 	}

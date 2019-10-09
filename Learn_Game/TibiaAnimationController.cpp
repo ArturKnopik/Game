@@ -5,7 +5,7 @@ TGC::AnimationController::AnimationController()
 {
 }
 
-void TGC::AnimationController::update(const float dt)
+void TGC::AnimationController::update(const double dt)
 {
 	if (!isPausedAnimation && animationPtr)
 	{

@@ -1,7 +1,7 @@
 #include "Arkanoid_SpeedUpBallBuff.h"
 #include <iostream>
 #include "Arkanoid_BuffFactory.h"
-Arkanoid::Buffs::SpeedUpBallBuff::SpeedUpBallBuff(float duration, Arkanoid::Ball & ball)
+Arkanoid::Buffs::SpeedUpBallBuff::SpeedUpBallBuff(double duration, Arkanoid::Ball & ball)
 	:Arkanoid::Buffs::IBuff(duration), ballPTR(&ball)
 {
 	goodEvilBuff = BuffType::EVIL_BUFF;
@@ -11,7 +11,7 @@ Arkanoid::Buffs::SpeedUpBallBuff::SpeedUpBallBuff(float duration, Arkanoid::Ball
 	this->ballPTR->increaseSpeed();
 }
 
-void Arkanoid::Buffs::SpeedUpBallBuff::update(const float dt)
+void Arkanoid::Buffs::SpeedUpBallBuff::update(const double dt)
 {
 	removeLife(dt);
 }

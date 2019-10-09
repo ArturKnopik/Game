@@ -32,17 +32,17 @@ void Arkanoid::Paddle::draw(std::shared_ptr<sf::RenderWindow> window)
 {
 }
 
-void Arkanoid::Paddle::moveLeft(const float dt)
+void Arkanoid::Paddle::moveLeft(const double dt)
 {
 	position.x=position.x-(0.0005f *dt);
 }
 
-void Arkanoid::Paddle::moveRight(const float dt)
+void Arkanoid::Paddle::moveRight(const double dt)
 {
 	position.x = position.x + (0.0005f *dt);
 }
 
-void Arkanoid::Paddle::update(const float dt)
+void Arkanoid::Paddle::update(const double dt)
 {
 	if (dir == Direction::LEFT)
 	{

@@ -1,6 +1,6 @@
 #include "Button.h"
 
-Button::Button(float x, float y, float width, float height)
+Button::Button(double x, double y, double width, double height)
 {
 	position.x = x;
 	position.y = y;

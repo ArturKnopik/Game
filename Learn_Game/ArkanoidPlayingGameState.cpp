@@ -21,8 +21,8 @@ TetrisGameState::TetrisGameState(std::shared_ptr<Game> game, std::shared_ptr<Ark
 
 bool TetrisGameState::checkCollision(sf::Vector2f position, sf::Vector2f size, const Arkanoid::Ball & ball)
 {	
-	float testX = ball.getPosition().x;
-	float testY = ball.getPosition().y;
+	double testX = ball.getPosition().x;
+	double testY = ball.getPosition().y;
 	if (ball.getPosition().x < position.x)
 	{
 		testX = position.x; 
@@ -43,9 +43,9 @@ bool TetrisGameState::checkCollision(sf::Vector2f position, sf::Vector2f size, c
 		testY = position.y + size.y;
 	}
 
-	float distX = ball.getPosition().x - testX;
-	float distY = ball.getPosition().y - testY;
-	float distance = sqrt((distX*distX) + (distY*distY));
+	double distX = ball.getPosition().x - testX;
+	double distY = ball.getPosition().y - testY;
+	double distance = sqrt((distX*distX) + (distY*distY));
 	if (distance <= ball.getRadius()) 
 	{
 		return true;
@@ -59,15 +59,15 @@ void TetrisGameState::calculateDirectionOfReflection(std::shared_ptr<Arkanoid::B
 {
 	// TODO: improving detection axis changes, currently looks good but not perfect, minor problems with collision detection on the corners of rectangles
 	
-	float ballBottom = ball.getPosition().y + ball.getRadius()*2;
-	float blockBottom = block->getPosition().y + block->getSize().y;
-	float ballRight = ball.getPosition().x + ball.getRadius()*2;
-	float blockRight = block->getPosition().x + block->getSize().x;
+	double ballBottom = ball.getPosition().y + ball.getRadius()*2;
+	double blockBottom = block->getPosition().y + block->getSize().y;
+	double ballRight = ball.getPosition().x + ball.getRadius()*2;
+	double blockRight = block->getPosition().x + block->getSize().x;
 
-	float bottomCollision = blockBottom - ball.getPosition().y;
-	float topCollision = ballBottom - block->getPosition().y;
-	float leftCollision = ballRight - block->getPosition().x;
-	float rightCollision = blockRight - ball.getPosition().x;
+	double bottomCollision = blockBottom - ball.getPosition().y;
+	double topCollision = ballBottom - block->getPosition().y;
+	double leftCollision = ballRight - block->getPosition().x;
+	double rightCollision = blockRight - ball.getPosition().x;
 
 	if (topCollision < bottomCollision && topCollision < leftCollision && topCollision < rightCollision)
 	{
@@ -91,7 +91,7 @@ void TetrisGameState::calculateDirectionOfReflection(std::shared_ptr<Arkanoid::B
 	}
 }
 
-void TetrisGameState::updateBuffs(const float dt)
+void TetrisGameState::updateBuffs(const double dt)
 {
 	for (auto it = buffSystem.getBuffToCollect().begin(); it != buffSystem.getBuffToCollect().end(); it++)
 	{
@@ -125,7 +125,7 @@ void TetrisGameState::draw()
 	//paddle.draw(game->window);
 }
 
-void TetrisGameState::update(const float dt)
+void TetrisGameState::update(const double dt)
 {
 	if (paddle.getCurrentLife()>0)
 	{

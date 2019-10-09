@@ -7,10 +7,10 @@ namespace AnimationComponents
 	class AnimationFrame
 	{
 		sf::Sprite sprite;
-		float timeToNextFrame;
+		double timeToNextFrame;
 	public:
 		AnimationFrame() = delete;
-		AnimationFrame(std::shared_ptr<sf::Texture> texture, sf::IntRect intRect, float timeToNextFrame );
+		AnimationFrame(std::shared_ptr<sf::Texture> texture, sf::IntRect intRect, double timeToNextFrame );
 		~AnimationFrame();
 		void setPosition(sf::Vector2f newPosaition);
 		sf::Sprite & getSprite();

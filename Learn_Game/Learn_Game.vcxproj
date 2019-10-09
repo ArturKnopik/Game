@@ -184,6 +184,7 @@
     <ClCompile Include="Arkanoid_BuffDrop.cpp" />
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="TibiaCombat.cpp" />
     <ClCompile Include="Mario_GumbaGameObiect.cpp" />
     <ClCompile Include="Mario_LevelController.cpp" />
     <ClCompile Include="MarioGameState.cpp" />
@@ -243,6 +244,7 @@
     <ClInclude Include="Arkanoid_BuffDrop.h" />
     <ClInclude Include="Brick.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="TibiaCombat.h" />
     <ClInclude Include="Mario_GumbaGameObiect.h" />
     <ClInclude Include="Mario_LevelController.h" />
     <ClInclude Include="MarioGameState.h" />

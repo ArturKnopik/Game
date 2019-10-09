@@ -17,19 +17,18 @@ namespace TGC
 			ITEM,
 			GROUND
 		};
-		/*
-		enum Color
+
+		enum CombatType
 		{
-			RED,
-			GREEN,
-			BLUE,
-			YELLOW,
-			PINK,
-			WHITE,
-			GREY,
-			BLACK
+			PHYSICAL = 0,
+			FIRE = 1,
+			EARTH = 2,
+			ICE = 3,
+			ENERGY = 4,
+			HEALING = 5,
+
+			COMBATTYPESIZE = HEALING
 		};
-		*/
 	}
 }
 

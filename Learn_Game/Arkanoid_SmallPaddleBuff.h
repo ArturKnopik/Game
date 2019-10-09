@@ -10,8 +10,8 @@ namespace Arkanoid
 			Arkanoid::Paddle * paddlePTR;
 		public:
 			SmallPaddleBuff() = delete;
-			SmallPaddleBuff(float duration, Arkanoid::Paddle & paddle);
-			virtual void update(const float dt);
+			SmallPaddleBuff(double duration, Arkanoid::Paddle & paddle);
+			virtual void update(const double dt);
 			~SmallPaddleBuff();
 		};
 	}

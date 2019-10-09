@@ -1,6 +1,6 @@
 #include "Arkanoid_SlowDownBallBuff.h"
 #include "Arkanoid_BuffFactory.h"
-Arkanoid::Buffs::SlowDownBallBuff::SlowDownBallBuff(float duration, Arkanoid::Ball & ball)
+Arkanoid::Buffs::SlowDownBallBuff::SlowDownBallBuff(double duration, Arkanoid::Ball & ball)
 	:Arkanoid::Buffs::IBuff(duration), ballPTR(&ball)
 {
 	goodEvilBuff = BuffType::GOOD_BUFF;
@@ -9,7 +9,7 @@ Arkanoid::Buffs::SlowDownBallBuff::SlowDownBallBuff(float duration, Arkanoid::Ba
 	this->ballPTR->decreaseSpeed();
 }
 
-void Arkanoid::Buffs::SlowDownBallBuff::update(const float dt)
+void Arkanoid::Buffs::SlowDownBallBuff::update(const double dt)
 {
 	removeLife(dt);
 }

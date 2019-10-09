@@ -7,6 +7,7 @@ namespace TGC
 		public Creature
 	{
 	private:
+		std::pair<double, double> useThingTimer = std::make_pair(0, 0.1); // first current time, second maxTime
 	public:
 		Player();
 		const sf::Vector2<size_t> getSpritePosition() const;
@@ -14,7 +15,10 @@ namespace TGC
 		void drawCurrentTargetMarkRectangle(sf::RenderWindow& renderWindow);
 		void input(sf::RenderWindow& renderWindow);
 		void doThingWithTargetCell();
-
+		void updateUseThingTimer(const double dt);
+		void restartUseTimer();
+		bool canUseThing();
+		virtual void update(const double dt) override;
 		virtual void renderDebug(sf::RenderWindow& renderWindow) override
 		{
 
@@ -35,7 +39,7 @@ namespace TGC
 
 				break;
 			}
-			rect.setPosition(sf::Vector2f(static_cast<float>(position.x * 32 + 2), static_cast<float>(position.y * 32 + 2)));
+			rect.setPosition(sf::Vector2f(static_cast<double>(position.x * 32 + 2), static_cast<double>(position.y * 32 + 2)));
 			rect.setSize(sf::Vector2f(28, 28));
 			renderWindow.draw(rect);
 			Creature::draw(renderWindow);

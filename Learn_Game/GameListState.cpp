@@ -30,7 +30,7 @@ void GameListState::draw()
 	
 }
 
-void GameListState::update(const float dt)
+void GameListState::update(const double dt)
 {
 	//activeGameRect.setPosition(47, 47+(currentMarkedGame*50));
 }

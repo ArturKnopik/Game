@@ -18,8 +18,8 @@ namespace Arkanoid
 		sf::Vector2f position;
 		sf::Vector2f size;
 		Direction dir=STOP;
-		void moveLeft(const float dt);
-		void moveRight(const float dt);
+		void moveLeft(const double dt);
+		void moveRight(const double dt);
 		int life;
 	public:
 		Paddle();
@@ -28,7 +28,7 @@ namespace Arkanoid
 		void addLife();
 		const int getCurrentLife() const;
 		void draw(std::shared_ptr<sf::RenderWindow> window);
-		void update(const float dt);
+		void update(const double dt);
 		void setDirection(Direction dir);
 		void input(std::shared_ptr<sf::Event> event);
 		void setPosition(sf::Vector2f pos);

@@ -1,5 +1,5 @@
 #include "TibiaMapCell.h"
-
+#include "TibiaTGCGame.h"
 TGC::MapCell::MapCell()
 {
 	//obiectList.reserve(10);
@@ -60,7 +60,7 @@ void TGC::MapCell::popObiect()
 	}
 }
 
-void TGC::MapCell::updateMapCell(const float dt)
+void TGC::MapCell::updateMapCell(const double dt)
 {
 	for (const auto & it : obiectList)
 	{
@@ -68,7 +68,19 @@ void TGC::MapCell::updateMapCell(const float dt)
 	}
 	if (creature)
 	{
-		creature.value()->update(dt);
+		if (creature.value()->getHealth() ==0)
+		{
+			auto player = TGC::Global::TGCGame::getSingleton().getPlayer();
+			if (creature.value()->getID() == player->getTarget()->getID())
+			{
+				player->setTarget(nullptr);
+			}
+			creature = std::nullopt;
+		}
+		else
+		{
+			creature.value()->update(dt);
+		}
 	}
 
 	if (ground)

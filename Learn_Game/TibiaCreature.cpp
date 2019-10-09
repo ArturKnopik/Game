@@ -1,6 +1,8 @@
 #include "TibiaCreature.h"
 #include "TibiaTGCGame.h"
 #include "SFML/Window/Mouse.hpp"
+#include "UtilityTools.h"
+#include <math.h>
 //	Global::TGCGame::getSingleton().addMoveRequest(reinterpret_cast<Creature*>(this->getCreature()) , dir)
 
 bool TGC::Creature::canWalk()
@@ -12,18 +14,17 @@ bool TGC::Creature::canWalk()
 	return false;
 }
 
-void TGC::Creature::update(const float dt)
+void TGC::Creature::update(const double dt)
 {
-	double tempDt = dt / 1000000; // used to 
 	if (currentWalikingTime < walkingTime)
 	{
 		if (animationControler)
 		{
 			calculateSpriteOfsetPercentDone();
 			applySpriteOfset();
-			animationControler->update(tempDt);
+			animationControler->update(dt);
 		}
-		currentWalikingTime += tempDt;
+		currentWalikingTime += dt;
 	}
 	else
 	{
@@ -34,6 +35,18 @@ void TGC::Creature::update(const float dt)
 			positionSprite.y = position.y * 32;
 		}
 	}
+	if (targetCreature)
+	{
+		if (canAttack())
+		{
+			if (isTargetInRange())
+			{
+				TGC::Global::TGCGame::getSingleton().addCombatObiect(TGC::CombatObiect(this, targetCreature, Combat(TGC::ENUMS::CombatType::PHYSICAL, 150)));
+				restartAttackTimer();
+			}
+		}
+	}
+	updateAttackTimer(dt);
 }
 
 bool TGC::Creature::canPlayWalikngAnimation()
@@ -241,6 +254,76 @@ void TGC::Creature::setMaxHeatlh(unsigned int health)
 unsigned int TGC::Creature::getMaxHealth()
 {
 	return maxHP;
+}
+
+void TGC::Creature::addHealth(unsigned int health)
+{
+	currentHP += health;
+	if (currentHP > maxHP)
+	{
+		currentHP = maxHP;
+	}
+}
+
+void TGC::Creature::removeHealth(unsigned int health)
+{
+	
+	if (currentHP > health)
+	{
+		currentHP -= health;
+		return;
+	}
+	currentHP = 0;
+	
+}
+
+void TGC::Creature::findTarget()
+{
+	//TODO: implemet find algorithm
+	//TGC::Global::TGCGame::getSingleton();
+}
+
+short TGC::Creature::getAbsorbValue(TGC::ENUMS::CombatType combatType)
+{
+	return absorbPercent[TGC::UtilityTools::damageTypeToIndex(combatType)];
+}
+
+void TGC::Creature::updateAttackTimer(const double dt)
+{
+	if (attackTimer.first < attackTimer.second)
+	{
+		attackTimer.first += dt;
+	}
+}
+
+void TGC::Creature::restartAttackTimer()
+{
+	attackTimer.first = 0;
+}
+
+bool TGC::Creature::canAttack()
+{
+	if (attackTimer.first > attackTimer.second)
+	{
+		return true;
+	}
+	return false;
+}
+
+bool TGC::Creature::isTargetInRange()
+{
+	if (!targetCreature)
+	{
+		return false;
+	}
+	auto posX = std::abs(static_cast<int>(targetCreature->getPosition().x - getPosition().x));
+	auto posY = std::abs(static_cast<int>(targetCreature->getPosition().y - getPosition().y));
+
+	if (posX <= attackRange && posY <= attackRange)
+	{
+		return true;
+	}
+	return false;
 }
 
 

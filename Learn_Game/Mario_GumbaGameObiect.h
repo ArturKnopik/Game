@@ -12,7 +12,7 @@ namespace Mario
 		GumbaGameObiect() = delete;
 		GumbaGameObiect(sf::Vector2f position, sf::Vector2f size);
 		~GumbaGameObiect()=default;
-		void update(const float dt) override;
+		void update(const double dt) override;
 		void onCollision(std::shared_ptr<Mario::GameObiect> other);
 	};
 }

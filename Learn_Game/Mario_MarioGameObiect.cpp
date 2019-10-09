@@ -60,7 +60,7 @@ Mario::MarioGameObiect::MarioGameObiect(sf::Vector2f position, sf::Vector2f size
 	maxJumpingTime = 600000;
 }
 
-void Mario::MarioGameObiect::update(const float dt)
+void Mario::MarioGameObiect::update(const double dt)
 {
 	if (currentAnimation)
 	{

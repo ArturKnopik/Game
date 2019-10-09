@@ -2,7 +2,7 @@
 #include <iostream>
 #include "ResourceManager.h"
 
-System::Animation::Animation(const float frameTime)
+System::Animation::Animation(const double frameTime)
 	:currentFrame(0), timeCurrentFrameTime(0), timeMaxFrameTime(frameTime)
 {
 	sprite.setTexture(*System::ResourceManager::getInstance().getTexture("default"));
@@ -59,7 +59,7 @@ std::size_t System::Animation::getSize()
 	 
  }
 
- void System::Animation::update(const float dt)
+ void System::Animation::update(const double dt)
  {
 	 timeCurrentFrameTime = timeCurrentFrameTime + dt;
 	 if (timeCurrentFrameTime > timeMaxFrameTime)

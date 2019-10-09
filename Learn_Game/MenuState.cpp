@@ -59,7 +59,7 @@ void MenuState::input() {
 	}
 }
 
-void MenuState::update(const float dt) {
+void MenuState::update(const double dt) {
 
 	switch (menuSwitch) {
 	case 0:

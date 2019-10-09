@@ -6,7 +6,7 @@ namespace TGC
 		double maxGlobalAnimationTime = 0.3;
 		double currentGlobalAnimationTime = 0.0;
 	public:
-		void updateAnimationTime(const float dt);
+		void updateAnimationTime(const double dt);
 		bool isEndAnimationTimeReached();
 	};
 }

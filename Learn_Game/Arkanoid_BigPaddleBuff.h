@@ -11,8 +11,8 @@ namespace Arkanoid
 			Arkanoid::Paddle * paddlePTR;
 		public:
 			BigPaddleBuff() = delete;
-			BigPaddleBuff(float duration, Arkanoid::Paddle & paddle);
-			virtual void update(const float dt);
+			BigPaddleBuff(double duration, Arkanoid::Paddle & paddle);
+			virtual void update(const double dt);
 			~BigPaddleBuff();
 		};
 	}

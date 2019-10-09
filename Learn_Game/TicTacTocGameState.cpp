@@ -136,7 +136,7 @@ void TicTacTocGameState::draw()
 	}
 }
 
-void TicTacTocGameState::update(const float dt)
+void TicTacTocGameState::update(const double dt)
 {
 	std::vector<std::vector<Cell>>::iterator row;
 	std::vector<Cell>::iterator col;

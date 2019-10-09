@@ -23,22 +23,22 @@ namespace Arkanoid
 		{
 			
 
-			float currentDuration;
-			float duration;
-			float speed;
+			double currentDuration;
+			double duration;
+			double speed;
 		protected:
 			Buff buffTypee;
 			BuffType goodEvilBuff;
-			void removeLife(const float dt);
+			void removeLife(const double dt);
 			sf::Vector2f position;
 		public:
-			IBuff(float duration);
+			IBuff(double duration);
 			virtual ~IBuff() = default;
-			virtual void update(const float dt) = 0;
+			virtual void update(const double dt) = 0;
 			sf::Vector2f getPosition();
 			bool isBuffGood();
-			float getDuration();
-			float getCurrentDuration();
+			double getDuration();
+			double getCurrentDuration();
 			Arkanoid::Buffs::Buff getBuffType();
 		};
 	}

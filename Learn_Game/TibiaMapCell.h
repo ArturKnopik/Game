@@ -28,7 +28,7 @@ namespace TGC
 		void setGround(std::shared_ptr<GameObiect> obiect);
 		void removeCreature() { creature = std::nullopt; };
 		void popObiect();
-		void updateMapCell(const float dt);
+		void updateMapCell(const double dt);
 		void drawGround(sf::RenderWindow& window);
 		void drawCreature(sf::RenderWindow& window);
 		void drawObiectList(sf::RenderWindow& window);

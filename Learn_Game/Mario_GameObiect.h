@@ -45,8 +45,8 @@ namespace Mario
 		bool canJump = false;
 		bool isInFallingState = true;
 		bool isInJumpState = true;
-		float currentJumpTime;
-		float maxJumpingTime;
+		double currentJumpTime;
+		double maxJumpingTime;
 		bool markedToRemove = false;
 	public:
 		GameObiect()=delete;
@@ -57,7 +57,7 @@ namespace Mario
 
 		virtual void draw(std::shared_ptr<sf::RenderWindow> window);
 
-		virtual void update(const float dt)=0;
+		virtual void update(const double dt)=0;
 
 		System::Animation & getAnimator();
 

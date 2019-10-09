@@ -6,7 +6,7 @@ TGC::GameObiect::GameObiect()
 	
 }
 
-void TGC::GameObiect::update(const float dt)
+void TGC::GameObiect::update(const double dt)
 {
 
 }
@@ -35,7 +35,7 @@ void TGC::GameObiect::renderDebug(sf::RenderWindow& renderWindow)
 {
 	sf::RectangleShape rect;
 	rect.setFillColor(sf::Color::White);
-	rect.setPosition(sf::Vector2f(static_cast<float>(position.x) * 32, static_cast<float>(position.y) * 32));
+	rect.setPosition(sf::Vector2f(static_cast<double>(position.x) * 32, static_cast<double>(position.y) * 32));
 	rect.setSize(sf::Vector2f(32, 32));
 	renderWindow.draw(rect);
 	draw(renderWindow);

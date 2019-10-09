@@ -17,7 +17,7 @@ Brick::Brick(sf::Vector2f position, sf::Vector2f size)
 	currentAnimation = &animationList.begin()->second;
 }
 
-void Brick::update(const float dt)
+void Brick::update(const double dt)
 {
 	if (currentAnimation)
 	{

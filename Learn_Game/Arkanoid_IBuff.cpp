@@ -1,11 +1,11 @@
 #include "Arkanoid_IBuff.h"
 #include <iostream>
-void Arkanoid::Buffs::IBuff::removeLife(const float dt)
+void Arkanoid::Buffs::IBuff::removeLife(const double dt)
 {
 	currentDuration -= dt;
 }
 
-Arkanoid::Buffs::IBuff::IBuff(float duration)
+Arkanoid::Buffs::IBuff::IBuff(double duration)
 	:currentDuration(duration), duration(duration), speed(0.0003)
 {
 }
@@ -27,12 +27,12 @@ bool Arkanoid::Buffs::IBuff::isBuffGood()
 	}
 }
 
-float Arkanoid::Buffs::IBuff::getDuration()
+double Arkanoid::Buffs::IBuff::getDuration()
 {
 	return duration;
 }
 
-float Arkanoid::Buffs::IBuff::getCurrentDuration()
+double Arkanoid::Buffs::IBuff::getCurrentDuration()
 {
 	return currentDuration;
 }

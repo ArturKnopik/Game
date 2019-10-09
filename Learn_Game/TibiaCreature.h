@@ -23,11 +23,16 @@ namespace TGC
 	class Creature : public GameObiect
 	{
 	protected:
+		short attackRange = 1;
 		unsigned int maxHP = 300;
-		unsigned int currentHP = 50;
+		unsigned int currentHP = 300;
 		bool walkAnimation = false;
-		double walkingTime = 1.0;
+		double walkingTime = Setting::Const::timeToWalk;
 		double currentWalikingTime = walkingTime;
+		short absorbPercent[TGC::ENUMS::CombatType::COMBATTYPESIZE]{ 100 };
+
+
+		std::pair<double, double> attackTimer = std::make_pair(0, Setting::Const::timeToAttack);
 		std::string name = "placeHolder";
 		TGC::ENUMS::Direction direction = TGC::ENUMS::Direction::DOWN;
 		sf::Vector2<std::size_t> spriteOfset;
@@ -46,6 +51,10 @@ namespace TGC
 		void setAnimation(TGC::ENUMS::Direction animationDir, TGC::Animation animation);
 		std::shared_ptr<Creature> targetCreature;
 		void drawHealthBar(sf::RenderWindow& renderWindow);
+		void updateAttackTimer(const double dt);
+		void restartAttackTimer();
+		bool canAttack();
+		bool isTargetInRange();
 	public:
 		Creature();
 		Creature* getCreature();
@@ -53,7 +62,7 @@ namespace TGC
 		virtual const std::string& getName() const;
 		void sendMoveRequest(TGC::ENUMS::Direction dir);
 		bool canWalk();
-		virtual void update(const float dt);
+		virtual void update(const double dt);
 		bool canPlayWalikngAnimation();
 		void setWalkingAnimation(bool walkAnim, TGC::ENUMS::Direction direction); // idk how name this function
 		void setDirection(TGC::ENUMS::Direction dir);
@@ -66,19 +75,24 @@ namespace TGC
 		unsigned int getHealth();
 		void setMaxHeatlh(unsigned int health);
 		unsigned int getMaxHealth();
+		void addHealth(unsigned int health);
+		void removeHealth(unsigned int health);
+		virtual void findTarget();
+		short getAbsorbValue(TGC::ENUMS::CombatType combatType);
 		//TODO: Remove this function when create normal obiect
+
+
 		virtual void renderDebug(sf::RenderWindow& renderWindow) override
 		{
 			draw(renderWindow);
 
 			sf::RectangleShape rect;
 			rect.setFillColor(sf::Color(100, 100, 100, 100));
-			rect.setPosition(sf::Vector2f(static_cast<float>(position.x * 32 + 2), static_cast<float>(position.y * 32 + 2)));
+			rect.setPosition(sf::Vector2f(static_cast<double>(position.x * 32 + 2), static_cast<double>(position.y * 32 + 2)));
 			rect.setSize(sf::Vector2f(28, 28));
 			renderWindow.draw(rect);
 		}
 		
-
 		friend class Camera::CameraController;
 	};
 }

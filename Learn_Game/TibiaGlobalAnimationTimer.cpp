@@ -1,6 +1,6 @@
 #include "TibiaGlobalAnimationTimer.h"
 
-void TGC::GlobalAnimationTimer::updateAnimationTime(const float dt)
+void TGC::GlobalAnimationTimer::updateAnimationTime(const double dt)
 {
 	if (currentGlobalAnimationTime < maxGlobalAnimationTime)
 	{

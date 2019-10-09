@@ -26,10 +26,10 @@ namespace Arkanoid
 		sf::Text points;
 		sf::Text buffName;
 		sf::Text pointsMultipler;
-		float lifeColorValue;
-		float lifeColorChangeValue;
-		float blockBreathingValue;
-		float blockBreathingChangeValue;
+		double lifeColorValue;
+		double lifeColorChangeValue;
+		double blockBreathingValue;
+		double blockBreathingChangeValue;
 		void drawBlock(std::shared_ptr<sf::RenderWindow> window, const std::vector<std::shared_ptr<Arkanoid::Block>> & blockList);
 		void drawPaddle(std::shared_ptr<sf::RenderWindow> window, const Arkanoid::Paddle & paddle);
 		void drawBall(std::shared_ptr<sf::RenderWindow> window, const Arkanoid::Ball & ball);
@@ -39,7 +39,7 @@ namespace Arkanoid
 	public:
 		BasicBrawStyle();
 		virtual void draw(std::shared_ptr<sf::RenderWindow> window, const std::vector<std::shared_ptr<Arkanoid::Block>> & blockList, const Arkanoid::Paddle & paddle, Arkanoid::Ball & ball, Arkanoid::Buffs::BuffSystem & buffSystem, Arkanoid::PointSystem & pointSystem);
-		virtual void update(const float dt);
+		virtual void update(const double dt);
 		virtual ~BasicBrawStyle();
 	};
 }

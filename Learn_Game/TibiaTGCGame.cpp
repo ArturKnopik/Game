@@ -12,9 +12,9 @@ TGC::Global::TGCGame::TGCGame()
 	player = std::make_shared<Player>();
 	std::shared_ptr<GameObiect> obiect = std::make_shared<GameObiect>();
 	obiect->setPosition(sf::Vector2<size_t>(0, 0));
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 5; i++)
 	{
-		for (int j = 0; j < 10; j++)
+		for (int j = 0; j < 5; j++)
 		{
 			std::shared_ptr<GameObiect> obiect = std::make_shared<GameObiect>();
 			obiect->setPosition(sf::Vector2<size_t>(i, j));
@@ -22,11 +22,12 @@ TGC::Global::TGCGame::TGCGame()
 		}
 	}
 	auto rat = std::make_shared<Rat>();
-
+	auto rat2 = std::make_shared<Rat>();
 	world.addCreature(0, 0, player);
-	world.addCreature(5, 5, rat);
+	world.addCreature(0, 1, rat2);
+	world.addCreature(4, 4, rat);
 	std::cout << "end build map" << std::endl;
-	rat->setTarget(player);
+//	rat->setTarget(player);
 	player->setHealth(player->getMaxHealth());
 }
 
@@ -46,11 +47,13 @@ sf::RenderWindow& TGC::Global::TGCGame::getWindow()
 	return *window;
 }
 
-void TGC::Global::TGCGame::updateWorld(const float dt, std::shared_ptr<GameObiect> player)
+void TGC::Global::TGCGame::updateWorld(const double dt, std::shared_ptr<GameObiect> player)
 {
+	double tempDt = dt / 1000000; // used to 
 	//globalAnimationTimer.updateAnimationTime(dt); //TODO: implement to "fixed time" animation obiect require work in sync;
 	resolveMoveRequest();
-	world.updateWorld(dt);
+	world.updateWorld(tempDt);
+	resolveCombat();
 }
 
 void TGC::Global::TGCGame::draw(sf::RenderWindow & window)
@@ -209,6 +212,23 @@ void TGC::Global::TGCGame::resolveMoveRequest()
 	moveRequest.clear();
 }
 
+void TGC::Global::TGCGame::resolveCombat()
+{
+	for (auto & it : combatRequest)
+	{
+		if(it.getTarget() && it.getAttacker())
+		if (it.getAttacker()->getID() != it.getTarget()->getID())
+		{
+			double absorbValue = it.getTarget()->getAbsorbValue(it.getCombat().getType());
+			double damage = it.getCombat().getValue();
+			double newDamageValue = damage /(absorbValue/100); 
+			//it.getTarget()->set
+			it.getTarget()->removeHealth(newDamageValue);
+		}
+	}
+	combatRequest.clear();
+}
+
 void TGC::Global::TGCGame::input(sf::Event& event)
 {
 	player->input(*window);
@@ -219,8 +239,19 @@ bool TGC::Global::TGCGame::isEndAnimationTimeReached()
 	return globalAnimationTimer.isEndAnimationTimeReached();
 }
 
+void TGC::Global::TGCGame::addCombatObiect(TGC::CombatObiect combatObj)
+{
+	combatRequest.push_back(combatObj);
+}
+
 std::shared_ptr<TGC::MapCell> TGC::Global::TGCGame::getXYCoordinateCell(size_t x, size_t y)
 {
+
 	return world.getXYCoordinateCell(x, y);
+}
+
+std::vector<std::vector<std::shared_ptr<TGC::MapCell>>> TGC::Global::TGCGame::getLocalArea(size_t x, size_t y)
+{
+	return world.getLocalArea(x, y);
 }
 

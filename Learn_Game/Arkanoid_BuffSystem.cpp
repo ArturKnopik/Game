@@ -5,7 +5,7 @@ Arkanoid::Buffs::BuffSystem::BuffSystem()
 {
 }
 
-void Arkanoid::Buffs::BuffSystem::updateBuffs(const float dt)
+void Arkanoid::Buffs::BuffSystem::updateBuffs(const double dt)
 {
 	for (auto it = buffList.begin(); it != buffList.end(); it++)
 	{
@@ -18,7 +18,7 @@ void Arkanoid::Buffs::BuffSystem::updateBuffs(const float dt)
 	}
 }
 
-void Arkanoid::Buffs::BuffSystem::updateDrop(const float dt, Arkanoid::GameBoard gameBoard)
+void Arkanoid::Buffs::BuffSystem::updateDrop(const double dt, Arkanoid::GameBoard gameBoard)
 {
 	for (auto it = buffToCollect.begin(); it != buffToCollect.end(); it++)
 	{

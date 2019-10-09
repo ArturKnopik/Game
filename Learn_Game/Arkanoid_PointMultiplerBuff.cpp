@@ -1,6 +1,6 @@
 #include "Arkanoid_PointMultiplerBuff.h"
 #include "Arkanoid_BuffFactory.h"
-Arkanoid::Buffs::PointMultiplerBuff::PointMultiplerBuff(float duration, Arkanoid::PointSystem & pointSystem, int pointsMultipler)
+Arkanoid::Buffs::PointMultiplerBuff::PointMultiplerBuff(double duration, Arkanoid::PointSystem & pointSystem, int pointsMultipler)
 	:Arkanoid::Buffs::IBuff(duration), pointSystem(&pointSystem)
 {
 	goodEvilBuff = Arkanoid::Buffs::BuffType::GOOD_BUFF;
@@ -8,7 +8,7 @@ Arkanoid::Buffs::PointMultiplerBuff::PointMultiplerBuff(float duration, Arkanoid
 	this->pointSystem->increaseBuffMultipler(pointsMultipler);
 }
 
-void Arkanoid::Buffs::PointMultiplerBuff::update(const float dt)
+void Arkanoid::Buffs::PointMultiplerBuff::update(const double dt)
 {
 	removeLife(dt);
 }

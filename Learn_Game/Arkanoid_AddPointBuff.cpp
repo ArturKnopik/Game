@@ -9,7 +9,7 @@ Arkanoid::Buffs::AddPointBuff::AddPointBuff(Arkanoid::PointSystem & pointSystem,
 	this->pointSystem->addPoints(pointsToAdd);
 }
 
-void Arkanoid::Buffs::AddPointBuff::update(const float dt)
+void Arkanoid::Buffs::AddPointBuff::update(const double dt)
 {
 	removeLife(dt);
 }

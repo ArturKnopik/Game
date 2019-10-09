@@ -8,7 +8,7 @@ Arkanoid::GameBoard::GameBoard()
 	size.y = 630;
 }
 
-Arkanoid::GameBoard::GameBoard(float x, float y, float w, float h)
+Arkanoid::GameBoard::GameBoard(double x, double y, double w, double h)
 {
 	position.x = x;
 	position.y = y;

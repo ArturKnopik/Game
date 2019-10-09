@@ -10,7 +10,7 @@ namespace Arkanoid
 			Arkanoid::PointSystem * pointSystem;
 		public:
 			AddPointBuff(Arkanoid::PointSystem & pointSystem, int pointsToAdd);
-			virtual void update(const float dt);
+			virtual void update(const double dt);
 			~AddPointBuff();
 		};
 	}

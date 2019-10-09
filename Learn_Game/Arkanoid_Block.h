@@ -18,12 +18,12 @@ namespace Arkanoid
 		int life;
 	public:
 		Block() = delete;
-		Block(float x, float y, float width, float height, int life);
+		Block(double x, double y, double width, double height, int life);
 		Block(sf::Vector2f position, sf::Vector2f size, int life);
 		virtual void setSize(sf::Vector2f size);
 		virtual void setPosition(sf::Vector2f position);
 		virtual void removeLife();
-		virtual void update(const float dt);
+		virtual void update(const double dt);
 		const sf::Vector2f getCenter();
 		int getCurrentLife();
 		const sf::Vector2f getPosition();

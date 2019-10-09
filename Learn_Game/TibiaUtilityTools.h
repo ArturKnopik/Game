@@ -21,46 +21,9 @@ namespace TGC
 			UniqueIDGenerator();
 			size_t id;
 		};
-		/*
-		sf::Color getColor(TGC::ENUMS::Color color, sf::Uint8 alpha=255)
-		{ 
-			switch (color)
-			{
-			case TGC::ENUMS::RED:
-				return sf::Color(255,0,0, alpha);
-				break;
-			case TGC::ENUMS::GREEN:
-				return sf::Color(0, 255, 0, alpha);
-				break;
-			case TGC::ENUMS::BLUE:
-				return sf::Color(0, 0, 255, alpha);
-				break;
-			case TGC::ENUMS::YELLOW:
-				return sf::Color(255, 140, 0, alpha);
-				break;
-			case TGC::ENUMS::PINK:
-				return sf::Color(255, 255, 0, alpha);
-				break;
-			case TGC::ENUMS::WHITE:
-				return sf::Color(255, 255, 255, alpha);
-				break;
-			case TGC::ENUMS::GREY:
-				return sf::Color(128, 128, 128, alpha);
-				break;
-			case TGC::ENUMS::BLACK:
-				return sf::Color(0, 0, 0, alpha);
-				break;
-			default:
-				return sf::Color();
-				break;
-			}
-			
-		}
-*/
 
 
-
-
+		short damageTypeToIndex(TGC::ENUMS::CombatType type);
 	}
 }
 /*

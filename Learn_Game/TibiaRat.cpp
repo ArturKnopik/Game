@@ -37,7 +37,7 @@ TGC::Rat::Rat()
 	animationControler->setAnimation(animationDown);
 }
 
-void TGC::Rat::update(const float dt)
+void TGC::Rat::update(const double dt)
 {
 	Creature::update(dt);
 	if (canWalk())

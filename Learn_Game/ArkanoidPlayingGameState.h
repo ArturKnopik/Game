@@ -26,13 +26,13 @@ class TetrisGameState :
 	bool checkCollision(sf::Vector2f position, sf::Vector2f size, const Arkanoid::Ball & ball);
 	void calculateDirectionOfReflection(std::shared_ptr<Arkanoid::Block> block, Arkanoid::Ball & ball);
 	std::shared_ptr<Arkanoid::Level>  level_t;
-	void updateBuffs(const float dt);
+	void updateBuffs(const double dt);
 public:
 	TetrisGameState() = delete;
 	TetrisGameState(std::shared_ptr<Game> game, std::shared_ptr<Arkanoid::IDrawStyle> drawStyle);
 	~TetrisGameState()=default;
 	void draw();
-	void update(const float dt);
+	void update(const double dt);
 	void input();
 	void loadLevel(std::shared_ptr<Arkanoid::Level> level);
 

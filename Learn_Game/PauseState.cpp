@@ -25,7 +25,7 @@ void PauseState::draw()
 	game->window->draw(rect);
 }
 
-void PauseState::update(const float dt)
+void PauseState::update(const double dt)
 {
 }
 

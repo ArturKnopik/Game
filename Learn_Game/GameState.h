@@ -10,7 +10,7 @@ public:
 	
 	virtual void draw() = 0;
 
-	virtual void update(const float dt) = 0;
+	virtual void update(const double dt) = 0;
 
 	virtual void input() = 0;
 

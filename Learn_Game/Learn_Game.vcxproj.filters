@@ -112,6 +112,12 @@
     <Filter Include="Source Files\TibiaClone\Utility">
       <UniqueIdentifier>{27e5a810-80d1-40cb-a3e7-e2feb7d25218}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\TibiaClone\Combat">
+      <UniqueIdentifier>{f3cb561e-13bd-4799-877b-e1610ae52ccc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TibiaClone\Combat">
+      <UniqueIdentifier>{33af4168-c6a5-44e5-a662-9e28219a7dba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BasicButton.cpp">
@@ -284,6 +290,9 @@
     </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TibiaCombat.cpp">
+      <Filter>Source Files\TibiaClone\Combat</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -466,6 +475,9 @@
     </ClInclude>
     <ClInclude Include="TibiaResoureManager.h">
       <Filter>Header Files\TibiaClone\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaCombat.h">
+      <Filter>Header Files\TibiaClone\Combat</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

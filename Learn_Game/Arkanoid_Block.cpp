@@ -1,7 +1,7 @@
 #include "Arkanoid_Block.h"
 #include <SFML/Graphics/RectangleShape.hpp>
 
-Arkanoid::Block::Block(float x, float y, float width, float height, int life)
+Arkanoid::Block::Block(double x, double y, double width, double height, int life)
 	:life(life)
 {
 	center.x = x + (width / 2);
@@ -37,7 +37,7 @@ void Arkanoid::Block::removeLife()
 	}
 }
 
-void Arkanoid::Block::update(const float dt)
+void Arkanoid::Block::update(const double dt)
 {
 }
 

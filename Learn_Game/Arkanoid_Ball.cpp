@@ -3,7 +3,7 @@
 #include <iostream>
 #include <stdlib.h>
 
-void Arkanoid::Ball::updateBuffs(const float dt)
+void Arkanoid::Ball::updateBuffs(const double dt)
 {
 }
 
@@ -15,14 +15,14 @@ Arkanoid::Ball::Ball()
 	speedValue.y += currentSpeed * cos(angle + 3.1459);
 }
 
-Arkanoid::Ball::Ball(sf::Vector2f position, float radius)
+Arkanoid::Ball::Ball(sf::Vector2f position, double radius)
 	:position(position), radius(radius), oryginalRadius(radius), speed(0.0004f), currentSpeed(0.0004f), angle((3.1415926536 / 180) * 50), speedMultipler(1)
 {
 	speedValue.x += currentSpeed * sin(angle + 3.1459);
 	speedValue.y += currentSpeed * cos(angle + 3.1459);
 }
 
-void Arkanoid::Ball::update(const float dt)
+void Arkanoid::Ball::update(const double dt)
 {
 	if (updateAble)
 	{
@@ -53,12 +53,12 @@ const sf::Vector2f Arkanoid::Ball::getPosition() const
 	return position;
 }
 
-const float Arkanoid::Ball::getRadius() const
+const double Arkanoid::Ball::getRadius() const
 {
 	return radius;
 }
 
-void Arkanoid::Ball::changeSize(float radius)
+void Arkanoid::Ball::changeSize(double radius)
 {
 	this->radius = radius;
 }
@@ -68,16 +68,16 @@ void Arkanoid::Ball::resetRadius()
 	radius = oryginalRadius;
 }
 
-void Arkanoid::Ball::setRadius(float radius)
+void Arkanoid::Ball::setRadius(double radius)
 {
 	this->radius = radius;
 }
 
 void Arkanoid::Ball::setHitAngle(const Arkanoid::Paddle & paddle)
 {
-	float paddleCenter;
+	double paddleCenter;
 	paddleCenter = paddle.getPosition().x + paddle.getSize().x / 2;
-	float distanceFromCenter = abs(paddleCenter -getPosition().x+getRadius() );
+	double distanceFromCenter = abs(paddleCenter -getPosition().x+getRadius() );
 	if (getPosition().x + getRadius() < paddleCenter)
 	{
 		speedValue.x = currentSpeed * sin(1.05 * 100 / paddle.getSize().x *distanceFromCenter*3.1459 / 180 + 3.1459+ 0.261);
@@ -102,7 +102,7 @@ void Arkanoid::Ball::reverseYSpeed()
 	speedValue.y = speedValue.y*-1;
 }
 
-const float Arkanoid::Ball::getAngle() const
+const double Arkanoid::Ball::getAngle() const
 {
 	return 180*angle/3.14;
 }

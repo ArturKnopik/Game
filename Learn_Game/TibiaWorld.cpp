@@ -2,7 +2,8 @@
 
 TGC::World::World()
 {
-	std::vector<std::vector<std::optional<std::shared_ptr<MapCell>>>> matrix(10, std::vector<std::optional<std::shared_ptr<MapCell>>>(10, std::optional<std::shared_ptr<MapCell>>()));
+	//std::vector<std::vector<std::shared_ptr<MapCell>>>>
+	std::vector<std::vector<std::optional<std::shared_ptr<MapCell>>>> matrix(10, std::vector<std::optional<std::shared_ptr<MapCell>>>(10, std::optional<std::shared_ptr<MapCell>>(std::nullopt)));
 	worldCellMap = matrix;
 }
 
@@ -11,12 +12,13 @@ std::pair<size_t, size_t> TGC::World::getMaxWordlSize()
 	return std::make_pair(worldCellMap.size(), worldCellMap[0].size());
 }
 
-std::vector<std::vector<std::shared_ptr<TGC::MapCell>>> TGC::World::getPlayArea(sf::Vector2i pos)
+std::vector<std::vector<std::shared_ptr<TGC::MapCell>>> TGC::World::getLocalArea(size_t x, size_t y)
 {
-	//TODO: implement getter local area to future update optimization
+	//TODO: implement getter for local area
+	return std::vector<std::vector<std::shared_ptr<TGC::MapCell>>>();
 }
 
-void TGC::World::updateWorld(const float dt)
+void TGC::World::updateWorld(const double dt)
 {
 	for (const auto& itx : worldCellMap)
 	{
@@ -187,14 +189,14 @@ void TGC::World::addCreature(size_t x, size_t y, std::shared_ptr<Creature> creat
 
 std::shared_ptr<TGC::MapCell> TGC::World::getXYCoordinateCell(size_t x, size_t y)
 {
-	if (getMaxWordlSize().first > x && getMaxWordlSize().first < 0 && getMaxWordlSize().second  > y && getMaxWordlSize().second < 0)
+	if (getMaxWordlSize().first-1 < x || getMaxWordlSize().first < 0 || getMaxWordlSize().second-1  < y || getMaxWordlSize().second < 0)
 	{
-		std::cout << "cant get coordinates from" << x << ":" << x << " coordinates!" << std::endl;
-		//return nullptr;
+		return nullptr;
 	}
-	if (worldCellMap[x][y])
+
+	if (worldCellMap[x][y].has_value())
 	{
-		return worldCellMap[x][y].value();
+			return worldCellMap[x][y].value();
 	}
 
 }

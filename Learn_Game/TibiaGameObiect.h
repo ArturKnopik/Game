@@ -25,7 +25,7 @@ namespace TGC
 	public:
 		GameObiect();
 		//GameObiect(const GameObiect &) = default;
-		virtual void update(const float dt);
+		virtual void update(const double dt);
 		sf::Vector2<std::size_t> getPosition() const;
 		void setPosition(sf::Vector2<std::size_t> newPosition);
 		std::size_t getID();

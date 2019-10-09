@@ -23,7 +23,7 @@ namespace Arkanoid
 		void setPlayingRect(Arkanoid::GameBoard & rect);
 		virtual void draw(std::shared_ptr<sf::RenderWindow> window, const std::vector<std::shared_ptr<Arkanoid::Block>> & blockList, const Arkanoid::Paddle & paddle, Arkanoid::Ball & ball, 
 							Arkanoid::Buffs::BuffSystem & buffSystem, Arkanoid::PointSystem & pointSystem)=0;
-		virtual void update(const float dt) = 0;
+		virtual void update(const double dt) = 0;
 		virtual ~IDrawStyle()=default;
 	};
 }
