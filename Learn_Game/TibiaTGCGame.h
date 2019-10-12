@@ -45,7 +45,7 @@ namespace TGC
 			static T generateRandomNumber(T min, T max);
 			void addCombatObiect(TGC::CombatObiect combatObj);
 			std::shared_ptr<TGC::MapCell> getXYCoordinateCell(size_t x, size_t y);
-			std::vector<std::vector<std::shared_ptr<TGC::MapCell>>> getLocalArea(size_t x, size_t y);
+			std::vector<std::vector<std::shared_ptr<MapCell>>> getLocalArea(size_t x, size_t y);
 		};
 
 

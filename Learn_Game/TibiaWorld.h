@@ -11,12 +11,12 @@ namespace TGC
 	class World
 	{
 
-		std::vector<std::vector<std::optional<std::shared_ptr<MapCell>>>> worldCellMap;
-		std::vector<std::vector<std::optional<std::shared_ptr<MapCell>>>> localWorldCellMap;
+		std::vector<std::vector<std::shared_ptr<MapCell>>> worldCellMap;
+		std::vector<std::vector<std::shared_ptr<MapCell>>> localWorldCellMap;
 	public:
 		World();
 		std::pair<size_t, size_t> getMaxWordlSize();
-		std::vector<std::vector<std::shared_ptr<TGC::MapCell>>> getLocalArea(size_t x, size_t y);
+		std::vector<std::vector<std::shared_ptr<MapCell>>> getLocalArea();
 		void updateWorld(const double dt);
 		void draw(sf::RenderWindow& window);
 		void addGameObiect(size_t x, size_t y, TGC::GameObiect* gameobj);

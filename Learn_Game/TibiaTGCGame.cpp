@@ -12,9 +12,9 @@ TGC::Global::TGCGame::TGCGame()
 	player = std::make_shared<Player>();
 	std::shared_ptr<GameObiect> obiect = std::make_shared<GameObiect>();
 	obiect->setPosition(sf::Vector2<size_t>(0, 0));
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 20; i++)
 	{
-		for (int j = 0; j < 5; j++)
+		for (int j = 0; j < 20; j++)
 		{
 			std::shared_ptr<GameObiect> obiect = std::make_shared<GameObiect>();
 			obiect->setPosition(sf::Vector2<size_t>(i, j));
@@ -252,6 +252,6 @@ std::shared_ptr<TGC::MapCell> TGC::Global::TGCGame::getXYCoordinateCell(size_t x
 
 std::vector<std::vector<std::shared_ptr<TGC::MapCell>>> TGC::Global::TGCGame::getLocalArea(size_t x, size_t y)
 {
-	return world.getLocalArea(x, y);
+	return world.getLocalArea();
 }
 

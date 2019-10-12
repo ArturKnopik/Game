@@ -1,13 +1,13 @@
 #pragma once
-#include <chrono>
+//#include <chrono>
 #include <string>
 namespace System
 {
 	class Timer
 	{
 	private:
-		std::chrono::time_point<std::chrono::system_clock> timeStart;
-		std::chrono::time_point<std::chrono::system_clock> timeEnd;
+	//	std::chrono::time_point<std::chrono::system_clock> timeStart;
+	//	std::chrono::time_point<std::chrono::system_clock> timeEnd;
 		bool  isRunning = false;
 
 	public:

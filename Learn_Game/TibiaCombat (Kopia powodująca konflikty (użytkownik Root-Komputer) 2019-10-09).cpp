@@ -25,13 +25,3 @@ void TGC::Combat::changeValue(int value)
 	}
 	this->value = value;
 }
-
-void TGC::Combat::decreseByDamage(int value)
-{
-	this->value -= value;
-	if (this->value < 0)
-	{
-		this->value = 0;
-		return;
-	}
-}

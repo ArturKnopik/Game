@@ -40,6 +40,7 @@ const double & TGC::Animation::getFrameTime(std::size_t index) const
 	{
 		return frameList[index].getMaxFrameTime();
 	}
+	return 0;
 }
 
 
