@@ -2,33 +2,42 @@
 #include "SFML/Window/Keyboard.hpp"
 #include "TibiaResoureManager.h"
 #include "TibiaPlayer.h"
-#include "TibiaRat.h"
+#include "TibiaSimpleLoader.h"
+#include <memory>
+#include "ResourceManager.h"
 TGC::Global::TGCGame::TGCGame()
 {
-	//ResoureManager::getInstance().addResourceHandler(std::shared_ptr<ResourceHandler>(std::make_shared<TextureHandler>()));
-	//std::shared_ptr<ResourceHandler> textureHandler =  ResoureManager::getInstance().getResourceHandler(std::string("texture"));
-	std::cout << "wordl size: " << world.getMaxWordlSize().first << ":" << world.getMaxWordlSize().second << std::endl;
-	std::cout << "start build map" << std::endl;
-	player = std::make_shared<Player>();
-	std::shared_ptr<GameObiect> obiect = std::make_shared<GameObiect>();
-	obiect->setPosition(sf::Vector2<size_t>(0, 0));
-	for (int i = 0; i < 20; i++)
+	TibiaSimpleLoader();
+
+	auto monsterPrefabHandler = TGC::ResoureManager::getInstance().getXMLHandler().getMonstersHandler();
+	monsterPrefabHandler.loadFromFile();
+
+	auto monstrList = monsterPrefabHandler.getMonsterList();
+	std::cout << "## Start load monster prefab, monsters loaded:" << std::endl;
+	for (auto it : monstrList)
 	{
-		for (int j = 0; j < 20; j++)
+		std::cout << "  "<< it.second.getName() << std::endl;;
+	}
+	std::cout << "## Wordl size: " << world.getMaxWordlSize().first << ":" << world.getMaxWordlSize().second << std::endl;
+	std::cout << "## Start build map" << std::endl;
+	
+	for (int i = 0; i < 30; i++)
+	{
+		for (int j = 0; j < 30; j++)
 		{
 			std::shared_ptr<GameObiect> obiect = std::make_shared<GameObiect>();
 			obiect->setPosition(sf::Vector2<size_t>(i, j));
 			world.addGround(i, j, obiect);
 		}
 	}
-	auto rat = std::make_shared<Rat>();
-	auto rat2 = std::make_shared<Rat>();
+	std::cout << "## Start addong entities" << std::endl;
+
+	auto rat = std::make_shared<Creature>(monsterPrefabHandler.getMonsterPrefabByName("Rat"));
+
+	player = std::make_shared<Player>();
+
 	world.addCreature(0, 0, player);
-	world.addCreature(0, 1, rat2);
 	world.addCreature(4, 4, rat);
-	std::cout << "end build map" << std::endl;
-//	rat->setTarget(player);
-	player->setHealth(player->getMaxHealth());
 }
 
 TGC::Global::TGCGame & TGC::Global::TGCGame::getSingleton()
@@ -54,11 +63,13 @@ void TGC::Global::TGCGame::updateWorld(const double dt, std::shared_ptr<GameObie
 	resolveMoveRequest();
 	world.updateWorld(tempDt);
 	resolveCombat();
+	updateParticle(tempDt);
 }
 
 void TGC::Global::TGCGame::draw(sf::RenderWindow & window)
 {
 	world.draw(*this->window);
+	drawParticles(window);
 }
 
 void TGC::Global::TGCGame::addMoveRequest(TGC::Creature* creature, TGC::ENUMS::Direction dir)
@@ -224,9 +235,37 @@ void TGC::Global::TGCGame::resolveCombat()
 			double newDamageValue = damage /(absorbValue/100); 
 			//it.getTarget()->set
 			it.getTarget()->removeHealth(newDamageValue);
+			std::unique_ptr<Particle> partToAdd = std::make_unique<Particle>(it.getTarget()->getPosition().x, it.getTarget()->getPosition().y, "sampleParticle");
+			TGC::Global::TGCGame::getSingleton().addParticle(std::move(partToAdd));
 		}
 	}
 	combatRequest.clear();
+}
+
+void TGC::Global::TGCGame::updateParticle(const double dt)
+{
+	auto partIter = particleList.begin();
+	auto partEnd = particleList.end();
+	for (auto iter = particleList.begin(); iter != particleList.end(); )
+	{
+		if ((*iter)->isDeath())
+		{
+			iter = particleList.erase(iter); // _advances_ iter, so this loop is not infinite
+		}
+		else
+		{
+			(*iter)->update(dt);
+			++iter;
+		}
+	}
+}
+
+void TGC::Global::TGCGame::drawParticles(sf::RenderWindow& window)
+{
+	for (auto& partIter : particleList)
+	{
+		partIter->draw(window);
+	}
 }
 
 void TGC::Global::TGCGame::input(sf::Event& event)
@@ -253,5 +292,10 @@ std::shared_ptr<TGC::MapCell> TGC::Global::TGCGame::getXYCoordinateCell(size_t x
 std::vector<std::vector<std::shared_ptr<TGC::MapCell>>> TGC::Global::TGCGame::getLocalArea(size_t x, size_t y)
 {
 	return world.getLocalArea();
+}
+
+void TGC::Global::TGCGame::addParticle(std::unique_ptr<TGC::Particle> particle)
+{
+	particleList.push_back(std::move(particle));
 }
 

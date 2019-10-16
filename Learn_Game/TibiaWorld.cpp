@@ -3,7 +3,7 @@
 TGC::World::World()
 {
 	//std::vector<std::vector<std::shared_ptr<MapCell>>>>
-	std::vector<std::vector<std::shared_ptr<MapCell>>> matrix(20, std::vector<std::shared_ptr<MapCell>>(20, std::shared_ptr<MapCell>(nullptr)));
+	std::vector<std::vector<std::shared_ptr<MapCell>>> matrix(50, std::vector<std::shared_ptr<MapCell>>(50, std::shared_ptr<MapCell>()));
 	worldCellMap = matrix;
 }
 
@@ -18,7 +18,6 @@ std::vector<std::vector<std::shared_ptr<TGC::MapCell>>> TGC::World::getLocalArea
 	std::pair<size_t, size_t> getVieweY(11, 11);    // first up, second down
 	std::pair<size_t, size_t> matrixXRange(0, 0);    // first left, second right
 	std::pair<size_t, size_t> matrixYRange(0, 0);   // first up, second down
-	std::pair<size_t, size_t> localMapOffset(0, 0); //  first x, second y
 
 	auto playerPos = TGC::Global::TGCGame::getSingleton().getPlayer()->getPosition();
 
@@ -79,14 +78,15 @@ std::vector<std::vector<std::shared_ptr<TGC::MapCell>>> TGC::World::getLocalArea
 		}
 
 	}
-	localWorldCellMap.clear();
-	localWorldCellMap = localMap;
+	//localWorldCellMap.clear();
+	//localWorldCellMap = localMap;
 	return localMap;
 }
 
 void TGC::World::updateWorld(const double dt)
 {
-	getLocalArea();
+	localWorldCellMap.clear();
+	localWorldCellMap = getLocalArea();
 	for (const auto & itx : localWorldCellMap) //worldCellMap
 	{
 		for (const auto & ity : itx)
@@ -204,12 +204,12 @@ void TGC::World::addCreature(size_t x, size_t y, Creature* creature)
 {
 	if (x < 0 || y < 0)
 	{
-		std::cout << "cant add creature on " << x << ":" << x << " coordinates!" << std::endl;
+		std::cout << "!!!cant add creature on " << x << ":" << x << " coordinates!!!" << std::endl;
 		return;
 	}
 	if (getMaxWordlSize().first < x || getMaxWordlSize().second < y)
 	{
-		std::cout << "cant add creature on " << x << ":" << x << " coordinates!" << std::endl;
+		std::cout << "!!!cant add creature on " << x << ":" << x << " coordinates!!!" << std::endl;
 		return;
 	}
 	if (!creature)
@@ -232,12 +232,12 @@ void TGC::World::addCreature(size_t x, size_t y, std::shared_ptr<Creature> creat
 {
 	if (x < 0 || y < 0)
 	{
-		std::cout << "cant add creature on " << x << ":" << x << " coordinates!" << std::endl;
+		std::cout << "!!!cant add creature on " << x << ":" << x << " coordinates!!!" << std::endl;
 		return;
 	}
 	if (getMaxWordlSize().first <= x || getMaxWordlSize().second - 1 < y)
 	{
-		std::cout << "cant add creature on " << x << ":" << x << " coordinates!" << std::endl;
+		std::cout << "!!!cant add creature on " << x << ":" << x << " coordinates!!!" << std::endl;
 		return;
 	}
 	if (!creature)

@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+  <textures>
+    <texture>
+      <name>sampleCreature</name>
+      <location>resource/image/Tibia/sample.png</location>
+      <usage>creature</usage>
+    </texture>
+
+    <texture>
+      <name>sampleParticle</name>
+      <location>resource/image/Tibia/sample.png</location>
+      <usage>creature</usage>
+    </texture>
+
+    <texture>
+      <name>sampleGround</name>
+      <location>resource/image/Tibia/sample.png</location>
+      <usage>creature</usage>
+    </texture>
+
+
+    <texture>
+      <name>sampleParticle</name>
+      <location>resource/image/Tibia/testParticle.png</location>
+      <usage>particle</usage>
+    </texture>
+    
+    <texture>
+      <name>fireParticle</name>
+      <location>resource/image/Tibia/fire.png</location>
+      <usage>particle</usage>
+    </texture>
+    
+    
+
+    <texture>
+      <name>player</name>
+      <location>resource/image/Tibia/playerJMP.png</location>
+      <usage>creature</usage>
+    </texture>
+    <texture>
+      <name>rat</name>
+      <location>resource/image/Tibia/rat.png</location>
+      <usage>creature</usage>
+    </texture>
+    <texture>
+      <name>zombie</name>
+      <location>resource/image/Tibia/zombie.png</location>
+      <usage>creature</usage>
+    </texture>
+    <texture>
+      <name>demon</name>
+      <location>resource/image/Tibia/demon.png</location>
+      <usage>creature</usage>
+    </texture>
+  </textures>

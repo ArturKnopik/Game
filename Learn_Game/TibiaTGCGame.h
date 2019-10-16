@@ -13,6 +13,7 @@
 #include "TibiaPlayer.h"
 #include <random>
 #include "TibiaCombat.h"
+#include "TibiaParticle.h"
 namespace TGC
 {
 	namespace Global
@@ -26,9 +27,12 @@ namespace TGC
 			TGCGame();
 			std::vector<std::pair<Creature*, TGC::ENUMS::Direction>> moveRequest;
 			std::vector<TGC::CombatObiect> combatRequest;
+			std::vector<std::unique_ptr<TGC::Particle>> particleList;
 			sf::RenderWindow* window;
 			void resolveMoveRequest();
 			void resolveCombat();
+			void updateParticle(const double dt);
+			void drawParticles(sf::RenderWindow& window);
 		public:
 			static TGCGame& getSingleton();
 			void setWindow(sf::RenderWindow& window);
@@ -46,6 +50,7 @@ namespace TGC
 			void addCombatObiect(TGC::CombatObiect combatObj);
 			std::shared_ptr<TGC::MapCell> getXYCoordinateCell(size_t x, size_t y);
 			std::vector<std::vector<std::shared_ptr<MapCell>>> getLocalArea(size_t x, size_t y);
+			void addParticle(std::unique_ptr<TGC::Particle> particle);
 		};
 
 
@@ -57,6 +62,7 @@ namespace TGC
 			static std::uniform_int_distribution<T> uniform_dist(min, max);
 			return uniform_dist(randEng);
 		}
+
 	}
 
 }

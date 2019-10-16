@@ -33,7 +33,5 @@ namespace TGC
 		virtual void draw(sf::RenderWindow& renderWindow);
 		//const sf::Sprite& getSprite() const;
 		//sf::Sprite & getSprite();
-		//TODO: Remove this function when create normal obiect
-		virtual void renderDebug(sf::RenderWindow& renderWindow);
 	};
 }

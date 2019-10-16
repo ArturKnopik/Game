@@ -7,12 +7,35 @@ TGC::AnimationController::AnimationController()
 
 void TGC::AnimationController::update(const double dt)
 {
-	if (!isPausedAnimation && animationPtr)
+	if (animationPtr)
 	{
-		currentFrameTime += dt;
-		if (customFixedFrameTime != 0.0) 
+		if (!isPausedAnimation && animationPtr)
 		{
-			if (currentFrameTime >= customFixedFrameTime)
+			currentFrameTime += dt;
+			if (customFixedFrameTime != 0.0)
+			{
+				if (currentFrameTime >= customFixedFrameTime)
+				{
+					currentFrameTime = 0.0;
+					if (currentFrame + 1 < animationPtr->getSize())
+					{
+						currentFrame++;
+					}
+					else
+					{
+						if (!isLoopedAnimation)
+						{
+							isPausedAnimation = true;
+						}
+						else
+						{
+							currentFrame = 0;
+						}
+					}
+					setFrame(currentFrame, false);
+				}
+			}
+			else if (currentFrameTime >= getAnimation()->getFrameTime(currentFrame))
 			{
 				currentFrameTime = 0.0;
 				if (currentFrame + 1 < animationPtr->getSize())
@@ -33,35 +56,15 @@ void TGC::AnimationController::update(const double dt)
 				setFrame(currentFrame, false);
 			}
 		}
-		else if (currentFrameTime >= getAnimation()->getFrameTime(currentFrame))
-		{
-			currentFrameTime = 0.0;
-			if (currentFrame + 1 < animationPtr->getSize())
-			{
-				currentFrame++;
-			}
-			else
-			{
-				if (!isLoopedAnimation)
-				{
-					isPausedAnimation = true;
-				}
-				else
-				{
-					currentFrame = 0; 
-				}
-			}
-			setFrame(currentFrame, false);
-		}
 	}
 }
 
 void TGC::AnimationController::setAnimation(TGC::Animation& animation)
 {
-	animationPtr = &animation;
-	texture = animation.getTexture();
-	currentFrame = 0;
-	setFrame(currentFrame);
+		animationPtr = &animation;
+		texture = animation.getTexture();
+		currentFrame = 0;
+		setFrame(currentFrame);
 }
 
 void TGC::AnimationController::play()

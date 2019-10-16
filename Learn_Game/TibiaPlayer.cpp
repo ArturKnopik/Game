@@ -6,33 +6,35 @@
 #include "SFML/Window/Mouse.hpp"
 
 TGC::Player::Player()
+	:Creature(MonsterPrefab())
 {
+	maxHP = 100;
+	currentHP = 100;
+	walkingTime = 1.0;
+	name = "Player";
 	if (!animationControler)
 	{
 		animationControler.emplace(AnimationController());
 	}
-	texture = std::make_shared<sf::Texture>();
-	texture->loadFromFile("resource/image/sample.png");
-	TGC::ResoureManager::getInstance().getTextureHandler().addResource("sample", texture);
-	texture = std::make_shared<sf::Texture>();
-	texture->loadFromFile("resource/image/playerJMP.png");
-	TGC::ResoureManager::getInstance().getTextureHandler().addResource("player", texture);
-	animationUp.setTexture(TGC::ResoureManager::getInstance().getTextureHandler().getResourceByName("player"));
+	creatureController = nullptr;
+	texture = TGC::ResoureManager::getInstance().getTextureHandler().getResourceByName("player", "creature");
+
+	animationUp.setTexture(texture);
 	animationUp.addFrame(sf::IntRect(32, 96, 32, 32));
 	animationUp.addFrame(sf::IntRect(0, 96, 32, 32));
 	animationUp.addFrame(sf::IntRect(64, 96, 32, 32));
 
-	animationDown.setTexture(TGC::ResoureManager::getInstance().getTextureHandler().getResourceByName("player"));
+	animationDown.setTexture(texture);
 	animationDown.addFrame(sf::IntRect(32, 0, 32, 32));
 	animationDown.addFrame(sf::IntRect(0, 0, 32, 32));
 	animationDown.addFrame(sf::IntRect(64, 0, 32, 32));
 
-	animationLeft.setTexture(TGC::ResoureManager::getInstance().getTextureHandler().getResourceByName("player"));
+	animationLeft.setTexture(texture);
 	animationLeft.addFrame(sf::IntRect(32, 32, 32, 32));
 	animationLeft.addFrame(sf::IntRect(0, 32, 32, 32));
 	animationLeft.addFrame(sf::IntRect(64, 32, 32, 32));
 
-	animationRight.setTexture(TGC::ResoureManager::getInstance().getTextureHandler().getResourceByName("player"));
+	animationRight.setTexture(texture);
 	animationRight.addFrame(sf::IntRect(32, 64, 32, 32));
 	animationRight.addFrame(sf::IntRect(0, 64, 32, 32));
 	animationRight.addFrame(sf::IntRect(64, 64, 32, 32));	
@@ -48,6 +50,7 @@ void TGC::Player::input(sf::RenderWindow& renderWindow)
 {
 	if (canWalk())
 	{
+		
 		// kayboard event
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 		{
@@ -64,6 +67,17 @@ void TGC::Player::input(sf::RenderWindow& renderWindow)
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		{
 			sendMoveRequest(TGC::ENUMS::Direction::LEFT);
+			return;
+		}
+		//TODO: remove when aply all particle 
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+		{
+			if (canUseThing())
+			{
+				restartUseTimer();
+				std::unique_ptr<Particle> partToAdd= std::make_unique<Particle>(getPosition().x, getPosition().y, "fireParticle");
+				TGC::Global::TGCGame::getSingleton().addParticle(std::move(partToAdd));
+			}
 			return;
 		}
 
@@ -166,16 +180,21 @@ void TGC::Player::update(const double dt)
 	updateUseThingTimer(dt);
 }
 
+void TGC::Player::draw(sf::RenderWindow& renderWindow)
+{
+	Creature::draw(renderWindow);
+	drawCurrentCellMarkRectangle(renderWindow);
+	drawCurrentTargetMarkRectangle(renderWindow);
+}
+
 void TGC::Player::drawCurrentCellMarkRectangle(sf::RenderWindow& renderWindow)
 {
-	
 	sf::Vector2f worldPos = renderWindow.mapPixelToCoords(sf::Vector2i(sf::Mouse::getPosition(renderWindow).x, sf::Mouse::getPosition(renderWindow).y));
 	if (worldPos.x<0 || worldPos.y < 0)
 	{
 		return;
 	}
 	sf::Vector2i worldPosInt = sf::Vector2i((worldPos.x/ Setting::Const::cellSizeX), (worldPos.y/ Setting::Const::cellSizeY));
-	
 	
 	sf::RectangleShape rect;
 	
@@ -186,7 +205,6 @@ void TGC::Player::drawCurrentCellMarkRectangle(sf::RenderWindow& renderWindow)
 	rect.setFillColor(sf::Color(0, 0, 0, 0));
 	rect.setOutlineColor(sf::Color(100,30,60,130));
 	renderWindow.draw(rect);
-
 }
 
 void TGC::Player::drawCurrentTargetMarkRectangle(sf::RenderWindow& renderWindow)

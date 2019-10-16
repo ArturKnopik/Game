@@ -1,4 +1,8 @@
 #include "TibiaResoureManager.h"
+TGC::ResoureManager::ResoureManager()
+{
+	textureLoader.loadTexture(textureHandler);
+}
 
 TGC::ResoureManager& TGC::ResoureManager::getInstance()
 {
@@ -15,3 +19,9 @@ TGC::ResourceHandler<sf::Sound>& TGC::ResoureManager::getSoundHandler()
 {
 	return soundHandler;
 }
+
+TGC::XMLLoader& TGC::ResoureManager::getXMLHandler()
+{
+	return xmlLoader;
+}
+

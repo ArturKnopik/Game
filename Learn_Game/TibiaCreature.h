@@ -2,15 +2,10 @@
 #include "TibiaEnums.h"
 #include "TibiaGameObiect.h"
 #include "settings.h"
+#include "TibiaMonsterLoader.h"
+#include "TibiaCreatureController.h"
 namespace TGC
 {
-
-	struct CreaturePrefab
-	{
-		std::string name = "Sample name";
-		unsigned int hp = 100;
-		double walkingTime = 1.0;
-	};
 	namespace Camera
 	{
 		class CameraController;
@@ -36,12 +31,13 @@ namespace TGC
 		std::string name = "placeHolder";
 		TGC::ENUMS::Direction direction = TGC::ENUMS::Direction::DOWN;
 		sf::Vector2<std::size_t> spriteOfset;
-	protected:
 		TGC::ENUMS::Direction* getDirection();
 		TGC::Animation animationUp;
 		TGC::Animation animationDown;
 		TGC::Animation animationLeft;
 		TGC::Animation animationRight;
+
+		std::shared_ptr<TGC::CreatureController> creatureController;
 		void calculateSpriteOfsetPercentDone();
 		void applySpriteOfset();
 		bool spriteMoving = true;
@@ -55,14 +51,15 @@ namespace TGC
 		void restartAttackTimer();
 		bool canAttack();
 		bool isTargetInRange();
+		Creature() = delete;
 	public:
-		Creature();
+		Creature(MonsterPrefab prfab);
 		Creature* getCreature();
 		Creature& getReferenceThis();
 		virtual const std::string& getName() const;
 		void sendMoveRequest(TGC::ENUMS::Direction dir);
 		bool canWalk();
-		virtual void update(const double dt);
+		virtual void update(const double dt) override;
 		bool canPlayWalikngAnimation();
 		void setWalkingAnimation(bool walkAnim, TGC::ENUMS::Direction direction); // idk how name this function
 		void setDirection(TGC::ENUMS::Direction dir);
@@ -79,20 +76,9 @@ namespace TGC
 		void removeHealth(unsigned int health);
 		virtual void findTarget();
 		short getAbsorbValue(TGC::ENUMS::CombatType combatType);
-		//TODO: Remove this function when create normal obiect
+		void applyPrefabData(	MonsterPrefab prefab);
 
-
-		virtual void renderDebug(sf::RenderWindow& renderWindow) override
-		{
-			draw(renderWindow);
-
-			sf::RectangleShape rect;
-			rect.setFillColor(sf::Color(100, 100, 100, 100));
-			rect.setPosition(sf::Vector2f(static_cast<double>(position.x * 32 + 2), static_cast<double>(position.y * 32 + 2)));
-			rect.setSize(sf::Vector2f(28, 28));
-			renderWindow.draw(rect);
-		}
-		
+		friend class TGC::CreatureController;
 		friend class Camera::CameraController;
 	};
 }

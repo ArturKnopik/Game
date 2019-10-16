@@ -94,7 +94,7 @@ void TGC::MapCell::drawGround(sf::RenderWindow& window)
 {
 	if (ground)
 	{
-		ground.value()->renderDebug(window);
+		ground.value()->draw(window);
 	}
 	
 	
@@ -106,7 +106,7 @@ void TGC::MapCell::drawCreature(sf::RenderWindow& window)
 	{
 		if (creature)
 		{
-			creature.value()->renderDebug(window);
+			creature.value()->draw(window);
 		}
 	}
 }

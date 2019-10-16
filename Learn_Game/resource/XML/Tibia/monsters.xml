@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+  <monsters>
+    <monster>
+      <name>Rat</name>
+      <texture>rat</texture>
+      <hitpoints>2000.0</hitpoints>
+      <speed>2.00</speed>
+    </monster>
+    <monster>
+      <name>Zombie</name>
+      <texture>zombie</texture>
+      <hitpoints>320</hitpoints>
+      <speed>3.0</speed>
+    </monster>
+    <monster>
+      <name>Demon</name>
+      <texture>default</texture>
+      <hitpoints>500</hitpoints>
+      <speed>5.00</speed>
+    </monster>
+  </monsters>

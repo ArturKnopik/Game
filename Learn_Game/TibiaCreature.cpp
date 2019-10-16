@@ -3,6 +3,7 @@
 #include "SFML/Window/Mouse.hpp"
 #include "UtilityTools.h"
 #include <math.h>
+#include "TibiaResoureManager.h"
 //	Global::TGCGame::getSingleton().addMoveRequest(reinterpret_cast<Creature*>(this->getCreature()) , dir)
 
 bool TGC::Creature::canWalk()
@@ -16,6 +17,7 @@ bool TGC::Creature::canWalk()
 
 void TGC::Creature::update(const double dt)
 {
+	//TODO: remove "if tree"
 	if (currentWalikingTime < walkingTime)
 	{
 		if (animationControler)
@@ -32,7 +34,7 @@ void TGC::Creature::update(const double dt)
 		{
 			animationControler->stop();
 			positionSprite.x = position.x * 32;
-			positionSprite.y = position.y * 32;
+			positionSprite.y = position.y * 32;			
 		}
 	}
 	if (targetCreature)
@@ -47,6 +49,13 @@ void TGC::Creature::update(const double dt)
 		}
 	}
 	updateAttackTimer(dt);
+
+
+	//TODO: implement simple/medium inteligence
+	if (creatureController)
+	{
+		creatureController->updateDirection(this);
+	}
 }
 
 bool TGC::Creature::canPlayWalikngAnimation()
@@ -197,6 +206,7 @@ void TGC::Creature::draw(sf::RenderWindow& renderWindow)
 		sprite.setPosition(positionSprite.x, positionSprite.y);
 		sprite.setTextureRect(animationControler->getAnimation()->getFrame(animationControler->getCurrentFrame()));
 		renderWindow.draw(sprite);
+		
 	}
 	drawHealthBar(renderWindow);
 }
@@ -280,7 +290,6 @@ void TGC::Creature::removeHealth(unsigned int health)
 void TGC::Creature::findTarget()
 {
 	//TODO: implemet find algorithm
-	//TGC::Global::TGCGame::getSingleton();
 }
 
 short TGC::Creature::getAbsorbValue(TGC::ENUMS::CombatType combatType)
@@ -326,20 +335,79 @@ bool TGC::Creature::isTargetInRange()
 	return false;
 }
 
+void TGC::Creature::applyPrefabData(MonsterPrefab prefab)
+{
+	maxHP = prefab.hp;
+	currentHP = prefab.hp;
+	this->walkingTime = prefab.speed;
+	name = prefab.name;
+
+	texture = std::make_shared<sf::Texture>();
+	texture = TGC::ResoureManager::getInstance().getTextureHandler().getResourceByName(prefab.texture, "creature");	
+	
+	if (texture)
+	{
+		if (!animationControler)
+		{
+			animationControler.emplace(AnimationController());
+		}
+		animationUp.setTexture(texture);
+		animationUp.addFrame(sf::IntRect(32, 96, 32, 32));
+		animationUp.addFrame(sf::IntRect(0, 96, 32, 32));
+		animationUp.addFrame(sf::IntRect(64, 96, 32, 32));
+
+		animationDown.setTexture(texture);
+		animationDown.addFrame(sf::IntRect(32, 0, 32, 32));
+		animationDown.addFrame(sf::IntRect(0, 0, 32, 32));
+		animationDown.addFrame(sf::IntRect(64, 0, 32, 32));
+
+		animationLeft.setTexture(texture);
+		animationLeft.addFrame(sf::IntRect(32, 32, 32, 32));
+		animationLeft.addFrame(sf::IntRect(0, 32, 32, 32));
+		animationLeft.addFrame(sf::IntRect(64, 32, 32, 32));
+
+		animationRight.setTexture(texture);
+		animationRight.addFrame(sf::IntRect(32, 64, 32, 32));
+		animationRight.addFrame(sf::IntRect(0, 64, 32, 32));
+		animationRight.addFrame(sf::IntRect(64, 64, 32, 32));
+		animationControler->setAnimation(animationDown);
+
+	}
+	else
+	{
+		animationControler = std::nullopt;
+	}
+	
+
+	//animationControler->play();
+}
+
+
+
 
 TGC::ENUMS::Direction * TGC::Creature::getDirection()
 {
 	return &direction;
 }
 
-TGC::Creature::Creature()
-{ 
+
+TGC::Creature::Creature(MonsterPrefab prfab)
+{
+	if (!animationControler)
+	{
+		animationControler.emplace(AnimationController());
+	}
+	applyPrefabData(prfab);
+
+
 	spriteOfset.x = walkingTime / Setting::Const::FPS;
 	spriteOfset.y = walkingTime / Setting::Const::FPS;
 	animationControler->setAnimation(animationDown);
 	positionSprite.x = getPosition().x * Setting::Const::cellSizeX;
 	positionSprite.y = getPosition().y * Setting::Const::cellSizeY;
 	sprite.setPosition(positionSprite.x, positionSprite.y);
+	animationControler->play();
+	creatureController = std::make_shared<CreatureController>();
 }
 
 TGC::Creature* TGC::Creature::getCreature()
