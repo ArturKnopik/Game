@@ -11,6 +11,7 @@ namespace TGC
 	public:
 		Particle()=delete;
 		Particle(size_t x, size_t y, std::string textureName);
+		Particle(std::string textureName);
 		virtual void update(const float dt) ;
 		virtual void draw(sf::RenderWindow& renderWindow) override;
 		bool isDeath();

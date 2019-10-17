@@ -124,6 +124,12 @@
     <Filter Include="Source Files\TibiaClone\Resource">
       <UniqueIdentifier>{3ca4390d-867f-424b-821b-8c9a8ffd98e3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\TibiaClone\Factory">
+      <UniqueIdentifier>{8ec7d7e0-6e38-448f-9f2d-c7bf7852f1e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TibiaClone\Factory">
+      <UniqueIdentifier>{5e307c9a-3b52-4865-9c7b-abced4323e27}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BasicButton.cpp">
@@ -291,9 +297,6 @@
     <ClCompile Include="TibiaCombat.cpp">
       <Filter>Source Files\TibiaClone\Combat</Filter>
     </ClCompile>
-    <ClCompile Include="TibiaSimpleLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="TibiaParticle.cpp">
       <Filter>Source Files\TibiaClone\GameEntity</Filter>
     </ClCompile>
@@ -309,11 +312,17 @@
     <ClCompile Include="TibiaXMLLoader.cpp">
       <Filter>Source Files\TibiaClone\Resource</Filter>
     </ClCompile>
-    <ClCompile Include="TibiaCreatureController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="TibiaTextureLoader.cpp">
       <Filter>Source Files\TibiaClone\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="TibiaCreatureController.cpp">
+      <Filter>Source Files\TibiaClone\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="TibiaSimpleLoader.cpp">
+      <Filter>Source Files\TibiaClone\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="TibiaFactory.cpp">
+      <Filter>Source Files\TibiaClone\Factory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -491,9 +500,6 @@
     <ClInclude Include="TibiaCombat.h">
       <Filter>Header Files\TibiaClone\Combat</Filter>
     </ClInclude>
-    <ClInclude Include="TibiaSimpleLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TibiaParticle.h">
       <Filter>Header Files\TibiaClone\GameEntity</Filter>
     </ClInclude>
@@ -509,11 +515,17 @@
     <ClInclude Include="TibiaXMLLoader.h">
       <Filter>Header Files\TibiaClone\Resource</Filter>
     </ClInclude>
-    <ClInclude Include="TibiaCreatureController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TibiaTextureLoader.h">
       <Filter>Header Files\TibiaClone\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaCreatureController.h">
+      <Filter>Header Files\TibiaClone\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaSimpleLoader.h">
+      <Filter>Header Files\TibiaClone\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaFactory.h">
+      <Filter>Header Files\TibiaClone\Factory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

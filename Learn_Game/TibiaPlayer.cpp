@@ -50,7 +50,7 @@ void TGC::Player::input(sf::RenderWindow& renderWindow)
 {
 	if (canWalk())
 	{
-		
+
 		// kayboard event
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 		{
@@ -69,39 +69,40 @@ void TGC::Player::input(sf::RenderWindow& renderWindow)
 			sendMoveRequest(TGC::ENUMS::Direction::LEFT);
 			return;
 		}
-		//TODO: remove when aply all particle 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
-		{
-			if (canUseThing())
-			{
-				restartUseTimer();
-				std::unique_ptr<Particle> partToAdd= std::make_unique<Particle>(getPosition().x, getPosition().y, "fireParticle");
-				TGC::Global::TGCGame::getSingleton().addParticle(std::move(partToAdd));
-			}
-			return;
-		}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		{
 			sendMoveRequest(TGC::ENUMS::Direction::RIGHT);
 			return;
 		}
+	}
 
-		// mouse click events
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	//TODO: remove when aply all particle 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+	{
+		if (canUseThing())
 		{
-			drawCurrentCellMarkRectangle(renderWindow);
+			restartUseTimer();
+			std::unique_ptr<Particle> partToAdd = std::make_unique<Particle>(getPosition().x, getPosition().y, "fireParticle");
+			TGC::Global::TGCGame::getSingleton().addParticle(std::move(partToAdd));
 		}
-		
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
+		return;
+	}
+
+	// mouse click events
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		drawCurrentCellMarkRectangle(renderWindow);
+	}
+
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
+	{
+		if (canUseThing())
 		{
-			if (canUseThing())
-			{
-				restartUseTimer();
-				doThingWithTargetCell();
-			}
-			
+			restartUseTimer();
+			doThingWithTargetCell();
 		}
+
 	}
 }
 

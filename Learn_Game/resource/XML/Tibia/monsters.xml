@@ -14,7 +14,7 @@
     </monster>
     <monster>
       <name>Demon</name>
-      <texture>default</texture>
+      <texture>demon</texture>
       <hitpoints>500</hitpoints>
       <speed>5.00</speed>
     </monster>

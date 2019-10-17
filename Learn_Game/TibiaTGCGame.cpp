@@ -5,6 +5,9 @@
 #include "TibiaSimpleLoader.h"
 #include <memory>
 #include "ResourceManager.h"
+#include "TibiaFactory.h"
+
+
 TGC::Global::TGCGame::TGCGame()
 {
 	TibiaSimpleLoader();
@@ -32,12 +35,18 @@ TGC::Global::TGCGame::TGCGame()
 	}
 	std::cout << "## Start addong entities" << std::endl;
 
-	auto rat = std::make_shared<Creature>(monsterPrefabHandler.getMonsterPrefabByName("Rat"));
+	//auto rat = std::make_shared<Creature>(monsterPrefabHandler.getMonsterPrefabByName("Rat"));
+	auto rat = factory.getMonster("Rat");
+	auto zombie = factory.getMonster("Zombie");
+	auto demon = factory.getMonster("Demon");
+
 
 	player = std::make_shared<Player>();
 
 	world.addCreature(0, 0, player);
 	world.addCreature(4, 4, rat);
+	world.addCreature(6, 6, zombie);
+	world.addCreature(2, 2, demon);
 }
 
 TGC::Global::TGCGame & TGC::Global::TGCGame::getSingleton()

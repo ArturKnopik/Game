@@ -29,6 +29,7 @@ namespace TGC
 			std::vector<TGC::CombatObiect> combatRequest;
 			std::vector<std::unique_ptr<TGC::Particle>> particleList;
 			sf::RenderWindow* window;
+			Factory factory;
 			void resolveMoveRequest();
 			void resolveCombat();
 			void updateParticle(const double dt);
