@@ -135,7 +135,7 @@ void TGC::World::draw(sf::RenderWindow& window)
 	
 }
 
-void TGC::World::addGameObiect(size_t x, size_t y, GameObiect* gameobj)
+void TGC::World::addGameObiect(size_t x, size_t y, TGC::Item* gameobj)
 {
 	if (x < 0 || y < 0)
 	{
@@ -149,11 +149,11 @@ void TGC::World::addGameObiect(size_t x, size_t y, GameObiect* gameobj)
 	
 	if (worldCellMap[x][y])
 	{
-		worldCellMap[x][y]->pushObiect(gameobj);
+		worldCellMap[x][y]->pushItem(gameobj);
 	}
 	
 }
-void TGC::World::addGround(size_t x, size_t y, GameObiect* gameobj)
+void TGC::World::addGround(size_t x, size_t y, TGC::Item* gameobj)
 {
 	if (x < 0 || y < 0)
 	{
@@ -173,7 +173,7 @@ void TGC::World::addGround(size_t x, size_t y, GameObiect* gameobj)
 
 }
 
-void TGC::World::addGround(size_t x, size_t y, std::shared_ptr < GameObiect> gameobj)
+void TGC::World::addGround(size_t x, size_t y, std::shared_ptr <TGC::Item> gameobj)
 {
 	if (x < 0 || y < 0)
 	{

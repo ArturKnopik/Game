@@ -7,7 +7,7 @@ namespace TGC
 	class Creature;
 	class Particle;
 	class GameObiect;
-
+	class Item;
 
 	class Factory
 	{
@@ -15,8 +15,7 @@ namespace TGC
 		Factory();
 		std::shared_ptr<TGC::Creature> getMonster(std::string monsterName);
 		std::shared_ptr<TGC::Particle> getParticle(std::string particleName);
-		//std::shared_ptr<TGC::GameObiect> getGameObiect(std::string gameObioectName);
-
+		std::shared_ptr<TGC::Item> getItem(size_t  itemId);
 	};
 }
 

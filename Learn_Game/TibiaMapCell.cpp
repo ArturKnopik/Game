@@ -5,7 +5,7 @@ TGC::MapCell::MapCell()
 	//obiectList.reserve(10);
 }
 
-void TGC::MapCell::pushObiect(std::shared_ptr<GameObiect> obiect)
+void TGC::MapCell::pushItem(std::shared_ptr<TGC::Item> obiect)
 {
 	if (obiectList.size() != maxSize)
 	{
@@ -13,11 +13,11 @@ void TGC::MapCell::pushObiect(std::shared_ptr<GameObiect> obiect)
 	}
 }
 
-void TGC::MapCell::pushObiect(GameObiect * obiect)
+void TGC::MapCell::pushItem(TGC::Item* obiect)
 {
 	if (obiectList.size() != maxSize)
 	{
-		obiectList.push_back(std::make_shared<GameObiect>(*obiect));
+		obiectList.push_back(std::make_shared<TGC::Item>(*obiect));
 	}
 }
 
@@ -38,16 +38,16 @@ void TGC::MapCell::addCreature(std::shared_ptr<Creature> creature)
 	}
 }
 
-void TGC::MapCell::setGround(GameObiect* obiect)
+void TGC::MapCell::setGround(TGC::Item* obiect)
 {
 
-		ground = std::make_shared<GameObiect>(*obiect);
+		ground = std::make_shared<TGC::Item>(*obiect);
 }
 
-void TGC::MapCell::setGround(std::shared_ptr<GameObiect> obiect)
+void TGC::MapCell::setGround(std::shared_ptr<TGC::Item> obiect)
 {
 
-		ground = std::make_optional<std::shared_ptr<GameObiect>>();
+		ground = std::make_optional<std::shared_ptr<TGC::Item>>();
 		ground = obiect;
 		return;
 	
@@ -127,7 +127,7 @@ void TGC::MapCell::drawObiectList(sf::RenderWindow& window)
 
 
 
-std::shared_ptr<TGC::GameObiect> TGC::MapCell::getGround()
+std::shared_ptr<TGC::Item> TGC::MapCell::getGround()
 {
 	if (ground)
 	{

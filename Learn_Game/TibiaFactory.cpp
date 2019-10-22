@@ -2,6 +2,7 @@
 #include "TibiaResoureManager.h"
 #include "TibiaCreature.h"
 #include "TibiaParticle.h"
+#include "TibiaItem.h"
 
 TGC::Factory::Factory()
 {
@@ -11,8 +12,8 @@ std::shared_ptr<TGC::Creature> TGC::Factory::getMonster(std::string monsterName)
 {
 
 	auto monsterHandler = TGC::ResoureManager::getInstance().getXMLHandler().getMonstersHandler();
-	auto monsterPrefab = monsterHandler.getMonsterPrefabByName(monsterName);
-	if (monsterPrefab.texture == "sampleCreature" && monsterPrefab.name == "sample")
+	auto monsterPrefab = monsterHandler.getMonsterByName(monsterName);
+	if (monsterPrefab.texture.empty() && monsterPrefab.name.empty())
 	{
 		std::cout << "cant create monster, prefab obiect not found!" << std::endl;
 		return nullptr;
@@ -39,10 +40,23 @@ std::shared_ptr<TGC::Particle> TGC::Factory::getParticle(std::string particleTex
 	return std::make_shared<TGC::Particle>(particleTexture);
 }
 
-/*
-//TODO: Implemet simple normal obiect creator
-std::shared_ptr<TGC::GameObiect> TGC::Factory::getGameObiect(std::string gameObioectName)
+std::shared_ptr<TGC::Item> TGC::Factory::getItem(size_t itemID)
 {
-	return nullptr;
+	auto itemHandler = TGC::ResoureManager::getInstance().getXMLHandler().getItemHandler();
+	auto itemPrefab = itemHandler.getItemPrefabByID(itemID);
+	if (itemPrefab.texture.empty() && itemPrefab.name.empty())
+	{
+		std::cout << "cant create item, prefab obiect not found!" << std::endl;
+		return nullptr;
+	}
+	auto textureHandler = TGC::ResoureManager::getInstance().getTextureHandler();
+	auto texture = textureHandler.getResourceByName(itemPrefab.texture, "item");
+	if (!texture)
+	{
+		std::cout << "cant create item, texture not found!" << std::endl;
+		return nullptr;
+	}
+	return std::make_shared<TGC::Item>(itemPrefab);
 }
-*/
+
+

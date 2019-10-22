@@ -186,6 +186,8 @@
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="TibiaFactory.cpp" />
+    <ClCompile Include="TibiaItem.cpp" />
+    <ClCompile Include="TibiaItemLoader.cpp" />
     <ClCompile Include="TibiaTextureLoader.cpp" />
     <ClCompile Include="TibiaCreatureController.cpp" />
     <ClCompile Include="TibiaMonsterLoader.cpp" />
@@ -252,6 +254,8 @@
     <ClInclude Include="Brick.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="TibiaFactory.h" />
+    <ClInclude Include="TibiaItem.h" />
+    <ClInclude Include="TibiaItemLoader.h" />
     <ClInclude Include="TibiaTextureLoader.h" />
     <ClInclude Include="TibiaCreatureController.h" />
     <ClInclude Include="TibiaXMLLoader.h" />

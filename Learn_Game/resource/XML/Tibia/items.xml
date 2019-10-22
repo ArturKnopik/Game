@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+  <items>
+    <item>
+      <name>grass</name>     <!-- "id 0" -->
+      <texture>grassC</texture>
+      <pickupable>false</pickupable>
+      <useable>false</useable>
+      <moveable>true</moveable>
+      <decaying>false</decaying>
+      <decayTo>false</decayTo>
+      <attack>0</attack>
+      <deffence>0</deffence>
+      <slottype>none</slottype>
+    </item>
+    <item>
+      <name>sand</name> <!-- "id 1" -->
+      <texture>sandC</texture>
+      <pickupable>false</pickupable>
+      <useable>false</useable>
+      <moveable>true</moveable>
+      <decaying>false</decaying>
+      <decayTo>false</decayTo>
+      <attack>0</attack>
+      <deffence>0</deffence>
+      <slottype>none</slottype>
+    </item>
+    <item>
+      <name>water</name> <!-- "id 2" -->
+      <texture>waterC</texture>
+      <pickupable>false</pickupable>
+      <useable>false</useable>
+      <moveable>false</moveable>
+      <decaying>false</decaying>
+      <decayTo>false</decayTo>
+      <attack>0</attack>
+      <deffence>0</deffence>
+      <slottype>none</slottype>
+    </item>
+  </items>

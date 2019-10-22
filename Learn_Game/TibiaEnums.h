@@ -29,6 +29,21 @@ namespace TGC
 
 			COMBATTYPESIZE = HEALING
 		};
+
+		enum ItemSlot
+		{
+			HEAD = 0,
+			ARMOR = 1,
+			LEGS = 2,
+			BOOTS = 3,
+			WEAPON = 4,
+			SHIELD = 5,
+			NOEQUPIMENT = 6
+		};
+
+
+
+
 	}
 }
 

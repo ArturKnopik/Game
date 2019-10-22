@@ -1,5 +1,4 @@
 #pragma once
-#include "pugixml.hpp"
 #include <string>
 #include <unordered_map>
 #include "TibiaFactory.h"
@@ -8,9 +7,9 @@ namespace TGC
 	class MonsterPrefab
 	{
 		int hp = 100;
-		std::string texture="sampleCreature";
+		std::string texture="";
 		double speed = 3.0;
-		std::string name = "sample";
+		std::string name = "";
 	public:
 		MonsterPrefab()=default;
 		void setHP(int hp);
@@ -27,11 +26,12 @@ namespace TGC
 	class MonsterLoader
 	{
 		std::unordered_map<std::string, MonsterPrefab> monstersList;
+		void loadFromFile();
 	public:
 		MonsterLoader();
-		void loadFromFile();
+		
 		std::unordered_map<std::string, MonsterPrefab>& getMonsterList();
-		MonsterPrefab getMonsterPrefabByName(std::string name);
+		MonsterPrefab getMonsterByName(std::string name);
 
 		
 	};

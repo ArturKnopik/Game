@@ -13,7 +13,6 @@ TGC::Global::TGCGame::TGCGame()
 	TibiaSimpleLoader();
 
 	auto monsterPrefabHandler = TGC::ResoureManager::getInstance().getXMLHandler().getMonstersHandler();
-	monsterPrefabHandler.loadFromFile();
 
 	auto monstrList = monsterPrefabHandler.getMonsterList();
 	std::cout << "## Start load monster prefab, monsters loaded:" << std::endl;
@@ -21,6 +20,11 @@ TGC::Global::TGCGame::TGCGame()
 	{
 		std::cout << "  "<< it.second.getName() << std::endl;;
 	}
+	auto itemListHandler = TGC::ResoureManager::getInstance().getXMLHandler().getItemHandler();
+	auto itemList = itemListHandler.getItemList();
+	std::cout << "## Start load item prefab, monsters loaded:" << std::endl;
+		std::cout << "  loaded items: " << itemList.size() << std::endl;; // TODO: add getter item name
+	
 	std::cout << "## Wordl size: " << world.getMaxWordlSize().first << ":" << world.getMaxWordlSize().second << std::endl;
 	std::cout << "## Start build map" << std::endl;
 	
@@ -28,9 +32,33 @@ TGC::Global::TGCGame::TGCGame()
 	{
 		for (int j = 0; j < 30; j++)
 		{
-			std::shared_ptr<GameObiect> obiect = std::make_shared<GameObiect>();
-			obiect->setPosition(sf::Vector2<size_t>(i, j));
-			world.addGround(i, j, obiect);
+			int randomNumber = generateRandomNumber<int>(0, 2);
+			if (randomNumber == 0)
+			{
+				auto item = factory.getItem(0);
+				if (item)
+				{
+					world.addGround(i, j, item);
+				}
+
+			}
+			else if (randomNumber == 1)
+			{
+				auto item = factory.getItem(1);
+				if (item)
+				{
+					world.addGround(i, j, item);
+				}
+
+			}
+			else if (randomNumber == 2)
+			{
+				auto item = factory.getItem(2);
+				if (item)
+				{
+					world.addGround(i, j, item);
+				}
+			}
 		}
 	}
 	std::cout << "## Start addong entities" << std::endl;
@@ -88,6 +116,7 @@ void TGC::Global::TGCGame::addMoveRequest(TGC::Creature* creature, TGC::ENUMS::D
 
 void TGC::Global::TGCGame::resolveMoveRequest()
 {
+	//TODO:: 
 	for (auto & it : moveRequest)
 	{
 		auto obiect = it.first;
@@ -99,8 +128,8 @@ void TGC::Global::TGCGame::resolveMoveRequest()
 				auto destinyCell = world.getXYCoordinateCell(obiect->getPosition().x, obiect->getPosition().y+1);
 				if (destinyCell)
 				{
-					if (destinyCell->getGround() && !destinyCell->getCreature())
-					{
+					if (destinyCell->getGround() && !destinyCell->getCreature() && destinyCell->getGround()->isMoveable())
+ 					{
 						it.first->setWalkingAnimation(true, ENUMS::Direction::DOWN);
 						destinyCell->addCreature(world.getXYCoordinateCell(obiect->getPosition().x, obiect->getPosition().y)->getCreature());
 						world.getXYCoordinateCell(obiect->getPosition().x, obiect->getPosition().y)->removeCreature();
@@ -131,7 +160,7 @@ void TGC::Global::TGCGame::resolveMoveRequest()
 				auto destinyCell = world.getXYCoordinateCell(obiect->getPosition().x, obiect->getPosition().y - 1);
 				if (destinyCell)
 				{
-					if (destinyCell->getGround() && !destinyCell->getCreature())
+					if (destinyCell->getGround() && !destinyCell->getCreature() && destinyCell->getGround()->isMoveable())
 					{
 						it.first->setWalkingAnimation(true, ENUMS::Direction::UP);
 						destinyCell->addCreature(world.getXYCoordinateCell(obiect->getPosition().x, obiect->getPosition().y)->getCreature());
@@ -163,7 +192,7 @@ void TGC::Global::TGCGame::resolveMoveRequest()
 				auto destinyCell = world.getXYCoordinateCell(obiect->getPosition().x - 1, obiect->getPosition().y );
 				if (destinyCell)
 				{
-					if (destinyCell->getGround() && !destinyCell->getCreature())
+					if (destinyCell->getGround() && !destinyCell->getCreature() && destinyCell->getGround()->isMoveable())
 					{
 						it.first->setWalkingAnimation(true, ENUMS::Direction::LEFT);
 						destinyCell->addCreature(world.getXYCoordinateCell(obiect->getPosition().x, obiect->getPosition().y)->getCreature());
@@ -196,7 +225,7 @@ void TGC::Global::TGCGame::resolveMoveRequest()
 				auto destinyCell = world.getXYCoordinateCell(obiect->getPosition().x + 1, obiect->getPosition().y);
 				if (destinyCell)
 				{
-					if (destinyCell->getGround() && !destinyCell->getCreature())
+					if (destinyCell->getGround() && !destinyCell->getCreature() && destinyCell->getGround()->isMoveable())
 					{
 						it.first->setWalkingAnimation(true, ENUMS::Direction::RIGHT);
 						destinyCell->addCreature(world.getXYCoordinateCell(obiect->getPosition().x, obiect->getPosition().y)->getCreature());
@@ -232,20 +261,59 @@ void TGC::Global::TGCGame::resolveMoveRequest()
 	moveRequest.clear();
 }
 
+bool TGC::Global::TGCGame::isPlayerAndTargetExist(TGC::Creature* creature, std::shared_ptr<TGC::Creature> target)
+{
+	if (isPlayerExits(creature) && isTargetExist(target))
+	{
+		return true;
+	}
+	return false;
+
+}
+
+bool TGC::Global::TGCGame::isPlayerExits(TGC::Creature* creature)
+{
+	if (creature)
+	{
+		return true;
+	}
+	return false;
+}
+
+bool TGC::Global::TGCGame::isTargetExist(std::shared_ptr<TGC::Creature> target)
+{
+	if (target)
+	{
+		return true;
+	}
+	return false;
+}
+
+bool TGC::Global::TGCGame::isSameObjectUID(TGC::Creature* creature, std::shared_ptr<TGC::Creature> target)
+{
+	if (creature->getID() == target->getID())
+	{
+		return true;
+	}
+	return false;
+}
+
 void TGC::Global::TGCGame::resolveCombat()
 {
 	for (auto & it : combatRequest)
 	{
-		if(it.getTarget() && it.getAttacker())
-		if (it.getAttacker()->getID() != it.getTarget()->getID())
+		if (isPlayerAndTargetExist(it.getAttacker(), it.getTarget()))
 		{
-			double absorbValue = it.getTarget()->getAbsorbValue(it.getCombat().getType());
-			double damage = it.getCombat().getValue();
-			double newDamageValue = damage /(absorbValue/100); 
-			//it.getTarget()->set
-			it.getTarget()->removeHealth(newDamageValue);
-			std::unique_ptr<Particle> partToAdd = std::make_unique<Particle>(it.getTarget()->getPosition().x, it.getTarget()->getPosition().y, "sampleParticle");
-			TGC::Global::TGCGame::getSingleton().addParticle(std::move(partToAdd));
+			if (!isSameObjectUID(it.getAttacker(), it.getTarget()))
+			{
+				double absorbValue = it.getTarget()->getAbsorbValue(it.getCombat().getType());
+				double damage = it.getCombat().getValue();
+				double newDamageValue = damage / (absorbValue / 100);
+				//it.getTarget()->set
+				it.getTarget()->removeHealth(newDamageValue);
+				std::unique_ptr<Particle> partToAdd = std::make_unique<Particle>(it.getTarget()->getPosition().x, it.getTarget()->getPosition().y, "sampleParticle");
+				TGC::Global::TGCGame::getSingleton().addParticle(std::move(partToAdd));
+			}
 		}
 	}
 	combatRequest.clear();

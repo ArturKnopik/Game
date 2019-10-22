@@ -324,6 +324,12 @@
     <ClCompile Include="TibiaFactory.cpp">
       <Filter>Source Files\TibiaClone\Factory</Filter>
     </ClCompile>
+    <ClCompile Include="TibiaItem.cpp">
+      <Filter>Source Files\TibiaClone\GameEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="TibiaItemLoader.cpp">
+      <Filter>Source Files\TibiaClone\Resource</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -526,6 +532,12 @@
     </ClInclude>
     <ClInclude Include="TibiaFactory.h">
       <Filter>Header Files\TibiaClone\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaItem.h">
+      <Filter>Header Files\TibiaClone\GameEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaItemLoader.h">
+      <Filter>Header Files\TibiaClone\Resource</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

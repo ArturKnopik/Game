@@ -6,20 +6,19 @@ void TGC::CreatureController::updateDirection(Creature* creature)
 	{
 		if (creature->canWalk())
 		{
-			int newDir = TGC::Global::TGCGame::getSingleton().generateRandomNumber<int>(1, 4);
-
+			int newDir = TGC::Global::TGCGame::getSingleton().generateRandomNumber<int>(0, 3);
 			switch (newDir)
 			{
-			case 1:
+			case 0:
 				creature->sendMoveRequest(TGC::ENUMS::Direction::UP);
 				break;
-			case 2:
+			case 1:
 				creature->sendMoveRequest(TGC::ENUMS::Direction::DOWN);
 				break;
-			case 3:
+			case 2:
 				creature->sendMoveRequest(TGC::ENUMS::Direction::LEFT);
 				break;
-			case 4:
+			case 3:
 				creature->sendMoveRequest(TGC::ENUMS::Direction::RIGHT);
 				break;
 			default:

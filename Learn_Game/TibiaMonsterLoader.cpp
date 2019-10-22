@@ -71,7 +71,7 @@ std::unordered_map<std::string, TGC::MonsterPrefab>& TGC::MonsterLoader::getMons
 	return monstersList;
 }
 
-TGC::MonsterPrefab TGC::MonsterLoader::getMonsterPrefabByName(std::string name)
+TGC::MonsterPrefab TGC::MonsterLoader::getMonsterByName(std::string name)
 {	
 	for (auto it = monstersList.begin(); it != monstersList.end(); it++)
 	{

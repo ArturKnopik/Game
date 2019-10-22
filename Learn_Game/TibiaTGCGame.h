@@ -1,19 +1,21 @@
 #pragma once
 
 #include <memory>
+#include <random>
+#include <list>
+#include <utility>
+
 #include "Enums.h"
 #include "TibiaMapCell.h"
 #include "TibiaGameObiect.h"
 #include "TibiaCreature.h"
-#include <list>
-#include <utility>
-#include <tuple>
 #include "TibiaWorld.h"
 #include "TibiaGlobalAnimationTimer.h"
 #include "TibiaPlayer.h"
-#include <random>
 #include "TibiaCombat.h"
 #include "TibiaParticle.h"
+
+
 namespace TGC
 {
 	namespace Global
@@ -23,14 +25,38 @@ namespace TGC
 			TGC::GlobalAnimationTimer globalAnimationTimer;
 			std::shared_ptr<Player> player;
 			TGC::World world;
-			TGCGame(const TGCGame&);
-			TGCGame();
 			std::vector<std::pair<Creature*, TGC::ENUMS::Direction>> moveRequest;
 			std::vector<TGC::CombatObiect> combatRequest;
 			std::vector<std::unique_ptr<TGC::Particle>> particleList;
 			sf::RenderWindow* window;
 			Factory factory;
+
+			////////////////////////////////////////////////////////////
+			/// \brief TGCGame copy c-tor delete, don't allow copy 'engine'.
+			///
+			////////////////////////////////////////////////////////////
+			TGCGame(const TGCGame&) = delete;
+
+			////////////////////////////////////////////////////////////
+			/// \brief TGCGame c-tor  main class(singleton), initialize world, create monsters and other game stuff
+			///
+			////////////////////////////////////////////////////////////
+			TGCGame();
+
+			////////////////////////////////////////////////////////////
+			/// \brief methd responible for resorve sollision, obiec move only if they can(if is free creature slot on target cell)
+			///
+			////////////////////////////////////////////////////////////
 			void resolveMoveRequest();
+
+			////////////////////////////////////////////////////////////
+			/// \brief check if pointer to creature(raw pointer) and pointer to target(smart pointer) they point to exist object
+			///
+			////////////////////////////////////////////////////////////
+			bool isPlayerAndTargetExist(TGC::Creature* creature, std::shared_ptr<TGC::Creature> target);
+			bool isPlayerExits(TGC::Creature* creature);
+			bool isTargetExist(std::shared_ptr<TGC::Creature> target);
+			bool isSameObjectUID(TGC::Creature* creature, std::shared_ptr<TGC::Creature> target);
 			void resolveCombat();
 			void updateParticle(const double dt);
 			void drawParticles(sf::RenderWindow& window);
@@ -58,9 +84,9 @@ namespace TGC
 		template<typename T>
 		inline T TGCGame::generateRandomNumber(T min, T max)
 		{
-			static std::random_device randomDevice;
-			static std::default_random_engine randEng(randomDevice());
-			static std::uniform_int_distribution<T> uniform_dist(min, max);
+			 std::random_device randomDevice;
+			 std::default_random_engine randEng(randomDevice());
+			 std::uniform_int_distribution<T> uniform_dist(min, max);
 			return uniform_dist(randEng);
 		}
 
