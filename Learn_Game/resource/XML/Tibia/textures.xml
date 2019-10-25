@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+  <textures>
+
+    <texture name="grassC" usage="item" location="resource/image/Tibia/items/grassC.png">
+    </texture>
+
+    <texture name="sandC" usage="item" location="resource/image/Tibia/items/sandC.png">
+    </texture>
+    
+    <texture name="waterC" usage="item" location="resource/image/Tibia/items/waterC.png">
+    </texture>
+
+    <texture name="sampleCreature" usage="creature" location="resource/image/Tibia/creature/sample.png">
+    </texture>
+
+    <texture name="default" usage="creature" location="resource/image/Tibia/creature/sample.png">
+    </texture>
+    
+    <texture name="sampleParticle" usage="particle" location="resource/image/Tibia/particle/sample.png">
+    </texture>
+
+    <texture name="sampleItem" usage="item" location="resource/image/Tibia/items/sample.png">
+    </texture>
+
+    <texture name="fireParticle" usage="particle" location="resource/image/Tibia/particle/fire.png">
+    </texture>
+
+    <texture name="player" usage="creature" location="resource/image/Tibia/creature/playerJMP.png">
+    </texture>
+
+    <texture name="rat" usage="creature" location="resource/image/Tibia/creature/rat.png">
+    </texture>
+
+    <texture name="zombie" usage="creature" location="resource/image/Tibia/creature/zombie.png">
+    </texture>
+
+    <texture name="demon" usage="creature" location="resource/image/Tibia/creature/demon.png">
+    </texture>
+    
+     <texture name="tree1_11" usage="item" location="resource/image/Tibia/items/stone1_11.png">
+    </texture>
+    <texture name="tree1_21" usage="item" location="resource/image/Tibia/items/stone1_21.png">
+    </texture>
+    <texture name="tree1_12" usage="item" location="resource/image/Tibia/items/stone1_12.png">
+    </texture>
+    <texture name="tree1_22" usage="item" location="resource/image/Tibia/items/stone1_22.png">
+    </texture>
+
+    <texture name="ghost_1" usage="creature" location="resource/image/Tibia/creature/ghost_1.png">
+    </texture>
+
+    <texture name="goryl_1" usage="creature" location="resource/image/Tibia/creature/goryl.png">
+    </texture>
+
+    <texture name="viking_1" usage="creature" location="resource/image/Tibia/creature/viking.png">
+    </texture>
+
+
+
+
+  </textures>
