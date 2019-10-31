@@ -88,9 +88,6 @@
     <Filter Include="Header Files\TibiaClone\GameEntity">
       <UniqueIdentifier>{225a2440-257b-4ae5-b5c9-2edcee8d70e3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\TibiaClone\Map">
-      <UniqueIdentifier>{119bee6e-5b0f-4685-a293-659a75110287}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\TibiaClone\Utility">
       <UniqueIdentifier>{cabc366b-c153-4ff5-9925-fe536a1ea27a}</UniqueIdentifier>
     </Filter>
@@ -129,6 +126,15 @@
     </Filter>
     <Filter Include="Source Files\TibiaClone\Factory">
       <UniqueIdentifier>{5e307c9a-3b52-4865-9c7b-abced4323e27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\TibiaClone\Script">
+      <UniqueIdentifier>{8586c528-2a76-4185-bb6d-e8bf29ab3c81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\TibiaClone\Map">
+      <UniqueIdentifier>{119bee6e-5b0f-4685-a293-659a75110287}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TibiaClone\Script">
+      <UniqueIdentifier>{186e8428-387d-4f60-8948-f473e0e20e67}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -240,15 +246,6 @@
     <ClCompile Include="Mario_LevelController.cpp">
       <Filter>Source Files\Mario</Filter>
     </ClCompile>
-    <ClCompile Include="Mario_MarioGameObiect.cpp">
-      <Filter>Source Files\Mario</Filter>
-    </ClCompile>
-    <ClCompile Include="Mario_GameObiect.cpp">
-      <Filter>Source Files\Mario</Filter>
-    </ClCompile>
-    <ClCompile Include="Mario_GumbaGameObiect.cpp">
-      <Filter>Source Files\Mario</Filter>
-    </ClCompile>
     <ClCompile Include="Brick.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -274,9 +271,6 @@
       <Filter>Source Files\TibiaClone\Other</Filter>
     </ClCompile>
     <ClCompile Include="TibiaCreature.cpp">
-      <Filter>Source Files\TibiaClone\GameEntity</Filter>
-    </ClCompile>
-    <ClCompile Include="TibiaGameObiect.cpp">
       <Filter>Source Files\TibiaClone\GameEntity</Filter>
     </ClCompile>
     <ClCompile Include="TibiaPlayer.cpp">
@@ -329,6 +323,30 @@
     </ClCompile>
     <ClCompile Include="TibiaItemLoader.cpp">
       <Filter>Source Files\TibiaClone\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Mario_GameObject.cpp">
+      <Filter>Source Files\Mario</Filter>
+    </ClCompile>
+    <ClCompile Include="Mario_GumbaGameObject.cpp">
+      <Filter>Source Files\Mario</Filter>
+    </ClCompile>
+    <ClCompile Include="Mario_MarioGameObject.cpp">
+      <Filter>Source Files\Mario</Filter>
+    </ClCompile>
+    <ClCompile Include="TibiaGameObject.cpp">
+      <Filter>Source Files\TibiaClone\GameEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="TibiaWorldLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TibiaScript.cpp">
+      <Filter>Source Files\TibiaClone\Script</Filter>
+    </ClCompile>
+    <ClCompile Include="TibiaSpawnScript.cpp">
+      <Filter>Source Files\TibiaClone\Script</Filter>
+    </ClCompile>
+    <ClCompile Include="TibiaTeleportScript.cpp">
+      <Filter>Source Files\TibiaClone\Script</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -449,12 +467,6 @@
     <ClInclude Include="Mario_LevelController.h">
       <Filter>Header Files\Mario</Filter>
     </ClInclude>
-    <ClInclude Include="Mario_MarioGameObiect.h">
-      <Filter>Header Files\Mario</Filter>
-    </ClInclude>
-    <ClInclude Include="Mario_GameObiect.h">
-      <Filter>Header Files\Mario</Filter>
-    </ClInclude>
     <ClInclude Include="Brick.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -483,9 +495,6 @@
       <Filter>Header Files\TibiaClone\Other</Filter>
     </ClInclude>
     <ClInclude Include="TibiaCreature.h">
-      <Filter>Header Files\TibiaClone\GameEntity</Filter>
-    </ClInclude>
-    <ClInclude Include="TibiaGameObiect.h">
       <Filter>Header Files\TibiaClone\GameEntity</Filter>
     </ClInclude>
     <ClInclude Include="TibiaPlayer.h">
@@ -538,6 +547,27 @@
     </ClInclude>
     <ClInclude Include="TibiaItemLoader.h">
       <Filter>Header Files\TibiaClone\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Mario_GameObject.h">
+      <Filter>Header Files\Mario</Filter>
+    </ClInclude>
+    <ClInclude Include="Mario_MarioGameObject.h">
+      <Filter>Header Files\Mario</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaGameObject.h">
+      <Filter>Header Files\TibiaClone\GameEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaWorldLoader.h">
+      <Filter>Header Files\TibiaClone\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaScript.h">
+      <Filter>Header Files\TibiaClone\Script</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaSpawnScript.h">
+      <Filter>Header Files\TibiaClone\Script</Filter>
+    </ClInclude>
+    <ClInclude Include="TibiaTeleportScript.h">
+      <Filter>Header Files\TibiaClone\Script</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -7,9 +7,9 @@ namespace TGC
 	class MonsterPrefab
 	{
 		int hp = 100;
-		std::string texture="";
+		std::string texture="default";
 		double speed = 3.0;
-		std::string name = "";
+		std::string name = "default";
 	public:
 		MonsterPrefab()=default;
 		void setHP(int hp);
@@ -26,10 +26,10 @@ namespace TGC
 	class MonsterLoader
 	{
 		std::unordered_map<std::string, MonsterPrefab> monstersList;
-		void loadFromFile();
+		
 	public:
 		MonsterLoader();
-		
+		void loadFromFile();
 		std::unordered_map<std::string, MonsterPrefab>& getMonsterList();
 		MonsterPrefab getMonsterByName(std::string name);
 

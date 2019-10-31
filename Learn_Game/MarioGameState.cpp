@@ -27,11 +27,11 @@ MarioGameState::MarioGameState(std::shared_ptr<Game> game)
 
 	//levelControler.loadLevel("level.txt", "testLevel");
 	level = levelControler.getLevel("testLevel");
-	player = std::make_shared<Mario::MarioGameObiect>(sf::Vector2f(32, 32), sf::Vector2f(32, 32));
-	level->addGameObiect(Mario::LevelLayer::MAIN_LAYER, player);
+	player = std::make_shared<Mario::MarioGameobject>(sf::Vector2f(32, 32), sf::Vector2f(32, 32));
+	level->addGameobject(Mario::LevelLayer::MAIN_LAYER, player);
 	
 
-	std::cout << level->getObiectList(Mario::LevelLayer::MAIN_LAYER).size() << std::endl;;
+	std::cout << level->getobjectList(Mario::LevelLayer::MAIN_LAYER).size() << std::endl;;
 	
 	std::cout << "Player id: "; std::cout << player->getID(); std::cout << std::endl;
 }
@@ -42,8 +42,8 @@ void MarioGameState::draw()
 	sprite.setPosition(500, 500);
 	game->window->draw(sprite);
 	//player->draw(game->window);
-	std::vector<std::shared_ptr<Mario::GameObiect>>::iterator it;
-	for(it = level->getObiectList(Mario::LevelLayer::MAIN_LAYER).begin(); it != level->getObiectList(Mario::LevelLayer::MAIN_LAYER).end(); it++)
+	std::vector<std::shared_ptr<Mario::Gameobject>>::iterator it;
+	for(it = level->getobjectList(Mario::LevelLayer::MAIN_LAYER).begin(); it != level->getobjectList(Mario::LevelLayer::MAIN_LAYER).end(); it++)
 	{
 		(*it)->draw(game->window);
 	}
@@ -54,27 +54,27 @@ void MarioGameState::draw()
 void MarioGameState::update(const double dt)
 {
 	//player->update(dt);
-	std::vector<std::shared_ptr<Mario::GameObiect>>::iterator obiectThatCheckIt;
-	std::vector<std::shared_ptr<Mario::GameObiect>>::iterator obiectCheckedIt;
+	std::vector<std::shared_ptr<Mario::Gameobject>>::iterator objectThatCheckIt;
+	std::vector<std::shared_ptr<Mario::Gameobject>>::iterator objectCheckedIt;
 	//player->setPosition(sf::Vector2f(player->getPosition().x, player->getPosition().y + 0.0001*dt));
-	for (obiectThatCheckIt = level->getObiectList(Mario::LevelLayer::MAIN_LAYER).begin(); obiectThatCheckIt != level->getObiectList(Mario::LevelLayer::MAIN_LAYER).end(); obiectThatCheckIt++)
+	for (objectThatCheckIt = level->getobjectList(Mario::LevelLayer::MAIN_LAYER).begin(); objectThatCheckIt != level->getobjectList(Mario::LevelLayer::MAIN_LAYER).end(); objectThatCheckIt++)
 	{
-		(*obiectThatCheckIt)->update(dt);
-		for (obiectCheckedIt = level->getObiectList(Mario::LevelLayer::MAIN_LAYER).begin(); obiectCheckedIt != level->getObiectList(Mario::LevelLayer::MAIN_LAYER).end(); obiectCheckedIt++)
+		(*objectThatCheckIt)->update(dt);
+		for (objectCheckedIt = level->getobjectList(Mario::LevelLayer::MAIN_LAYER).begin(); objectCheckedIt != level->getobjectList(Mario::LevelLayer::MAIN_LAYER).end(); objectCheckedIt++)
 		{
-			if ((*obiectThatCheckIt)->getID() != (*obiectCheckedIt)->getID())
+			if ((*objectThatCheckIt)->getID() != (*objectCheckedIt)->getID())
 			{
 				
-				if (System::checkAABB(*obiectThatCheckIt, *obiectCheckedIt))
+				if (System::checkAABB(*objectThatCheckIt, *objectCheckedIt))
 				{
-					(*obiectThatCheckIt)->onCollision(*obiectCheckedIt);
-					(*obiectCheckedIt)->onCollision(*obiectThatCheckIt);
+					(*objectThatCheckIt)->onCollision(*objectCheckedIt);
+					(*objectCheckedIt)->onCollision(*objectThatCheckIt);
 				}
 				else
 				{
-					if (!(*obiectThatCheckIt)->getStatic())
+					if (!(*objectThatCheckIt)->getStatic())
 					{
-						(*obiectThatCheckIt)->setPosition(sf::Vector2f((*obiectThatCheckIt)->getPosition().x, (*obiectThatCheckIt)->getPosition().y + 0.0005*dt));
+						(*objectThatCheckIt)->setPosition(sf::Vector2f((*objectThatCheckIt)->getPosition().x, (*objectThatCheckIt)->getPosition().y + 0.0005*dt));
 
 						break;
 					}
@@ -99,7 +99,7 @@ void MarioGameState::input()
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F1))
 	{
-		level->addGameObiect(Mario::LevelLayer::MAIN_LAYER, std::make_shared<Mario::GumbaGameObiect>(sf::Vector2f(160, 50), sf::Vector2f(32, 32)));
+		level->addGameobject(Mario::LevelLayer::MAIN_LAYER, std::make_shared<Mario::GumbaGameobject>(sf::Vector2f(160, 50), sf::Vector2f(32, 32)));
 		Sleep(30);
 	}
 }

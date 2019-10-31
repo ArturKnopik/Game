@@ -1,39 +1,70 @@
-<?xml version="1.0" ?>
-  <items>
-    <item>
-      <name>grass</name>     <!-- "id 0" -->
-      <texture>grassC</texture>
-      <pickupable>false</pickupable>
-      <useable>false</useable>
-      <moveable>true</moveable>
-      <decaying>false</decaying>
-      <decayTo>false</decayTo>
-      <attack>0</attack>
-      <deffence>0</deffence>
-      <slottype>none</slottype>
-    </item>
-    <item>
-      <name>sand</name> <!-- "id 1" -->
-      <texture>sandC</texture>
-      <pickupable>false</pickupable>
-      <useable>false</useable>
-      <moveable>true</moveable>
-      <decaying>false</decaying>
-      <decayTo>false</decayTo>
-      <attack>0</attack>
-      <deffence>0</deffence>
-      <slottype>none</slottype>
-    </item>
-    <item>
-      <name>water</name> <!-- "id 2" -->
-      <texture>waterC</texture>
-      <pickupable>false</pickupable>
-      <useable>false</useable>
-      <moveable>false</moveable>
-      <decaying>false</decaying>
-      <decayTo>false</decayTo>
-      <attack>0</attack>
-      <deffence>0</deffence>
-      <slottype>none</slottype>
-    </item>
-  </items>
+<?xml version="1.0" encoding="utf-8"?>
+<items>
+  <item id="1" texture="grassC" name="grass">
+    <attribute key="pickupable" value="false"/>
+    <attribute key="useable" value="false"/>
+    <attribute key="moveable" value="true"/>
+    <attribute key="decaying" value="false"/>
+    <attribute key="decayTo" value="0"/>
+    <attribute key="attack" value="0"/>
+    <attribute key="deffence" value="0"/>
+    <attribute key="slottype" valueX="slot_none"/>
+  </item>  
+  <item id="2" texture="sandC" name="sand">
+  </item>
+  <item id="3" texture="waterC" name="water">
+    <attribute key="moveable" value="false"  />
+  </item>
+  <item id="4" texture="sampleItem" name="test">
+    <attribute key="moveable" value="false"  />
+  </item>
+  <item id="5" texture="tree1_11" name="tree">
+    <attribute key="moveable" value="false"  />
+  </item>
+  <item id="6" texture="tree1_21" name="tree">
+    <attribute key="moveable" value="false"  />
+  </item>
+  <item id="7" texture="tree1_12" name="tree">
+    <attribute key="moveable" value="false"  />
+  </item>
+  <item id="8" texture="tree1_22" name="tree">
+    <attribute key="moveable" value="false"  />
+  </item>
+  <item id="9" texture="ground_grass_1" name="sand">
+  </item>
+  <item id="10" texture="ground_grass_2" name="sand">
+  </item>
+  <item id="11" texture="ground_grass_3" name="sand">
+  </item>
+  <item id="12" texture="ground_grass_4" name="sand">
+  </item>
+  <item id="13" texture="ground_grass_5" name="sand">
+  </item>
+  <item id="14" texture="ground_grass_6" name="sand">
+  </item>
+  <item id="15" texture="ground_grass_7" name="sand">
+  </item>
+  <item id="16" texture="ground_grass_8" name="sand">
+  </item>
+  <item id="17" texture="water_grass_1" name="sand">
+  </item>
+  <item id="18" texture="water_grass_2" name="sand">
+  </item>
+  <item id="19" texture="water_grass_3" name="sand">
+  </item>
+  <item id="20" texture="water_grass_4" name="sand">
+  </item>
+  <item id="21" texture="water_grass_5" name="sand">
+  </item>
+  <item id="22" texture="water_grass_6" name="sand">
+  </item>
+  <item id="23" texture="water_grass_7" name="sand">
+  </item>
+  <item id="24" texture="water_grass_8" name="sand">
+  </item>
+  <item id="25" texture="teleport_1" name="teleport">
+  </item>
+  
+  
+  
+</items>

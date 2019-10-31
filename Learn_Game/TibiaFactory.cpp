@@ -15,7 +15,7 @@ std::shared_ptr<TGC::Creature> TGC::Factory::getMonster(std::string monsterName)
 	auto monsterPrefab = monsterHandler.getMonsterByName(monsterName);
 	if (monsterPrefab.texture.empty() && monsterPrefab.name.empty())
 	{
-		std::cout << "cant create monster, prefab obiect not found!" << std::endl;
+		std::cout << "cant create monster, prefab object not found!" << std::endl;
 		return nullptr;
 	}
 	auto textureHandler = TGC::ResoureManager::getInstance().getTextureHandler();
@@ -46,7 +46,7 @@ std::shared_ptr<TGC::Item> TGC::Factory::getItem(size_t itemID)
 	auto itemPrefab = itemHandler.getItemPrefabByID(itemID);
 	if (itemPrefab.texture.empty() && itemPrefab.name.empty())
 	{
-		std::cout << "cant create item, prefab obiect not found!" << std::endl;
+		std::cout << "cant create item, prefab object not found!" << std::endl;
 		return nullptr;
 	}
 	auto textureHandler = TGC::ResoureManager::getInstance().getTextureHandler();

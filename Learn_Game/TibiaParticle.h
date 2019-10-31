@@ -1,9 +1,9 @@
 #pragma once
-#include "TibiaGameObiect.h"
+#include "TibiaGameobject.h"
 namespace TGC
 {
 	class Particle
-		: public GameObiect
+		: public Gameobject
 	{
 		bool isLive=true;
 		std::pair<double, double> lifeTimer = std::make_pair(0.0,0.0);

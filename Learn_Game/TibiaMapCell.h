@@ -7,31 +7,32 @@
 #include <optional>
 namespace TGC
 {
-	class GameObiect;
+	class Gameobject;
 	class Creature;
 
 
 	class MapCell
 	{
 		std::size_t maxSize = 10;
-		std::vector<std::shared_ptr<Item>> obiectList;
-		std::optional<std::shared_ptr<Creature>> creature;
-		std::optional<std::shared_ptr<Item>> ground;
+		std::vector<std::shared_ptr<Item>> objectList;
+		std::shared_ptr<Creature> creature;
+		std::shared_ptr<Item> ground;
 	public:
 		MapCell();
-		//std::vector<std::unique_ptr<GameObiect>> & getObiectList() { return obiectList; };
-		void pushItem(std::shared_ptr<Item> obiect);
-		void pushItem(Item* obiect);
-		void addCreature(Creature* obiect);
+		//std::vector<std::unique_ptr<Gameobject>> & getobjectList() { return objectList; };
+		void pushItem(std::shared_ptr<Item> object);
+		void pushItem(Item* object);
+		void addCreature(Creature* object);
 		void addCreature(std::shared_ptr<Creature> creature);
-		void setGround(Item* obiect);
-		void setGround(std::shared_ptr<Item> obiect);
-		void removeCreature() { creature = std::nullopt; };
-		void popObiect();
+		void setGround(Item* object);
+		void setGround(std::shared_ptr<Item> object);
+		void removeCreature() { creature = nullptr; }
+		void popobject();
 		void updateMapCell(const double dt);
 		void drawGround(sf::RenderWindow& window);
 		void drawCreature(sf::RenderWindow& window);
-		void drawObiectList(sf::RenderWindow& window);
+		void drawobjectList(sf::RenderWindow& window);
+		std::vector<std::shared_ptr<Item>>& getItemStack();
 		std::shared_ptr<TGC::Item> getGround();
 		std::shared_ptr<Creature> getCreature();
 

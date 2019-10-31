@@ -2,6 +2,7 @@
 #include <string>
 #include <unordered_map>
 #include "TibiaEnums.h"
+#include "pugixml.hpp"
 
 namespace TGC
 {
@@ -10,7 +11,7 @@ namespace TGC
 		std::string name;
 		bool pickupable = false;
 		bool useable = false;
-		bool moveable = false;
+		bool moveable = true;
 		bool decaying = false;
 		size_t decayTo = 0;
 		unsigned short attack = 0;
@@ -39,9 +40,11 @@ namespace TGC
 	{
 		size_t itemID = 0;
 		std::unordered_map<int, ItemPrefab> itemList;
-		void loadFromFile();
-	public:
+		void parseItemNode(const pugi::xml_node& itemNode, size_t itemID);
+	public:		
 		ItemLoader();
+		void loadFromFile();
+		
 		std::unordered_map<int, ItemPrefab>& getItemList();
 		ItemPrefab getItemPrefabByID(size_t id);
 

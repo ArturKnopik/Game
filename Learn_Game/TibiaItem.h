@@ -1,12 +1,13 @@
 #pragma once
-#include "TibiaGameObiect.h"
+#include "TibiaGameobject.h"
 #include "TibiaEnums.h"
 #include "TibiaItemLoader.h"
+#include "TibiaScript.h"
 
 namespace TGC
 {
 	class Item 
-		: public GameObiect
+		: public Gameobject
 	{
 		std::string name;
 		bool pickupable = false;
@@ -19,7 +20,7 @@ namespace TGC
 		TGC::ENUMS::ItemSlot slotType = TGC::ENUMS::ItemSlot::NOEQUPIMENT;
 		Item()= delete;
 		TGC::Animation animation;
-		
+		std::vector<std::shared_ptr<Script>> scriptList;
 	public:
 		
 		Item(ItemPrefab itemprefab);
@@ -40,6 +41,9 @@ namespace TGC
 		
 		void applyPrefabData(ItemPrefab itemPrefab);
 		virtual void draw(sf::RenderWindow& renderWindow) override;
+		void addScript(std::shared_ptr<Script> script);
+		std::vector<std::shared_ptr<Script>> & getScripts();
+
 	};
 }
 

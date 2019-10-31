@@ -2,31 +2,31 @@
 #include "TibiaTGCGame.h"
 TGC::MapCell::MapCell()
 {
-	//obiectList.reserve(10);
+	//objectList.reserve(10);
 }
 
-void TGC::MapCell::pushItem(std::shared_ptr<TGC::Item> obiect)
+void TGC::MapCell::pushItem(std::shared_ptr<TGC::Item> object)
 {
-	if (obiectList.size() != maxSize)
+	if (objectList.size() != maxSize)
 	{
-		obiectList.push_back(std::move(obiect));
+		objectList.push_back(std::move(object));
 	}
 }
 
-void TGC::MapCell::pushItem(TGC::Item* obiect)
+void TGC::MapCell::pushItem(TGC::Item* object)
 {
-	if (obiectList.size() != maxSize)
+	if (objectList.size() != maxSize)
 	{
-		obiectList.push_back(std::make_shared<TGC::Item>(*obiect));
+		objectList.push_back(std::make_shared<TGC::Item>(*object));
 	}
 }
 
 
-void TGC::MapCell::addCreature(Creature* obiect)
+void TGC::MapCell::addCreature(Creature* object)
 {
 	if (!creature) 
 	{
-		creature = std::shared_ptr<Creature>(obiect);
+		creature = std::shared_ptr<Creature>(object);
 	}
 }
 
@@ -38,54 +38,51 @@ void TGC::MapCell::addCreature(std::shared_ptr<Creature> creature)
 	}
 }
 
-void TGC::MapCell::setGround(TGC::Item* obiect)
+void TGC::MapCell::setGround(TGC::Item* object)
 {
 
-		ground = std::make_shared<TGC::Item>(*obiect);
+		ground = std::make_shared<TGC::Item>(*object);
 }
 
-void TGC::MapCell::setGround(std::shared_ptr<TGC::Item> obiect)
+void TGC::MapCell::setGround(std::shared_ptr<TGC::Item> object)
 {
-
-		ground = std::make_optional<std::shared_ptr<TGC::Item>>();
-		ground = obiect;
+		ground = object;
 		return;
-	
 }
-void TGC::MapCell::popObiect()
+void TGC::MapCell::popobject()
 {
-	if (obiectList.size() != 0)
+	if (objectList.size() != 0)
 	{
-		obiectList.pop_back();
+		objectList.pop_back();
 	}
 }
 
 void TGC::MapCell::updateMapCell(const double dt)
 {
-	for (const auto & it : obiectList)
+	for (const auto & it : objectList)
 	{
 		it->update(dt);
 	}
 	if (creature)
 	{
-		if (creature.value()->getHealth() ==0)
+		if (creature->getHealth() ==0)
 		{
 			auto player = TGC::Global::TGCGame::getSingleton().getPlayer();
-			if (creature.value()->getID() == player->getTarget()->getID())
+			if (creature->getID() == player->getTarget()->getID())
 			{
 				player->setTarget(nullptr);
 			}
-			creature = std::nullopt;
+			creature = nullptr;
 		}
 		else
 		{
-			creature.value()->update(dt);
+			creature->update(dt);
 		}
 	}
 
 	if (ground)
 	{
-		ground.value()->update(dt);
+		ground->update(dt);
 	}
 
 }
@@ -94,7 +91,7 @@ void TGC::MapCell::drawGround(sf::RenderWindow& window)
 {
 	if (ground)
 	{
-		ground.value()->draw(window);
+		ground->draw(window);
 	}
 	
 	
@@ -106,23 +103,28 @@ void TGC::MapCell::drawCreature(sf::RenderWindow& window)
 	{
 		if (creature)
 		{
-			creature.value()->draw(window);
+			creature->draw(window);
 		}
 	}
 }
 
-void TGC::MapCell::drawObiectList(sf::RenderWindow& window)
+void TGC::MapCell::drawobjectList(sf::RenderWindow& window)
 {
 	if (ground)
 	{
-		if (obiectList.size() != 0)
+		if (objectList.size() != 0)
 		{
-			for (const auto& it : obiectList)
+			for (const auto& it : objectList)
 			{
 				it->draw(window);
 			}
 		}
 	}
+}
+
+std::vector<std::shared_ptr<TGC::Item>>& TGC::MapCell::getItemStack()
+{
+	return objectList;
 }
 
 
@@ -131,7 +133,7 @@ std::shared_ptr<TGC::Item> TGC::MapCell::getGround()
 {
 	if (ground)
 	{
-		return ground.value();
+		return ground;
 	}
 	return nullptr;
 }
@@ -140,7 +142,7 @@ std::shared_ptr<TGC::Creature> TGC::MapCell::getCreature()
 {
 	if (creature)
 	{
-		return creature.value();
+		return creature;
 	}
-	return nullptr;;
+	return nullptr;
 }

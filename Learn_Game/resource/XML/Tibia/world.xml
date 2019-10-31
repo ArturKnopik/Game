@@ -1602,11 +1602,11 @@
     </cell>
     <cell id="1" usage="ground" positionX="9" positionY="8" >
     </cell>
-    <cell id="1" usage="ground" positionX="9" positionY="9" >
+    <cell id="17" usage="ground" positionX="9" positionY="9" >
     </cell>
-    <cell id="1" usage="ground" positionX="9" positionY="10" >
+    <cell id="22" usage="ground" positionX="9" positionY="10" >
     </cell>
-    <cell id="1" usage="ground" positionX="9" positionY="11" >
+    <cell id="20" usage="ground" positionX="9" positionY="11" >
     </cell>
     <cell id="1" usage="ground" positionX="9" positionY="12" >
     </cell>
@@ -1800,11 +1800,11 @@
     </cell>
     <cell id="1" usage="ground" positionX="10" positionY="8" >
     </cell>
-    <cell id="1" usage="ground" positionX="10" positionY="9" >
+    <cell id="23" usage="ground" positionX="10" positionY="9" >
     </cell>
-    <cell id="1" usage="ground" positionX="10" positionY="10" >
+    <cell id="3" usage="ground" positionX="10" positionY="10" >
     </cell>
-    <cell id="1" usage="ground" positionX="10" positionY="11" >
+    <cell id="21" usage="ground" positionX="10" positionY="11" >
     </cell>
     <cell id="1" usage="ground" positionX="10" positionY="12" >
     </cell>
@@ -1998,11 +1998,11 @@
     </cell>
     <cell id="1" usage="ground" positionX="11" positionY="8" >
     </cell>
-    <cell id="1" usage="ground" positionX="11" positionY="9" >
+    <cell id="18" usage="ground" positionX="11" positionY="9" >
     </cell>
-    <cell id="1" usage="ground" positionX="11" positionY="10" >
+    <cell id="24" usage="ground" positionX="11" positionY="10" >
     </cell>
-    <cell id="1" usage="ground" positionX="11" positionY="11" >
+    <cell id="19" usage="ground" positionX="11" positionY="11" >
     </cell>
     <cell id="1" usage="ground" positionX="11" positionY="12" >
     </cell>
@@ -19607,6 +19607,8 @@
 
     <!-- Item area -->
     <cell id="4" usage="item" positionX="3" positionY="3" >
+     <attribute key="script_teleport" triger_type="on_use" destinyx="12" destinyy="12"/>
+       <!--<attribute key="script_spawn" triger_type="on_use" destinyx="12" destinyy="12" monster_name="Rat"/>-->
     </cell>
     <cell id="5" usage="item" positionX="6" positionY="6" >
     </cell>
@@ -19616,9 +19618,9 @@
     </cell>
     <cell id="8" usage="item" positionX="7" positionY="7" >
     </cell>
-    
-    
 
+
+    <!-- Creature area -->
     <cell monsterName="Rat" usage="creature" positionX="1" positionY="3" >
     </cell>
     <cell monsterName="Goryl" usage="creature" positionX="6" positionY="6" >
@@ -19628,12 +19630,4 @@
     <cell monsterName="Ghost" usage="creature" positionX="9" positionY="3" >
     </cell>
 
-    
-    
-    
-    
-<!--
-    <cell  id="1" positionX="3" positionY="3" >
-    </cell>
-   -->
   </world>

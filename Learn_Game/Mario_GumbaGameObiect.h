@@ -1,19 +1,19 @@
 #pragma once
-#include "Mario_GameObiect.h"
+#include "Mario_Gameobject.h"
 namespace Mario
 {
-	class GumbaGameObiect
-		:public Mario::GameObiect
+	class GumbaGameobject
+		:public Mario::Gameobject
 		
 	{
 		enum Moving{MOVE_LEFT, MOVE_RIGHT};
 		Moving moveDirrectio;
 	public:
-		GumbaGameObiect() = delete;
-		GumbaGameObiect(sf::Vector2f position, sf::Vector2f size);
-		~GumbaGameObiect()=default;
+		GumbaGameobject() = delete;
+		GumbaGameobject(sf::Vector2f position, sf::Vector2f size);
+		~GumbaGameobject()=default;
 		void update(const double dt) override;
-		void onCollision(std::shared_ptr<Mario::GameObiect> other);
+		void onCollision(std::shared_ptr<Mario::Gameobject> other);
 	};
 }
 

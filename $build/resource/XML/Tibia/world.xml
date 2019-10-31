@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+
+  <world sizeX="30" sizeY="30">
+
+    <cell id="1" usage="ground" positionX="1" positionY="1" >      
+    </cell>
+
+    <cell id="1" usage="ground" positionX="2" positionY="1" >
+    </cell>
+
+    <cell id="1" usage="ground" positionX="3" positionY="1" >
+    </cell>
+
+    <cell id="1" usage="ground" positionX="1" positionY="2" >
+    </cell>
+
+    <cell id="1" usage="ground" positionX="2" positionY="2" >
+    </cell>
+
+    <cell id="1" usage="ground" positionX="3" positionY="2" >
+    </cell>
+
+    <cell id="1" usage="ground" positionX="1" positionY="3" >
+    </cell>
+
+    <cell id="1" usage="ground" positionX="2" positionY="3" >
+    </cell>
+
+    <cell id="1" usage="ground" positionX="3" positionY="3" >
+    </cell>
+
+    <cell monsterName="Rat" usage="creature" positionX="1" positionY="3" >
+    </cell>
+<!--
+    <cell  id="1" positionX="3" positionY="3" >
+    </cell>
+   -->
+  </world>

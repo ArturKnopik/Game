@@ -3,7 +3,6 @@
 #include "tinyxml.h"
 TGC::MonsterLoader::MonsterLoader()
 {
-	loadFromFile();
 }
 void TGC::MonsterLoader::loadFromFile()
 {

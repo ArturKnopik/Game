@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include <chrono>
 #include <string>
+#include <algorithm>
 #include "TibiaEnums.h"
 #include "SFML/Graphics/Color.hpp"
 namespace TGC
@@ -24,6 +25,10 @@ namespace TGC
 
 
 		short damageTypeToIndex(TGC::ENUMS::CombatType type);
+
+		void toLowerCaseString(std::string& source);
+
+		std::string asLowerCaseString(std::string source);
 	}
 }
 /*

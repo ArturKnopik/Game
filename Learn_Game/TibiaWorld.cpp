@@ -1,9 +1,16 @@
 #include "TibiaWorld.h"
 #include "TibiaTGCGame.h"
+
 TGC::World::World()
 {
 	//std::vector<std::vector<std::shared_ptr<MapCell>>>>
 	std::vector<std::vector<std::shared_ptr<MapCell>>> matrix(50, std::vector<std::shared_ptr<MapCell>>(50, std::shared_ptr<MapCell>()));
+	worldCellMap = matrix;
+}
+
+TGC::World::World(size_t sizeX, size_t sizeY)
+{
+	std::vector<std::vector<std::shared_ptr<MapCell>>> matrix(sizeX, std::vector<std::shared_ptr<MapCell>>(sizeY, std::shared_ptr<MapCell>()));
 	worldCellMap = matrix;
 }
 
@@ -78,8 +85,6 @@ std::vector<std::vector<std::shared_ptr<TGC::MapCell>>> TGC::World::getLocalArea
 		}
 
 	}
-	//localWorldCellMap.clear();
-	//localWorldCellMap = localMap;
 	return localMap;
 }
 
@@ -118,7 +123,7 @@ void TGC::World::draw(sf::RenderWindow& window)
 		{
 			if (ity)
 			{
-				ity->drawObiectList(window);
+				ity->drawobjectList(window);
 			}
 		}
 	}
@@ -134,8 +139,8 @@ void TGC::World::draw(sf::RenderWindow& window)
 	}
 	
 }
-
-void TGC::World::addGameObiect(size_t x, size_t y, TGC::Item* gameobj)
+/*
+void TGC::World::addGameobject(size_t x, size_t y, TGC::Item* gameobj)
 {
 	if (x < 0 || y < 0)
 	{
@@ -143,7 +148,7 @@ void TGC::World::addGameObiect(size_t x, size_t y, TGC::Item* gameobj)
 	}
 	if (getMaxWordlSize().first  < x || getMaxWordlSize().second  < y)
 	{
-		std::cout << "!!!can't add game obiect on " << x << ":" << x << " coordinates!!!" << std::endl;
+		std::cout << "!!!can't add game object on " << x << ":" << x << " coordinates!!!" << std::endl;
 		return;
 	}
 	
@@ -153,6 +158,25 @@ void TGC::World::addGameObiect(size_t x, size_t y, TGC::Item* gameobj)
 	}
 	
 }
+*/
+void TGC::World::addGameobject(size_t x, size_t y, std::shared_ptr<TGC::Item> item)
+{
+	if (x < 0 || y < 0)
+	{
+		return;
+	}
+	if (getMaxWordlSize().first < x || getMaxWordlSize().second < y)
+	{
+		std::cout << "!!!can't add game object on " << x << ":" << x << " coordinates!!!" << std::endl;
+		return;
+	}
+
+	if (worldCellMap[x][y])
+	{
+		worldCellMap[x][y]->pushItem(item);
+	}
+}
+
 void TGC::World::addGround(size_t x, size_t y, TGC::Item* gameobj)
 {
 	if (x < 0 || y < 0)
@@ -264,4 +288,13 @@ std::shared_ptr<TGC::MapCell> TGC::World::getXYCoordinateCell(size_t x, size_t y
 			return worldCellMap[x][y];
 	}
 	return nullptr;
+}
+
+void TGC::World::createCell(size_t x, size_t y)
+{
+	if (getMaxWordlSize().first - 1 < x || getMaxWordlSize().first < 0 || getMaxWordlSize().second - 1 < y || getMaxWordlSize().second < 0)
+	{
+		return;
+	}
+	worldCellMap[x][y] = std::make_shared<MapCell>();
 }

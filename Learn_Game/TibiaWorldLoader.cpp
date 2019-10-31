@@ -1,6 +1,8 @@
 #include "TibiaWorldLoader.h"
 #include "TibiaResoureManager.h"
-
+#include "TibiaTeleportScript.h"
+#include "TibiaSpawnScript.h"
+#include "TibiaTGCGame.h"
 void TGC::WorldLoader::parseWorldNode(const pugi::xml_node& itemNode)
 {
 	using namespace TGC::UtilityTools;
@@ -48,6 +50,9 @@ void TGC::WorldLoader::parseWorldNode(const pugi::xml_node& itemNode)
 	{
 		return;
 	}
+	
+	std::vector<std::shared_ptr<Script>> scripts;
+
 	for (auto attributeNode : itemNode.children())
 	{
 		pugi::xml_attribute keyAttribute = attributeNode.attribute("key");
@@ -56,27 +61,78 @@ void TGC::WorldLoader::parseWorldNode(const pugi::xml_node& itemNode)
 		}
 		std::string tmpStrValue = asLowerCaseString(std::string(keyAttribute.as_string()));
 
-		/* //TODO: implement script system like onStep, onLeaveTile etc
-		if (tmpStrValue == "script")
+		/* //TODO: implement script system like onStep, onLeaveTile etc */
+		if (tmpStrValue == std::string("script_teleport"))
 		{
-			pugi::xml_attribute valuePickableAttribute = attributeNode.attribute("value");
-			if (!valuePickableAttribute) {
+
+			pugi::xml_attribute trigerTypeAttribute = attributeNode.attribute("triger_type");
+			if (!trigerTypeAttribute) {
 				continue;
 			}
-			auto tempValue = std::string(valuePickableAttribute.as_string());
-			if (tempValue == "true" || tempValue == "false")
-			{
-				if (tempValue == "true")
-				{
-					it.setPickable(true);
-				}
-				else
-				{
-					it.setPickable(false);
-				}
+			pugi::xml_attribute destinyXAttributer = attributeNode.attribute("destinyx");
+			if (!destinyXAttributer) {
+				continue;
 			}
+			pugi::xml_attribute destinyYAttributer = attributeNode.attribute("destinyy");
+			if (!destinyYAttributer) {
+				continue;
+			}
+			auto trigerTypeValue = std::string(trigerTypeAttribute.as_string());
+			TGC::ENUMS::ScriptTrigerType trigerType;
+			if (trigerTypeValue == std::string("on_use"))
+			{
+				trigerType = TGC::ENUMS::ScriptTrigerType::ONUSE;
+			}
+			else if (trigerTypeValue == std::string("on_step"))
+			{
+				trigerType = TGC::ENUMS::ScriptTrigerType::ONSTEP;
+			}
+
+
+			auto destinyXvalue = destinyXAttributer.as_ullong();
+			auto destinyYvalue = destinyYAttributer.as_ullong();
+
+			auto teleportScript = std::make_shared<TGC::TeleportScript>(destinyXvalue, destinyYvalue);
+			teleportScript->setTriggerType(trigerType);
+			scripts.push_back(teleportScript);
 		}
-		*/
+
+		if (tmpStrValue == std::string("script_spawn"))
+		{
+			pugi::xml_attribute trigerTypeAttribute = attributeNode.attribute("triger_type");
+			if (!trigerTypeAttribute) {
+				continue;
+			}
+			pugi::xml_attribute destinyXAttributer = attributeNode.attribute("destinyx");
+			if (!destinyXAttributer) {
+				continue;
+			}
+			pugi::xml_attribute destinyYAttributer = attributeNode.attribute("destinyy");
+			if (!destinyYAttributer) {
+				continue;
+			}
+			pugi::xml_attribute monsterNameAttribute = attributeNode.attribute("monster_name");
+			if (!monsterNameAttribute) {
+				continue;
+			}
+			auto trigerTypeValue = std::string(trigerTypeAttribute.as_string());
+			TGC::ENUMS::ScriptTrigerType trigerType;
+			if (trigerTypeValue == std::string("on_use"))
+			{
+				trigerType = TGC::ENUMS::ScriptTrigerType::ONUSE;
+			}
+			else if (trigerTypeValue == std::string("on_step"))
+			{
+				trigerType = TGC::ENUMS::ScriptTrigerType::ONSTEP;
+			}
+			auto destinyXvalue = destinyXAttributer.as_ullong();
+			auto destinyYvalue = destinyYAttributer.as_ullong();
+			auto monsterNameValue = std::string(monsterNameAttribute.as_string());
+			auto spawnScript = std::make_shared<TGC::SpawnScript>(destinyXvalue, destinyYvalue, monsterNameValue);
+			spawnScript->setTriggerType(trigerType);
+			scripts.push_back(spawnScript);
+		}
+		/**/
 	}
 
 	auto cell = loadedWorldPRT->getXYCoordinateCell(positionX, positionY);
@@ -106,12 +162,15 @@ void TGC::WorldLoader::parseWorldNode(const pugi::xml_node& itemNode)
 			auto itemHandler = TGC::ResoureManager::getInstance().getXMLHandler().getItemHandler();
 			auto item = std::make_shared<Item>(itemHandler.getItemPrefabByID(id));
 			item->setPosition(sf::Vector2<size_t>(positionX, positionY));
+			for (auto it : scripts)
+			{
+				item->addScript(it);
+			}
 			cell->pushItem(item);
 		}
 	}
 	else if (usage == "creature")
 	{
-		std::cout << "creature" << std::endl;
 		if (cell->getGround())
 		{
 			auto monsterHandler = TGC::ResoureManager::getInstance().getXMLHandler().getMonstersHandler();
@@ -164,6 +223,5 @@ void TGC::WorldLoader::loadFromFile()
 
 std::shared_ptr<TGC::World> &  TGC::WorldLoader::getWorld()
 {
-	//std::cout << "new World size" << loadedWorldPRT->getMaxWordlSize().first << ":" << loadedWorldPRT->getMaxWordlSize().second << std::endl;
 	return loadedWorldPRT;
 }

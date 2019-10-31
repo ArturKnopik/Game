@@ -1,7 +1,7 @@
 #pragma once
 #include "SFML/Graphics/Texture.hpp"
 #include <map>
-
+#include "pugixml.hpp"
 
 namespace TGC
 {
@@ -10,8 +10,9 @@ namespace TGC
 
 	class TextureLoader
 	{
+		void parseTextureNode(const pugi::xml_node& itemNode, TGC::ResourceHandler<sf::Texture>& textureHandler);
 	public:
-		TextureLoader();
+		TextureLoader();		
 		void loadTexture(ResourceHandler<sf::Texture> & texturehandler);
 
 	};

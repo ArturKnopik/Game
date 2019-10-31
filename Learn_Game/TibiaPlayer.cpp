@@ -17,8 +17,7 @@ TGC::Player::Player()
 		animationControler.emplace(AnimationController());
 	}
 	creatureController = nullptr;
-	texture = TGC::ResoureManager::getInstance().getTextureHandler().getResourceByName("player", "creature");
-
+	texture = TGC::ResoureManager::getInstance().getTextureHandler().getResourceByName("player", "creature");;
 	animationUp.setTexture(texture);
 	animationUp.addFrame(sf::IntRect(32, 96, 32, 32));
 	animationUp.addFrame(sf::IntRect(0, 96, 32, 32));
@@ -141,12 +140,20 @@ void TGC::Player::doThingWithTargetCell()
 		return;
 	}
 
-	/*
-	//TODO: implemet use item in cell;
-	*/
-
-
-
+	for (auto it : targetCell->getItemStack())
+	{
+		for (auto iter : it->getScripts())
+		{
+			if (iter->getTrigerType() == TGC::ENUMS::ScriptTrigerType::ONUSE)
+			{
+				iter->executeScript(this);
+				if (iter->isSingleExecute())
+				{
+					//TODO: implemet remove Script
+				}
+			}
+		}
+	}
 }
 
 void TGC::Player::updateUseThingTimer(const double dt)

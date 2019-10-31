@@ -6,7 +6,7 @@ namespace TGC
 
 	class Creature;
 	class Particle;
-	class GameObiect;
+	class Gameobject;
 	class Item;
 
 	class Factory

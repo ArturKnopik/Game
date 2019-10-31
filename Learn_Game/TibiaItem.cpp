@@ -121,3 +121,13 @@ void TGC::Item::draw(sf::RenderWindow& renderWindow)
 
 	}
 }
+
+void TGC::Item::addScript(std::shared_ptr<Script> script)
+{
+	scriptList.push_back(script);
+}
+
+std::vector<std::shared_ptr<TGC::Script>>& TGC::Item::getScripts()
+{
+	return scriptList;
+}

@@ -38,22 +38,22 @@ void TGC::Combat::addToDamage(int value)
 
 
 
-TGC::CombatObiect::CombatObiect(TGC::Creature * attacker, std::shared_ptr<TGC::Creature> target, TGC::Combat combat)
+TGC::Combatobject::Combatobject(TGC::Creature * attacker, std::shared_ptr<TGC::Creature> target, TGC::Combat combat)
 	:attacker(attacker), target(target), combat(combat)
 {
 }
 
-TGC::Creature * TGC::CombatObiect::getAttacker()
+TGC::Creature * TGC::Combatobject::getAttacker()
 {
 	return attacker;
 }
 
-std::shared_ptr<TGC::Creature> TGC::CombatObiect::getTarget()
+std::shared_ptr<TGC::Creature> TGC::Combatobject::getTarget()
 {
 	return target;
 }
 
-TGC::Combat TGC::CombatObiect::getCombat()
+TGC::Combat TGC::Combatobject::getCombat()
 {
 	return combat;
 }

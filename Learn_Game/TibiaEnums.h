@@ -41,6 +41,11 @@ namespace TGC
 			NOEQUPIMENT = 6
 		};
 
+		enum ScriptTrigerType
+		{
+			ONSTEP,
+			ONUSE
+		};
 
 
 

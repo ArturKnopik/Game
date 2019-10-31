@@ -3,7 +3,7 @@
 
 
 Brick::Brick(sf::Vector2f position, sf::Vector2f size)
-	:GameObiect(position, size)
+	:Gameobject(position, size)
 {
 	isGravityAble = false;
 	isStatic = true;
@@ -31,7 +31,7 @@ Brick::~Brick()
 {
 }
 
-void Brick::onCollision(std::shared_ptr<Mario::GameObiect> other)
+void Brick::onCollision(std::shared_ptr<Mario::Gameobject> other)
 {
 	System::CollisionType collisionSite = System::getCollsionSite(other->getPosition(), other->getSize(), getPosition(), getSize());
 	switch (collisionSite)

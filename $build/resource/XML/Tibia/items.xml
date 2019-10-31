@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items>
+  <item id="1" texture="grassC" name="grass">
+    <attribute key="pickupable" value="false"/>
+    <attribute key="useable" value="false"/>
+    <attribute key="moveable" value="true"/>
+    <attribute key="decaying" value="false"/>
+    <attribute key="decayTo" value="0"/>
+    <attribute key="attack" value="0"/>
+    <attribute key="deffence" value="0"/>
+    <attribute key="slottype" valueX="slot_none"/>
+    
+  </item>
+  <item id="2" texture="sandC" name="sand">
+    
+  </item>
+
+  <item id="3" texture="waterC" name="water">
+    <attribute key="moveable" value="false"  />
+  </item>
+  <item id="4" texture="random" name="water">
+  </item>
+</items>

@@ -26,7 +26,7 @@ namespace System
 		ResourceManager& operator=(ResourceManager&&) =delete;
 
 	public:
-		// return Instance of this obiect (singleton)
+		// return Instance of this object (singleton)
 		static ResourceManager & getInstance();
 		// d
 		~ResourceManager()=default;

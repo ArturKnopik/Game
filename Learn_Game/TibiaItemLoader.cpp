@@ -1,6 +1,8 @@
 #include "TibiaItemLoader.h"
-#include "tinyxml.h"
 #include "TibiaEnums.h"
+#include "TibiaUtilityTools.h"
+
+#include <iostream>
 
 void TGC::ItemPrefab::setName(std::string name)
 {
@@ -54,7 +56,6 @@ void TGC::ItemPrefab::setTexture(std::string texture)
 
 TGC::ItemLoader::ItemLoader()
 {
-	loadFromFile();
 }
 
 std::unordered_map<int, TGC::ItemPrefab>& TGC::ItemLoader::getItemList()
@@ -77,155 +78,208 @@ TGC::ItemPrefab TGC::ItemLoader::getItemPrefabByID(size_t id)
 
 void TGC::ItemLoader::loadFromFile()
 {
-	TiXmlDocument doc("./resource/XML/Tibia/items.xml");
-	if (!doc.LoadFile())
-	{
+	pugi::xml_document doc;
+	pugi::xml_parse_result result = doc.load_file("./resource/XML/Tibia/items.xml");
+	if (!result) {
 		std::cout << "error:items.xml" << std::endl;
 		return;
 	}
-
-	TiXmlHandle docHandle(&doc);
-
-	TiXmlElement* itemNode = docHandle.FirstChild("items").Child("item", 0).ToElement();
-
-	while (itemNode)
+	for (auto itemNode : doc.child("items").children())
 	{
-		ItemPrefab item;
-
-		TiXmlElement* itemName = itemNode->FirstChildElement("name");
-
-		if (NULL != itemName)
+		pugi::xml_attribute idAttribute = itemNode.attribute("id");
+		if (idAttribute)
 		{
-			item.setName(itemName->GetText());
+			parseItemNode(itemNode, idAttribute.as_int());
+			continue;
 		}
+	}
+}
 
-		TiXmlElement* itemTexture = itemNode->FirstChildElement("texture");
 
-		if (NULL != itemTexture)
-		{
-			item.setTexture(itemTexture->GetText());
+
+void TGC::ItemLoader::parseItemNode(const pugi::xml_node& itemNode, size_t itemID)
+{
+	using namespace TGC::UtilityTools;
+	ItemPrefab it;
+	pugi::xml_attribute nameAttribute = itemNode.attribute("name");
+	if (nameAttribute) {
+		it.setName(itemNode.attribute("name").as_string());
+	}
+	else
+	{
+		it.setName(std::to_string(itemID));
+	}
+
+	pugi::xml_attribute textureAttribute = itemNode.attribute("texture");
+	if (textureAttribute) {
+		it.setTexture(textureAttribute.as_string());
+	}
+
+
+	for (auto attributeNode : itemNode.children())
+	{
+		pugi::xml_attribute keyAttribute = attributeNode.attribute("key");
+		if (!keyAttribute) {
+			continue;
 		}
+		std::string tmpStrValue = asLowerCaseString(std::string(keyAttribute.as_string()));
 
-		TiXmlElement* itempickupable = itemNode->FirstChildElement("pickable");
 
-		if (NULL != itempickupable)
+		if (tmpStrValue == "pickupable")
 		{
-			if (std::string(itempickupable->GetText()) == "true")
-			{
-				item.setPickable(true);
+			pugi::xml_attribute valuePickableAttribute = attributeNode.attribute("value");
+			if (!valuePickableAttribute) {
+				continue;
 			}
-			else
+			auto tempValue = std::string(valuePickableAttribute.as_string());
+			if (tempValue == "true" || tempValue == "false")
 			{
-				item.setPickable(false);
-			}
-		}
-
-		TiXmlElement* useable = itemNode->FirstChildElement("useable");
-
-		if (NULL != useable)
-		{
-			if (std::string(useable->GetText()) == "true")
-			{
-				item.setPickable(true);
-			}
-			else
-			{
-				item.setPickable(false);
-			}
-		}
-
-		TiXmlElement* moveable = itemNode->FirstChildElement("moveable");
-
-		if (NULL != moveable)
-		{
-			if (std::string(moveable->GetText()) == "true")
-			{
-				std::cout << "set move T" << std::endl;
-				item.setMovable(true);
-			}
-			else
-			{
-				std::cout << "set move F" << std::endl; 
-				item.setMovable(false);
-			}
-		}
-
-		TiXmlElement* decaying = itemNode->FirstChildElement("decaying");
-
-		if (NULL != decaying)
-		{
-			if (std::string(decaying->GetText()) == "true")
-			{
-				item.setDecaing(true);
-			}
-			else
-			{
-				item.setDecaing(false);
+				if (tempValue == "true")
+				{
+					it.setPickable(true);
+				}
+				else
+				{
+					it.setPickable(false);
+				}
 			}
 		}
 
-		TiXmlElement* decayingTo = itemNode->FirstChildElement("decayingTo");
-
-		if (NULL != decayingTo)
+		if (tmpStrValue == "useable")
 		{
-			item.setPickable(std::stoi(decayingTo->GetText()));
+			pugi::xml_attribute valueUseableAttribute = attributeNode.attribute("value");
+			if (!valueUseableAttribute) {
+				continue;
+			}
+			auto tempValue = std::string(valueUseableAttribute.as_string());
+			if (tempValue == "true" || tempValue == "false")
+			{
+				if (tempValue == "true")
+				{
+					it.setUsable(true);
+				}
+				else
+				{
+					it.setUsable(false);
+				}
+				continue;
+			}
 		}
 
-		TiXmlElement* attack = itemNode->FirstChildElement("attack");
-
-		if (NULL != attack)
+		if (tmpStrValue == "moveable")
 		{
-			if (NULL != decayingTo)
+			pugi::xml_attribute valueMoveableAttribute = attributeNode.attribute("value");
+			if (!valueMoveableAttribute) {
+				continue;
+			}
+			auto tempValue = std::string(valueMoveableAttribute.as_string());
+			if (tempValue == "true" || tempValue == "false")
 			{
-				item.setPickable(std::stoi(attack->GetText()));
+			
+				if (tempValue == "true")
+				{	
+					it.setMovable(true);
+				}
+				else
+				{
+					it.setMovable(false);
+				}
+				continue;
 			}
 		}
 
-		TiXmlElement* deffence = itemNode->FirstChildElement("deffence");
-
-		if (NULL != deffence)
+		if (tmpStrValue == "decaying")
 		{
-			item.setAttack( std::stoi(deffence->GetText()));
+			pugi::xml_attribute valueDecayingAttribute = attributeNode.attribute("value");
+			if (!valueDecayingAttribute) {
+				continue;
+			}
+			auto tempValue = std::string(valueDecayingAttribute.as_string());
+			if (tempValue == "true" || tempValue == "false")
+			{
+				if (tempValue == "true")
+				{
+					it.setDecaing(true);
+				}
+				else
+				{
+					it.setDecaing(false);
+				}
+				continue;
+			}
 		}
 
-		TiXmlElement* slotType = itemNode->FirstChildElement("itemslot");
-
-		if (NULL != slotType)
+		if (tmpStrValue == "decayto")
 		{
-			if (std::string(slotType->GetText()) == "head")
-			{
-				item.setItemSlot(TGC::ENUMS::ItemSlot::HEAD);
+			pugi::xml_attribute valueDecayToAttribute = attributeNode.attribute("value");
+			if (!valueDecayToAttribute) {
+				continue;
 			}
-			else if (std::string(slotType->GetText()) == "armor")
-			{
-				item.setItemSlot(TGC::ENUMS::ItemSlot::ARMOR);
-			}
-			else if (std::string(slotType->GetText()) == "legs")
-			{
-				item.setItemSlot(TGC::ENUMS::ItemSlot::LEGS);
-			}
-			else if (std::string(slotType->GetText()) == "boots")
-			{
-				item.setItemSlot(TGC::ENUMS::ItemSlot::BOOTS);
-			}
-			else if (std::string(slotType->GetText()) == "weapon")
-			{
-				item.setItemSlot(TGC::ENUMS::ItemSlot::WEAPON);
-			}
-			else if (std::string(slotType->GetText()) == "shield")
-			{
-				item.setItemSlot(TGC::ENUMS::ItemSlot::SHIELD);
-			}
-			else if (std::string(slotType->GetText()) == "none")
-			{
-				item.setItemSlot(TGC::ENUMS::ItemSlot::NOEQUPIMENT);
-
-			}
+			auto tempValue = valueDecayToAttribute.as_ullong();
+			it.setDecayTo(tempValue);
+			continue;		
 		}
-		itemList.insert({ this->itemID, item });
-		itemID++;
 
-		itemNode = itemNode->NextSiblingElement("item");
+		if (tmpStrValue == "attack")
+		{
+			pugi::xml_attribute valueAttackAttribute = attributeNode.attribute("value");
+			if (!valueAttackAttribute) {
+				continue;
+			}
+			auto tempValue = valueAttackAttribute.as_ullong();
+			it.setAttack(tempValue);
+			continue;
+		}
+
+		if (tmpStrValue == "deffence")
+		{
+			pugi::xml_attribute valueDeffenceAttribute = attributeNode.attribute("value");
+			if (!valueDeffenceAttribute) {
+				continue;
+			}
+			auto tempValue = valueDeffenceAttribute.as_ullong();
+			it.setDeffence(tempValue);
+			continue;
+		}
+
+		if (tmpStrValue == "slottype")
+		{
+			pugi::xml_attribute valueSlotTypeAttribute = attributeNode.attribute("value");
+			if (!valueSlotTypeAttribute) {
+				continue;
+			}
+			auto tempValue = std::string(valueSlotTypeAttribute.as_string());
+			if (tempValue == "slot_none")
+			{
+				it.setItemSlot(TGC::ENUMS::ItemSlot::NOEQUPIMENT);
+			}
+			else if (tempValue == "slot_head")
+			{
+				it.setItemSlot(TGC::ENUMS::ItemSlot::HEAD);
+			}
+			else if (tempValue == "slot_armor")
+			{
+				it.setItemSlot(TGC::ENUMS::ItemSlot::ARMOR);
+			}
+			else if (tempValue == "slot_legs")
+			{
+				it.setItemSlot(TGC::ENUMS::ItemSlot::LEGS);
+			}
+			else if (tempValue == "slot_boots")
+			{
+				it.setItemSlot(TGC::ENUMS::ItemSlot::BOOTS);
+			}
+			else if (tempValue == "slot_weapon")
+			{
+				it.setItemSlot(TGC::ENUMS::ItemSlot::WEAPON);
+			}
+			else if (tempValue == "slot_shield")
+			{
+				it.setItemSlot(TGC::ENUMS::ItemSlot::SHIELD);
+			}		
+			continue;
+		}
 
 	}
+	itemList.insert({ itemID, it });
 }

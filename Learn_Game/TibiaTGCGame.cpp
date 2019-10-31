@@ -6,78 +6,43 @@
 #include <memory>
 #include "ResourceManager.h"
 #include "TibiaFactory.h"
-
+#include "TibiaSpawnScript.h"
 
 TGC::Global::TGCGame::TGCGame()
 {
-	TibiaSimpleLoader();
-
+	worldPRT = std::make_shared<TGC::World>();
 	auto monsterPrefabHandler = TGC::ResoureManager::getInstance().getXMLHandler().getMonstersHandler();
 
 	auto monstrList = monsterPrefabHandler.getMonsterList();
 	std::cout << "## Start load monster prefab, monsters loaded:" << std::endl;
 	for (auto it : monstrList)
 	{
-		std::cout << "  "<< it.second.getName() << std::endl;;
+		std::cout << "  " << it.second.getName()<<"    ";
 	}
+	std::cout << std::endl;
 	auto itemListHandler = TGC::ResoureManager::getInstance().getXMLHandler().getItemHandler();
 	auto itemList = itemListHandler.getItemList();
-	std::cout << "## Start load item prefab, monsters loaded:" << std::endl;
-		std::cout << "  loaded items: " << itemList.size() << std::endl;; // TODO: add getter item name
-	
-	std::cout << "## Wordl size: " << world.getMaxWordlSize().first << ":" << world.getMaxWordlSize().second << std::endl;
+	std::cout << "## Start load item prefab, item loaded:" << std::endl;
+	std::cout << "  loaded items: " << itemList.size() << std::endl;; 
 	std::cout << "## Start build map" << std::endl;
-	
-	for (int i = 0; i < 30; i++)
-	{
-		for (int j = 0; j < 30; j++)
-		{
-			int randomNumber = generateRandomNumber<int>(0, 2);
-			if (randomNumber == 0)
-			{
-				auto item = factory.getItem(0);
-				if (item)
-				{
-					world.addGround(i, j, item);
-				}
-
-			}
-			else if (randomNumber == 1)
-			{
-				auto item = factory.getItem(1);
-				if (item)
-				{
-					world.addGround(i, j, item);
-				}
-
-			}
-			else if (randomNumber == 2)
-			{
-				auto item = factory.getItem(2);
-				if (item)
-				{
-					world.addGround(i, j, item);
-				}
-			}
-		}
-	}
-	std::cout << "## Start addong entities" << std::endl;
-
-	//auto rat = std::make_shared<Creature>(monsterPrefabHandler.getMonsterPrefabByName("Rat"));
-	auto rat = factory.getMonster("Rat");
-	auto zombie = factory.getMonster("Zombie");
-	auto demon = factory.getMonster("Demon");
-
-
+	auto worldHandler = TGC::ResoureManager::getInstance().getXMLHandler().getWorldLoader();
+	worldHandler.loadFromFile();
+	worldPRT=worldHandler.getWorld();
+	std::cout << "## Wordl size: " << worldPRT->getMaxWordlSize().first << ":" << worldPRT->getMaxWordlSize().second << std::endl;
+	std::cout << "## Adding player " << std::endl;
 	player = std::make_shared<Player>();
-
-	world.addCreature(0, 0, player);
-	world.addCreature(4, 4, rat);
-	world.addCreature(6, 6, zombie);
-	world.addCreature(2, 2, demon);
+	worldPRT->addCreature(7, 7, player);
+	
+	/*
+	auto item = std::make_shared<TGC::Item>(itemListHandler.getItemPrefabByID(4));
+	item->addScript(std::make_shared<TGC::TeleportScript>(2, 2,));
+	item->setPosition(sf::Vector2<size_t>(9, 9));
+	worldPRT->addGameobject(9, 9, item);
+	*/
+	
 }
 
-TGC::Global::TGCGame & TGC::Global::TGCGame::getSingleton()
+TGC::Global::TGCGame& TGC::Global::TGCGame::getSingleton()
 {
 	static TGCGame singleton;
 	return singleton;
@@ -93,19 +58,19 @@ sf::RenderWindow& TGC::Global::TGCGame::getWindow()
 	return *window;
 }
 
-void TGC::Global::TGCGame::updateWorld(const double dt, std::shared_ptr<GameObiect> player)
+void TGC::Global::TGCGame::updateWorld(const double dt, std::shared_ptr<Gameobject> player)
 {
 	double tempDt = dt / 1000000; // used to 
-	//globalAnimationTimer.updateAnimationTime(dt); //TODO: implement to "fixed time" animation obiect require work in sync;
+	//globalAnimationTimer.updateAnimationTime(dt); //TODO: implement to "fixed time" animation object require work in sync;
 	resolveMoveRequest();
-	world.updateWorld(tempDt);
+	worldPRT->updateWorld(tempDt);
 	resolveCombat();
 	updateParticle(tempDt);
 }
 
-void TGC::Global::TGCGame::draw(sf::RenderWindow & window)
+void TGC::Global::TGCGame::draw(sf::RenderWindow& window)
 {
-	world.draw(*this->window);
+	worldPRT->draw(*this->window);
 	drawParticles(window);
 }
 
@@ -114,149 +79,166 @@ void TGC::Global::TGCGame::addMoveRequest(TGC::Creature* creature, TGC::ENUMS::D
 	moveRequest.push_back(std::make_pair(creature, dir));
 }
 
+bool TGC::Global::TGCGame::checkIfCellIsPossibleToMakeAMove(std::shared_ptr<TGC::MapCell> destinyCell)
+{
+	if (destinyCell && destinyCell->getGround() && !destinyCell->getCreature() && destinyCell->getGround()->isMoveable())
+	{
+		bool itemStackMoveableStatus = true;
+		auto itemSt = destinyCell->getItemStack();
+		for (auto it : itemSt)
+		{
+			if (!it->isMoveable())
+			{
+				itemStackMoveableStatus = false;
+			}
+			
+		}
+		if (itemStackMoveableStatus)
+		{
+			return true;
+		}
+		
+	}
+	return false;
+}
+
+
+
+void TGC::Global::TGCGame::ResolveSingleMoveRequest(TGC::Creature* creature, TGC::ENUMS::Direction dir)
+{
+	//TODO: this method is to big, find way to reduce it size
+	switch (dir)
+	{
+	case ENUMS::Direction::DOWN:
+		if (creature->getPosition().y < worldPRT->getMaxWordlSize().second - 1)
+		{
+			auto destinyCell = worldPRT->getXYCoordinateCell(creature->getPosition().x, creature->getPosition().y + 1);
+			if (checkIfCellIsPossibleToMakeAMove(destinyCell))
+			{
+				creature->setWalkingAnimation(true, ENUMS::Direction::DOWN);
+				destinyCell->addCreature(worldPRT->getXYCoordinateCell(creature->getPosition().x, creature->getPosition().y)->getCreature());
+				worldPRT->getXYCoordinateCell(creature->getPosition().x, creature->getPosition().y)->removeCreature();
+				creature->setPosition(sf::Vector2<size_t>(creature->getPosition().x, creature->getPosition().y + 1));
+				creature->setDirection(ENUMS::Direction::DOWN);
+			}
+			else
+			{
+				creature->setWalkingAnimation(false, ENUMS::Direction::DOWN);
+				creature->restartWalkingTime(true);
+			}
+		}
+		else
+		{
+			creature->setWalkingAnimation(false, ENUMS::Direction::DOWN);
+			creature->restartWalkingTime(true);
+		}
+		break;
+	case ENUMS::Direction::UP:
+		if (creature->getPosition().y > 0)
+		{
+			auto destinyCell = worldPRT->getXYCoordinateCell(creature->getPosition().x, creature->getPosition().y - 1);
+			if (checkIfCellIsPossibleToMakeAMove(destinyCell))
+			{
+				creature->setWalkingAnimation(true, ENUMS::Direction::UP);
+				destinyCell->addCreature(worldPRT->getXYCoordinateCell(creature->getPosition().x, creature->getPosition().y)->getCreature());
+				worldPRT->getXYCoordinateCell(creature->getPosition().x, creature->getPosition().y)->removeCreature();
+				creature->setPosition(sf::Vector2<size_t>(creature->getPosition().x, creature->getPosition().y - 1));
+				creature->setDirection(ENUMS::Direction::UP);
+			}
+			else
+			{
+				creature->setWalkingAnimation(false, ENUMS::Direction::UP);
+				creature->restartWalkingTime(true);
+			}
+		}
+		else
+		{
+			creature->setWalkingAnimation(false, ENUMS::Direction::UP);
+			creature->restartWalkingTime(true);
+		}
+		break;
+	case ENUMS::Direction::LEFT:
+		if (creature->getPosition().x > 0)
+		{
+			auto destinyCell = worldPRT->getXYCoordinateCell(creature->getPosition().x - 1, creature->getPosition().y);
+			if (checkIfCellIsPossibleToMakeAMove(destinyCell))
+			{
+				creature->setWalkingAnimation(true, ENUMS::Direction::LEFT);
+				destinyCell->addCreature(worldPRT->getXYCoordinateCell(creature->getPosition().x, creature->getPosition().y)->getCreature());
+				worldPRT->getXYCoordinateCell(creature->getPosition().x, creature->getPosition().y)->removeCreature();
+				creature->setPosition(sf::Vector2<size_t>(creature->getPosition().x - 1, creature->getPosition().y));
+				creature->setDirection(ENUMS::Direction::LEFT);
+			}
+			else
+			{
+				creature->setWalkingAnimation(false, ENUMS::Direction::LEFT);
+				creature->restartWalkingTime(true);
+			}
+		}
+		else
+		{
+			creature->setWalkingAnimation(false, ENUMS::Direction::LEFT);
+			creature->restartWalkingTime(true);
+		}
+		break;
+	case TGC::ENUMS::Direction::RIGHT:
+		if (creature->getPosition().x < worldPRT->getMaxWordlSize().first - 1)
+		{
+			auto destinyCell = worldPRT->getXYCoordinateCell(creature->getPosition().x + 1, creature->getPosition().y);
+			if (checkIfCellIsPossibleToMakeAMove(destinyCell))
+			{
+				creature->setWalkingAnimation(true, ENUMS::Direction::RIGHT);
+				destinyCell->addCreature(worldPRT->getXYCoordinateCell(creature->getPosition().x, creature->getPosition().y)->getCreature());
+				worldPRT->getXYCoordinateCell(creature->getPosition().x, creature->getPosition().y)->removeCreature();
+				creature->setPosition(sf::Vector2<size_t>(creature->getPosition().x + 1, creature->getPosition().y));
+				creature->setDirection(ENUMS::Direction::RIGHT);
+				executeMoveScripts(creature, destinyCell);
+
+			}
+			else
+			{
+				creature->setWalkingAnimation(false, ENUMS::Direction::RIGHT);
+				creature->restartWalkingTime(true);
+			}
+		}
+		else
+		{
+			creature->setWalkingAnimation(false, ENUMS::Direction::RIGHT);
+			creature->restartWalkingTime(true);
+		}
+		break;
+
+	default:
+		break;
+	}
+
+}
+
+void TGC::Global::TGCGame::executeMoveScripts(Creature* creature, std::shared_ptr<TGC::MapCell> targetMapCell)
+{
+	for (auto it : targetMapCell->getItemStack())
+	{
+		for (auto iter : it->getScripts())
+		{
+			if (iter->getTrigerType() == TGC::ENUMS::ScriptTrigerType::ONSTEP)
+			{
+				iter->executeScript(creature);
+				if (iter->isSingleExecute())
+				{
+					//TODO: implemet remove Script
+				}
+			}
+		}
+	}
+}
+
+
 void TGC::Global::TGCGame::resolveMoveRequest()
 {
-	//TODO:: 
-	for (auto & it : moveRequest)
+	for (auto& it : moveRequest)
 	{
-		auto obiect = it.first;
-		switch (it.second)
-		{
-		case ENUMS::Direction::DOWN:
-			if (obiect->getPosition().y < world.getMaxWordlSize().second-1 )
-			{
-				auto destinyCell = world.getXYCoordinateCell(obiect->getPosition().x, obiect->getPosition().y+1);
-				if (destinyCell)
-				{
-					if (destinyCell->getGround() && !destinyCell->getCreature() && destinyCell->getGround()->isMoveable())
- 					{
-						it.first->setWalkingAnimation(true, ENUMS::Direction::DOWN);
-						destinyCell->addCreature(world.getXYCoordinateCell(obiect->getPosition().x, obiect->getPosition().y)->getCreature());
-						world.getXYCoordinateCell(obiect->getPosition().x, obiect->getPosition().y)->removeCreature();
-						it.first->setPosition(sf::Vector2<size_t>(obiect->getPosition().x , obiect->getPosition().y+1));
-						it.first->setDirection(ENUMS::Direction::DOWN);
-					}
-					else
-					{
-						it.first->setWalkingAnimation(false, ENUMS::Direction::DOWN);
-						it.first->restartWalkingTime(true);
-					}
-				}
-				else
-				{
-					it.first->setWalkingAnimation(false, ENUMS::Direction::DOWN);
-					it.first->restartWalkingTime(true);
-				}
-			}
-			else
-			{
-				it.first->setWalkingAnimation(false, ENUMS::Direction::DOWN);
-				it.first->restartWalkingTime(true);
-			}
-			break;
-		case ENUMS::Direction::UP:
-			if (obiect->getPosition().y > 0)
-			{
-				auto destinyCell = world.getXYCoordinateCell(obiect->getPosition().x, obiect->getPosition().y - 1);
-				if (destinyCell)
-				{
-					if (destinyCell->getGround() && !destinyCell->getCreature() && destinyCell->getGround()->isMoveable())
-					{
-						it.first->setWalkingAnimation(true, ENUMS::Direction::UP);
-						destinyCell->addCreature(world.getXYCoordinateCell(obiect->getPosition().x, obiect->getPosition().y)->getCreature());
-						world.getXYCoordinateCell(obiect->getPosition().x, obiect->getPosition().y)->removeCreature();
-						it.first->setPosition(sf::Vector2<size_t>(obiect->getPosition().x, obiect->getPosition().y - 1));
-						it.first->setDirection(ENUMS::Direction::UP);
-					}
-					else
-					{
-						it.first->setWalkingAnimation(false, ENUMS::Direction::UP);
-						it.first->restartWalkingTime(true);
-					}
-				}
-				else
-				{
-					it.first->setWalkingAnimation(false, ENUMS::Direction::UP);
-					it.first->restartWalkingTime(true);
-				}
-			}
-			else
-			{
-				it.first->setWalkingAnimation(false, ENUMS::Direction::UP);
-				it.first->restartWalkingTime(true);
-			}
-			break;
-		case ENUMS::Direction::LEFT:
-			if (obiect->getPosition().x > 0)
-			{
-				auto destinyCell = world.getXYCoordinateCell(obiect->getPosition().x - 1, obiect->getPosition().y );
-				if (destinyCell)
-				{
-					if (destinyCell->getGround() && !destinyCell->getCreature() && destinyCell->getGround()->isMoveable())
-					{
-						it.first->setWalkingAnimation(true, ENUMS::Direction::LEFT);
-						destinyCell->addCreature(world.getXYCoordinateCell(obiect->getPosition().x, obiect->getPosition().y)->getCreature());
-						world.getXYCoordinateCell(obiect->getPosition().x, obiect->getPosition().y)->removeCreature();
-						it.first->setPosition(sf::Vector2<size_t>(obiect->getPosition().x -1, obiect->getPosition().y ));
-						it.first->setDirection(ENUMS::Direction::LEFT);
-					}
-					else
-					{
-						it.first->setWalkingAnimation(false, ENUMS::Direction::LEFT);
-						it.first->restartWalkingTime(true);
-					}
-				}
-				else
-				{
-					it.first->setWalkingAnimation(false, ENUMS::Direction::LEFT);
-					it.first->restartWalkingTime(true);
-				}
-			}
-			else
-			{
-				it.first->setWalkingAnimation(false, ENUMS::Direction::LEFT);
-				it.first->restartWalkingTime(true);
-			}
-
-			break;
-		case TGC::ENUMS::Direction::RIGHT:
-			if (obiect->getPosition().x < world.getMaxWordlSize().first-1)
-			{
-				auto destinyCell = world.getXYCoordinateCell(obiect->getPosition().x + 1, obiect->getPosition().y);
-				if (destinyCell)
-				{
-					if (destinyCell->getGround() && !destinyCell->getCreature() && destinyCell->getGround()->isMoveable())
-					{
-						it.first->setWalkingAnimation(true, ENUMS::Direction::RIGHT);
-						destinyCell->addCreature(world.getXYCoordinateCell(obiect->getPosition().x, obiect->getPosition().y)->getCreature());
-						world.getXYCoordinateCell(obiect->getPosition().x, obiect->getPosition().y)->removeCreature();
-						it.first->setPosition(sf::Vector2<size_t>(obiect->getPosition().x + 1, obiect->getPosition().y));
-						it.first->setDirection(ENUMS::Direction::RIGHT);
-						
-					}
-					else
-					{
-						it.first->setWalkingAnimation(false, ENUMS::Direction::RIGHT);
-						it.first->restartWalkingTime(true);
-					}
-				}
-				else
-				{
-					it.first->setWalkingAnimation(false, ENUMS::Direction::RIGHT);
-					it.first->restartWalkingTime(true);
-				}
-			}
-			else
-			{
-				it.first->setWalkingAnimation(false, ENUMS::Direction::RIGHT);
-				it.first->restartWalkingTime(true);
-			}
-			break;
-
-		default:
-			break;
-		}
-
+		auto object = it.first;
+		ResolveSingleMoveRequest(object, it.second);
 	}
 	moveRequest.clear();
 }
@@ -300,7 +282,7 @@ bool TGC::Global::TGCGame::isSameObjectUID(TGC::Creature* creature, std::shared_
 
 void TGC::Global::TGCGame::resolveCombat()
 {
-	for (auto & it : combatRequest)
+	for (auto& it : combatRequest)
 	{
 		if (isPlayerAndTargetExist(it.getAttacker(), it.getTarget()))
 		{
@@ -309,7 +291,6 @@ void TGC::Global::TGCGame::resolveCombat()
 				double absorbValue = it.getTarget()->getAbsorbValue(it.getCombat().getType());
 				double damage = it.getCombat().getValue();
 				double newDamageValue = damage / (absorbValue / 100);
-				//it.getTarget()->set
 				it.getTarget()->removeHealth(newDamageValue);
 				std::unique_ptr<Particle> partToAdd = std::make_unique<Particle>(it.getTarget()->getPosition().x, it.getTarget()->getPosition().y, "sampleParticle");
 				TGC::Global::TGCGame::getSingleton().addParticle(std::move(partToAdd));
@@ -327,7 +308,7 @@ void TGC::Global::TGCGame::updateParticle(const double dt)
 	{
 		if ((*iter)->isDeath())
 		{
-			iter = particleList.erase(iter); // _advances_ iter, so this loop is not infinite
+			iter = particleList.erase(iter);
 		}
 		else
 		{
@@ -355,7 +336,7 @@ bool TGC::Global::TGCGame::isEndAnimationTimeReached()
 	return globalAnimationTimer.isEndAnimationTimeReached();
 }
 
-void TGC::Global::TGCGame::addCombatObiect(TGC::CombatObiect combatObj)
+void TGC::Global::TGCGame::addCombatobject(TGC::Combatobject combatObj)
 {
 	combatRequest.push_back(combatObj);
 }
@@ -363,12 +344,12 @@ void TGC::Global::TGCGame::addCombatObiect(TGC::CombatObiect combatObj)
 std::shared_ptr<TGC::MapCell> TGC::Global::TGCGame::getXYCoordinateCell(size_t x, size_t y)
 {
 
-	return world.getXYCoordinateCell(x, y);
+	return worldPRT->getXYCoordinateCell(x, y);
 }
 
 std::vector<std::vector<std::shared_ptr<TGC::MapCell>>> TGC::Global::TGCGame::getLocalArea(size_t x, size_t y)
 {
-	return world.getLocalArea();
+	return worldPRT->getLocalArea();
 }
 
 void TGC::Global::TGCGame::addParticle(std::unique_ptr<TGC::Particle> particle)

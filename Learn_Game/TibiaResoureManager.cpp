@@ -2,6 +2,10 @@
 TGC::ResoureManager::ResoureManager()
 {
 	textureLoader.loadTexture(textureHandler);
+	//xmlLoader.getItemHandler().loadFromFile();
+//	xmlLoader.getMonstersHandler().loadFromFile();
+	//xmlLoader.getWorldLoader().loadFromFile();
+
 }
 
 TGC::ResoureManager& TGC::ResoureManager::getInstance()

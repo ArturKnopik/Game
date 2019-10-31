@@ -18,14 +18,14 @@ namespace TGC
 		void addToDamage(int value);
 	};
 
-	class CombatObiect
+	class Combatobject
 	{
 		TGC::Creature * attacker;
 		std::shared_ptr<TGC::Creature> target;
 		Combat combat;
 	public:
-		CombatObiect() = delete;
-		CombatObiect(TGC::Creature * attacker, std::shared_ptr<TGC::Creature> target, Combat combat);
+		Combatobject() = delete;
+		Combatobject(TGC::Creature * attacker, std::shared_ptr<TGC::Creature> target, Combat combat);
 		TGC::Creature * getAttacker();
 		std::shared_ptr<TGC::Creature> getTarget();
 		Combat getCombat();

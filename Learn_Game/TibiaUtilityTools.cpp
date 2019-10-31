@@ -37,3 +37,14 @@ short TGC::UtilityTools::damageTypeToIndex(TGC::ENUMS::CombatType type)
 		break;
 	}
 }
+
+void TGC::UtilityTools::toLowerCaseString(std::string& source)
+{
+	std::transform(source.begin(), source.end(), source.begin(), tolower);
+}
+
+std::string TGC::UtilityTools::asLowerCaseString(std::string source)
+{
+	toLowerCaseString(source);
+	return source;
+}

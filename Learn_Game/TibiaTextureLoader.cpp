@@ -1,79 +1,75 @@
 #include "TibiaTextureLoader.h"
-#include "tinyxml.h"
 #include "TibiaResoureManager.h"
+#include "TibiaUtilityTools.h"
+#include "settings.h"
 
+void TGC::TextureLoader::parseTextureNode(const pugi::xml_node& itemNode, TGC::ResourceHandler<sf::Texture>& textureHandler)
+{
+	using namespace TGC::UtilityTools;
+	std::string name;
+	std::string textureAdres;
+	std::string usage;
+	sf::Vector2i texturePosInResource;
+	bool loaWitchOffset = false;
+
+	pugi::xml_attribute locationAttribute = itemNode.attribute("location");
+	if (locationAttribute) {
+		textureAdres = std::string(itemNode.attribute("location").as_string());
+	}
+
+
+	pugi::xml_attribute nameAttribute = itemNode.attribute("name");
+	if (nameAttribute) {
+		name = std::string(itemNode.attribute("name").as_string());
+	}
+
+
+	pugi::xml_attribute textureAttribute = itemNode.attribute("usage");
+	if (textureAttribute) {
+		usage = std::string(textureAttribute.as_string());
+	}
+
+
+	for (auto attributeNode : itemNode.children())
+	{
+		pugi::xml_attribute keyAttribute = attributeNode.attribute("key");
+		if (!keyAttribute) {
+			continue;
+		}
+		std::string tmpStrValue = asLowerCaseString(std::string(keyAttribute.as_string()));
+
+	}
+	
+		std::shared_ptr<sf::Texture> texture;
+		texture = std::make_shared<sf::Texture>();
+		if (texture->loadFromFile(textureAdres))
+		{
+			textureHandler.addResource(name, texture, usage);
+			std::cout << "  N: " << name << ", L: " << textureAdres << ", U: " << usage << std::endl;
+		}
+}
 
 void TGC::TextureLoader::loadTexture(TGC::ResourceHandler<sf::Texture> & textureHandler)
 {
-	TiXmlDocument doc("./resource/XML/Tibia/texture.xml");
-	if (!doc.LoadFile())
-	{
-		std::cout << "error:texture.xml" << std::endl;
+	pugi::xml_document doc;
+	pugi::xml_parse_result result = doc.load_file("./resource/XML/Tibia/textures.xml");
+	if (!result) {
+		std::cout << "error:items.xml" << std::endl;
 		return;
 	}
-
-	TiXmlHandle docHandle(&doc);
-
-	TiXmlElement* monsterNode = docHandle.FirstChild("textures").Child("texture", 0).ToElement();
-
-	std::cout << "## Adding texture:" << std::endl;
-
-	while (monsterNode)
+	for (auto itemNode : doc.child("textures").children())
 	{
-
-		std::string name;
-		std::string location;
-		std::string usage;
-
-		TiXmlElement* xmlName = monsterNode->FirstChildElement("name");
-
-		if (NULL != xmlName)
+		pugi::xml_attribute locationAttribute = itemNode.attribute("location");
+		pugi::xml_attribute nameAttribute = itemNode.attribute("name");
+		pugi::xml_attribute usageAttribute = itemNode.attribute("usage");
+		if (locationAttribute && nameAttribute && usageAttribute)
 		{
-			name = xmlName->GetText();
+			parseTextureNode(itemNode, textureHandler);
+			continue;
 		}
-
-		TiXmlElement* xmlLocation = monsterNode->FirstChildElement("location");
-
-		if (NULL != xmlLocation)
-		{
-			location = xmlLocation->GetText();
-		}
-
-		TiXmlElement* xmlUsage = monsterNode->FirstChildElement("usage");
-
-		if (NULL != xmlUsage)
-		{
-			usage = xmlUsage->GetText();
-		}
-
-		bool addResourceToLost = true;
-
-		if (name.empty())
-		{
-			addResourceToLost = false;
-		}
-		if (location.empty())
-		{
-			addResourceToLost = false;
-		}
-		if (usage.empty())
-		{
-			addResourceToLost = false;
-		}
-
-		std::shared_ptr<sf::Texture> texture;
-		texture = std::make_shared<sf::Texture>();
-		if (texture->loadFromFile(location))
-		{
-			textureHandler.addResource(name, texture, usage);
-			std::cout << "  N: " << name << ", L: " << location << ", U: " << usage << std::endl;
-		}
-		monsterNode = monsterNode->NextSiblingElement("texture");
-
 	}
 }
 
 TGC::TextureLoader::TextureLoader()
 {
-
 }

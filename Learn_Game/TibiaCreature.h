@@ -1,6 +1,6 @@
 #pragma once
 #include "TibiaEnums.h"
-#include "TibiaGameObiect.h"
+#include "TibiaGameobject.h"
 #include "settings.h"
 #include "TibiaMonsterLoader.h"
 #include "TibiaCreatureController.h"
@@ -15,7 +15,7 @@ namespace TGC
 	{
 		class TGCGame;
 	}
-	class Creature : public GameObiect
+	class Creature : public Gameobject
 	{
 	protected:
 		short attackRange = 1;

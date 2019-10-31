@@ -7,7 +7,7 @@ namespace TGC
 	{
 		class CameraController
 		{
-			std::shared_ptr<TGC::GameObiect> centerObiect;
+			std::shared_ptr<TGC::Gameobject> centerobject;
 			sf::View viewObj;
 			sf::RenderWindow* windowPRT;
 		public:

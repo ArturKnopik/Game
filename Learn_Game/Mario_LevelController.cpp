@@ -40,7 +40,7 @@ std::shared_ptr<Mario::Level> LevelController::getLevel(std::string level)
 			file >> x;
 			if (x == 'B')
 			{
-				currentLoadLevel->addGameObiect(Mario::LevelLayer::MAIN_LAYER, std::make_shared<Brick>(sf::Vector2f(j * 32, i * 32), sf::Vector2f(32, 32)));
+				currentLoadLevel->addGameobject(Mario::LevelLayer::MAIN_LAYER, std::make_shared<Brick>(sf::Vector2f(j * 32, i * 32), sf::Vector2f(32, 32)));
 			}
 		}
 	}
@@ -76,7 +76,7 @@ void LevelController::loadLevel(std::string patchToLevel, std::string levelName)
 			file >> x;
 			if (x == 'B')
 			{
-				currentLoadLevel->addGameObiect(Mario::LevelLayer::MAIN_LAYER ,std::make_shared<Brick>(Brick(sf::Vector2f(i * 32, j * 32), sf::Vector2f(32, 32))));
+				currentLoadLevel->addGameobject(Mario::LevelLayer::MAIN_LAYER ,std::make_shared<Brick>(Brick(sf::Vector2f(i * 32, j * 32), sf::Vector2f(32, 32))));
 			}
 		}
 	}
@@ -95,7 +95,7 @@ void LevelController::loadLevel(std::string patchToLevel, std::string levelName)
 	}
 	
 	currentLevel = currentLoadLevel;
-	std::cout << "currentLevel: " << currentLevel->getObiectList(Mario::LevelLayer::MAIN_LAYER).size() << std::endl;
+	std::cout << "currentLevel: " << currentLevel->getobjectList(Mario::LevelLayer::MAIN_LAYER).size() << std::endl;
 	*/
 }
 

@@ -1,7 +1,7 @@
 #pragma once
 #include <memory>
 #include <utility>
-#include "Mario_GameObiect.h"
+#include "Mario_Gameobject.h"
 namespace Mario
 {
 
@@ -13,18 +13,18 @@ namespace Mario
 		};
 		class Level
 		{
-			std::vector<std::shared_ptr<Mario::GameObiect>> backgroundObiectList;
-			std::vector<std::shared_ptr<Mario::GameObiect>> mainLayerObiectList;
-			std::vector<std::shared_ptr<Mario::GameObiect>> particleLayerObiectList;
+			std::vector<std::shared_ptr<Mario::Gameobject>> backgroundobjectList;
+			std::vector<std::shared_ptr<Mario::Gameobject>> mainLayerobjectList;
+			std::vector<std::shared_ptr<Mario::Gameobject>> particleLayerobjectList;
 			std::string name;
 		public:
 			Level()=delete;
 			Level(std::string name);
 			void getLevelName();
-			void addGameObiect(LevelLayer layer, std::shared_ptr<Mario::GameObiect> gameObiect);
-			void removeGameObiect(LevelLayer layer, std::shared_ptr<Mario::GameObiect> gameObiect);
-			void removeGameObiect(LevelLayer layer, size_t id);
-			std::vector<std::shared_ptr<Mario::GameObiect>> & getObiectList(Mario::LevelLayer layer);
+			void addGameobject(LevelLayer layer, std::shared_ptr<Mario::Gameobject> gameobject);
+			void removeGameobject(LevelLayer layer, std::shared_ptr<Mario::Gameobject> gameobject);
+			void removeGameobject(LevelLayer layer, size_t id);
+			std::vector<std::shared_ptr<Mario::Gameobject>> & getobjectList(Mario::LevelLayer layer);
 			virtual ~Level() =default;
 		};
 	

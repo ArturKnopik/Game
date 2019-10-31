@@ -1,121 +1,121 @@
 #include "Mario_Level.h"
 
 
-void Mario::Level::addGameObiect(LevelLayer layer, std::shared_ptr<Mario::GameObiect> gameObiect)
+void Mario::Level::addGameobject(LevelLayer layer, std::shared_ptr<Mario::Gameobject> gameobject)
 {
 	switch (layer)
 	{
 	case LevelLayer::BACKGROUND:
-		backgroundObiectList.push_back(gameObiect);
+		backgroundobjectList.push_back(gameobject);
 
 		break;
 	case LevelLayer::MAIN_LAYER:
-		mainLayerObiectList.push_back(gameObiect);
+		mainLayerobjectList.push_back(gameobject);
 
 		break;
 	case LevelLayer::PARTICLE_LAYER:
-		particleLayerObiectList.push_back(gameObiect);
+		particleLayerobjectList.push_back(gameobject);
 		break;
 	default:
-		printf("CANNOT ADD OBIECT TO LIST");
+		printf("CANNOT ADD object TO LIST");
 		break;
 	}
 }
 
-void Mario::Level::removeGameObiect(LevelLayer layer,  std::shared_ptr<Mario::GameObiect> gameObiect)
+void Mario::Level::removeGameobject(LevelLayer layer,  std::shared_ptr<Mario::Gameobject> gameobject)
 {
-	std::vector<std::shared_ptr<Mario::GameObiect>>::iterator it = backgroundObiectList.begin();
+	std::vector<std::shared_ptr<Mario::Gameobject>>::iterator it = backgroundobjectList.begin();
 	switch (layer)
 	{
 	case LevelLayer::BACKGROUND:
-		for (it; it != backgroundObiectList.end(); it++)
+		for (it; it != backgroundobjectList.end(); it++)
 		{
-			if ((*it).get() == gameObiect.get())
+			if ((*it).get() == gameobject.get())
 			{
-				backgroundObiectList.erase(it);
+				backgroundobjectList.erase(it);
 				return;
 			}
-			printf("GameObiect dont't exist, cant erase element");;
+			printf("Gameobject dont't exist, cant erase element");;
 		}
 		break;
 	case LevelLayer::MAIN_LAYER:
-		for (it; it != mainLayerObiectList.end(); it++)
+		for (it; it != mainLayerobjectList.end(); it++)
 		{
-			if ((*it).get() == gameObiect.get())
+			if ((*it).get() == gameobject.get())
 			{
-				mainLayerObiectList.erase(it);
+				mainLayerobjectList.erase(it);
 				return;
 			}
-			printf("GameObiect dont't exist, cant erase element");;
+			printf("Gameobject dont't exist, cant erase element");;
 		}
 		break;
 	case LevelLayer::PARTICLE_LAYER:
-		for (it; it != particleLayerObiectList.end(); it++)
+		for (it; it != particleLayerobjectList.end(); it++)
 		{
-			if ((*it).get() == gameObiect.get())
+			if ((*it).get() == gameobject.get())
 			{
-				particleLayerObiectList.erase(it);
+				particleLayerobjectList.erase(it);
 				return;
 			}
-			printf("GameObiect dont't exist, cant erase element");;
+			printf("Gameobject dont't exist, cant erase element");;
 		}
 		break;
 	}
 }
 
-void Mario::Level::removeGameObiect(LevelLayer layer, size_t id)
+void Mario::Level::removeGameobject(LevelLayer layer, size_t id)
 {
-	std::vector<std::shared_ptr<Mario::GameObiect>>::iterator it = backgroundObiectList.begin();
+	std::vector<std::shared_ptr<Mario::Gameobject>>::iterator it = backgroundobjectList.begin();
 	switch (layer)
 	{
 	case LevelLayer::BACKGROUND:
-		for (it; it != backgroundObiectList.end(); it++)
+		for (it; it != backgroundobjectList.end(); it++)
 		{
 			if ((*it)->getID() == id)
 			{
-				backgroundObiectList.erase(it);
+				backgroundobjectList.erase(it);
 				return;
 			}
-			printf("GameObiect dont't exist, cant erase element");;
+			printf("Gameobject dont't exist, cant erase element");;
 		}
 		break;
 	case LevelLayer::MAIN_LAYER:
-		for (it; it != mainLayerObiectList.end(); it++)
+		for (it; it != mainLayerobjectList.end(); it++)
 		{
 			if ((*it)->getID() == id)
 			{
-				mainLayerObiectList.erase(it);
+				mainLayerobjectList.erase(it);
 				return;
 			}
-			printf("GameObiect dont't exist, cant erase element");;
+			printf("Gameobject dont't exist, cant erase element");;
 		}
 		break;
 	case LevelLayer::PARTICLE_LAYER:
-		for (it; it != particleLayerObiectList.end(); it++)
+		for (it; it != particleLayerobjectList.end(); it++)
 		{
 			if ((*it)->getID() == id)
 			{
-				particleLayerObiectList.erase(it);
+				particleLayerobjectList.erase(it);
 				return;
 			}
-			printf("GameObiect dont't exist, cant erase element");;
+			printf("Gameobject dont't exist, cant erase element");;
 		}
 		break;
 	}
 }
 
-std::vector<std::shared_ptr<Mario::GameObiect>> & Mario::Level::getObiectList(Mario::LevelLayer layer)
+std::vector<std::shared_ptr<Mario::Gameobject>> & Mario::Level::getobjectList(Mario::LevelLayer layer)
 {
 	switch (layer)
 	{
 	case Mario::LevelLayer::BACKGROUND:
-		return backgroundObiectList;
+		return backgroundobjectList;
 		break;
 	case Mario::LevelLayer::MAIN_LAYER:
-		return mainLayerObiectList;
+		return mainLayerobjectList;
 		break;
 	case Mario::LevelLayer::PARTICLE_LAYER:
-		return particleLayerObiectList;
+		return particleLayerobjectList;
 		
 		break;
 	}

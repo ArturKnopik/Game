@@ -43,7 +43,7 @@ void TGC::Creature::update(const double dt)
 		{
 			if (isTargetInRange())
 			{
-				TGC::Global::TGCGame::getSingleton().addCombatObiect(TGC::CombatObiect(this, targetCreature, Combat(TGC::ENUMS::CombatType::PHYSICAL, 150)));
+				TGC::Global::TGCGame::getSingleton().addCombatobject(TGC::Combatobject(this, targetCreature, Combat(TGC::ENUMS::CombatType::PHYSICAL, 150)));
 				restartAttackTimer();
 			}
 		}
@@ -344,7 +344,6 @@ void TGC::Creature::applyPrefabData(MonsterPrefab prefab)
 
 	texture = std::make_shared<sf::Texture>();
 	texture = TGC::ResoureManager::getInstance().getTextureHandler().getResourceByName(prefab.texture, "creature");	
-	
 	if (texture)
 	{
 		if (!animationControler)

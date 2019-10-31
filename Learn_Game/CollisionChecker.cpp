@@ -4,7 +4,7 @@
 #include <math.h>
 namespace System
 {
-	bool System::checkAABB(std::shared_ptr<Mario::GameObiect> left, std::shared_ptr<Mario::GameObiect> right)
+	bool System::checkAABB(std::shared_ptr<Mario::Gameobject> left, std::shared_ptr<Mario::Gameobject> right)
 	{
 
 		if (left->getPosition().x <= right->getPosition().x + right->getSize().x &&
